@@ -1,0 +1,157 @@
+$hyoo_mol_bench $mol_book2_catalog
+	menu_title @ \Benchmarks
+	Placeholder null
+	Close_item $mol_link
+		arg * bench null
+		sub / <= Close_item_icon $mol_icon_close
+	param \bench
+	spreads *
+		reactivity <= Init $hyoo_mol_bench_perf
+			bench_title \State Management
+			analysis_uri \https://page.hyoo.ru/#!=3ia3ll_rcpl7b
+			Close <= Close_item
+			bench_id \9h2as6_u0mfnn
+		equals <= equals $hyoo_mol_bench_perf
+			bench_title \Deep Equals
+			analysis_uri \https://t.me/mol_bench/31
+			Close <= Close_item
+			bench_id \hwh5lj_gpifwn
+		moment <= moment $hyoo_mol_bench_perf
+			bench_title \Time Moments
+			analysis_uri \https://t.me/mol_bench/10
+			Close <= Close_item
+			bench_id \lrvlhv_jz49k6
+		markdown <= Markdown $hyoo_mol_bench_perf
+			bench_title \Markdown Parse
+			analysis_uri \https://t.me/mol_bench/27
+			Close <= Close_item
+			bench_id \egbl19_e5ljht
+		runtype <= Runtype $hyoo_mol_bench_perf
+			bench_title \Runtime typing
+			Close <= Close_item
+			bench_id \y4n9yl_ug1hdz
+		imutable <= Immutable $hyoo_mol_bench_perf
+			bench_title \Immutable Patches
+			analysis_uri \https://t.me/mam_mol/108985
+			Close <= Close_item
+			bench_id \wqcgji_pkdto1
+		rope <= Rope $hyoo_mol_bench_bench
+			title \Rope Charts
+			analysis_uri \https://t.me/mol_bench/24
+			Close <= Close_item
+			bench \https://bench.hyoo.ru/chart/rope/
+		todomvc <= Todomvc $hyoo_mol_bench_bench
+			title \ToDoMVC
+			analysis_uri \https://t.me/mol_bench/13
+			Close <= Close_item
+			bench \https://hyoo-ru.github.io/todomvc/benchmark/
+		changelog <= Chanelog $hyoo_mol_bench_visual
+			title \Long ChangeLog
+			analysis_uri \https://t.me/mol_bench/30
+			Close <= Close_item
+			items /
+				<= Chanelog_mol $mol_embed_native
+					title \$mol
+					uri \https://nin-jin.github.io/my_gitlab/
+				<= Changelog_vue $mol_embed_native
+					title \Vue
+					uri \https://gitlab.com/gitlab-org/frontend/playground/echarts/-/commit/562ba199b271bc46621cf1a9a9b37e679a3f47d3
+				<= Changelog_vanilla $mol_embed_native
+					title \Vanilla
+					uri \https://github.com/github/accessibilityjs/commit/2e78680ad0a852973b8f87d793e191d184be9cf8
+		toxic <= Toxic $hyoo_mol_bench_visual
+			title \Toxic Repos
+			analysis_uri \https://t.me/mol_bench/28?single
+			Close <= Close_item
+			items /
+				<= Toxic_mol $mol_embed_native
+					title \$mol
+					uri \https://nin-jin.github.io/toxic-repos/
+				<= Toxic_vue $mol_embed_native
+					title \Vue
+					uri \https://toxic-repos.ru/
+		dbmon <= DBMon $hyoo_mol_bench_visual
+			title \DB Monitor
+			analysis_uri \https://t.me/mol_bench/23
+			Close <= Close_item
+			items /
+				<= DBMon_mol $mol_embed_native
+					title \$mol
+					uri \https://mol.js.org/perf/dbmon/-/index.html
+				<= DBMon_vue $mol_embed_native
+					title \Vue
+					uri \https://mathieuancelin.github.io/js-repaint-perfs/vue2
+				<= DBMon_react $mol_embed_native
+					title \React
+					uri \https://mathieuancelin.github.io/js-repaint-perfs/react
+				<= DBMon_vanilla $mol_embed_native
+					title \Vanilla
+					uri \https://mathieuancelin.github.io/js-repaint-perfs/vanilla-simple/
+		habr <= Habr $hyoo_mol_bench_visual
+			title \Habr Comments
+			analysis_uri \https://t.me/mol_bench/21
+			Close <= Close_item
+			items /
+				<= Habr_mol $mol_embed_native
+					title \$mol
+					uri \https://nin-jin.github.io/habrcomment/#!article=423889/comment=22820664
+				<= Habr_vue $mol_embed_native
+					title \Vue
+					uri \https://habr.com/ru/post/423889/#comment_22820664
+		sierp <= Sierp $hyoo_mol_bench_visual
+			title \Sierpinski Triangle
+			analysis_uri \https://t.me/mol_bench/19
+			Close <= Close_item
+			items /
+				<= Sierp_mol $mol_embed_native
+					title \$mol
+					uri \https://mol.js.org/perf/sierp/-/
+				<= Sierp_react $mol_embed_native
+					title \React
+					uri \https://nin-jin.github.io/sierpinski/fiber.html
+				<= Sierp_glimmer $mol_embed_native
+					title \Glimmer
+					uri \https://lifeart.github.io/sierpinski-glimmer/
+
+$hyoo_mol_bench_bench $hyoo_bench_app
+	addon_title <= title
+	menu_tools /
+		<= Analysis $hyoo_mol_bench_analysis
+			uri <= analysis_uri \
+		<= Close $mol_view
+
+$hyoo_mol_bench_perf $hyoo_js_perf
+	changable false
+	Share null
+	Fork null
+	New null
+	menu_tools /
+		<= Permalink $mol_link_iconed
+			title \
+			hint @ \Customize
+			uri <= permalink
+		<= Analysis $hyoo_mol_bench_analysis
+			uri <= analysis_uri \
+		<= Close $mol_view
+
+$hyoo_mol_bench_visual $mol_page
+	head /
+		<= Title
+		<= Switch
+		<= Tools
+	tools /
+		<= Analysis $hyoo_mol_bench_analysis
+			uri <= analysis_uri \
+		<= Close $mol_view
+	body_content /
+		<= Deck $mol_deck
+			Switch => Switch
+			Content => Content
+			rows /
+				<= Content
+			items <= items /
+
+$hyoo_mol_bench_analysis $mol_link
+	hint @ \Analysis
+	sub /
+		<= Icon $mol_icon_poll

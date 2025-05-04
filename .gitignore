@@ -1,0 +1,12 @@
+/Q*
+/O*
+/e*
+/ada*
+.r*
+.DS_Store
+.idea
+__pycache__
+/models
+/results
+/wandb
+/logs

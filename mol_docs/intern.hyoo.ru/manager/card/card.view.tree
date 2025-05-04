@@ -1,0 +1,17 @@
+$hyoo_intern_manager_card $mol_view
+	disabled false
+	manager $hyoo_intern_manager
+	sub /
+		<= Form $mol_form_draft
+			model <= manager
+			value_str*? => value_str*?
+			form_fields /
+				<= Person_field $mol_form_field
+					Content <= Person $hyoo_intern_person_card
+						person <= person $hyoo_intern_person
+						disabled <= disabled
+				<= Company_field $mol_form_field
+					name \Организация
+					Content <= Company $hyoo_intern_company_card
+						company <= company $hyoo_intern_company
+						disabled <= disabled

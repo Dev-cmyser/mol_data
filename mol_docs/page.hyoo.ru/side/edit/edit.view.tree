@@ -1,0 +1,59 @@
+$hyoo_page_side_edit $mol_page
+	side $hyoo_page_side
+		title? => title?
+		details? => details?
+		details_selection? => details_selection?
+		content_full => content_full
+		aura? => aura?
+		editable => editable
+		released => released
+	Title $mol_string_button
+		hint @ \Title
+		- bring => bring
+		value? <=> title?
+		enabled <= editable
+	export_sign @ \\\Current Original on $hyoo_page.\{link}\\
+	tools /
+		<= Syntax $mol_link_iconed
+			hint @ \MarkedText Syntax
+			uri \https://marked.hyoo.ru/
+			icon \https://marked.hyoo.ru/hyoo/marked/logo/logo.svg
+			title \
+		<= Publish $mol_button_minor
+			click? <=> publish? null
+			disabled <= released
+			hint @ \Publish
+			sub /
+				<= Publish_icon $mol_icon_publish
+		<= Export $mol_pick
+			hint @ \Download markdown
+			trigger_content /
+				<= Export_icon $mol_icon_export
+			bubble_content /
+				<= Download $mol_button_download
+					title @ \Download Book as MT File
+					file_name <= download_name \{filename}.mt
+					blob <= download_blob $mol_blob
+				<= Copy_html $mol_button_copy
+					title @ \Copy to Clipboard
+					text <= copy_text \
+					html <= copy_html \
+		<= Rights_toggle $mol_check_icon
+			hint @ \Access Rights
+			checked? <=> rights? false
+			Icon <= Rights_icon $mol_icon_shield_account
+		<= Close $mol_button_minor
+			click? <=> close? null
+			sub / <= Close_icon $mol_icon_close
+	body /
+		<= Details_edit $mol_textarea
+			hint @ \Details
+			value? <=> details?
+			selection? <=> details_selection?
+			enabled <= editable
+		<= Aura_field $mol_form_field
+			name @ \Page Background
+			Content <= Aura $mol_string_button
+				hint @ \hyper link
+				value? <=> aura?
+				enabled <= editable

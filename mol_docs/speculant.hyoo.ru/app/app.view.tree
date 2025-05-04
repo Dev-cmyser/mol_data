@@ -1,0 +1,78 @@
+$hyoo_speculant_app $mol_book2
+	model?val $hyoo_speculant_world
+	balance_total \
+	page_tools /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/speculant.hyoo.ru
+		<= Lights $mol_lights_toggle
+		<= Chat $mol_chat
+			pages => chat_pages
+	plugins /
+		<= Theme $mol_theme_auto
+	Page_dashboard $hyoo_speculant_app_dashboard
+		model <= model
+		tools <= page_tools
+	Page_profile $mol_page
+		title \СпекулянтЪ
+		tools <= page_tools
+		body /
+			<= Page_profile_content $mol_list rows /
+				<= Description $mol_text
+					text \
+						\Успешный инвестор держит руку на пульсе новостей.
+						\
+						\В вашем раcпоряжении **1 игровой год**, который пролетит за **считанные минуты**.
+						\
+						\Следите за новостями и **заработайте миллион**, правильно инвестируя свой капитал.
+						\
+						\Но сперва быстрое знакомство..
+				<= Form $mol_form
+					form_fields /
+						<= Name $mol_form_field
+							name \Как вас зовут?
+							bid <= name_bid \
+							control <= Name_control $mol_string
+								hint \Иванов
+								value?val <=> name?val \
+						<= Profile $mol_form_field
+							name \Род деятельности
+							bid <= profile_bid \
+							control <= Profile_control $mol_switch
+								value?val <=> select_profile?val null
+								options <= profile_dict *
+					buttons /
+						<= Start $mol_button_major
+							title \Начать
+							click?val <=> start?val null
+	Profile_button!id $mol_button_major
+		title <= profile_title!id \
+		click?val <=> profile_select!id?val null
+	-
+	Portfolio_item!id $mol_labeler
+		title <= portfolio_title!id \
+		content / <= portfolio_have!id \
+	Balance_total $mol_labeler
+		title <= balance_total_title \Итоговый баланс
+		content / <= balance_total
+	Cash_total $mol_labeler
+		title \Кэш
+		content / <= cash_total \
+	Page_final $mol_page
+		title \СпекулянтЪ
+		tools <= page_tools
+		body /
+			<= Page_final_content $mol_list rows /
+				<= Final_text $mol_text
+					text <= final_text \ 
+						\# Ого, {balance} за год!
+				<= Portfolio $mol_row
+					sub <= portfolio /
+		foot /
+			<= Share $mol_button_share
+				uri <= share_uri \
+				title \https://speculant.hyoo.ru/
+				hint \Поделиться
+			<= Restart $mol_button_typed
+				click?val <=> restart?val null
+				hint \Рестарт
+				sub / <= Restart_icon $mol_icon_restart

@@ -1,0 +1,52 @@
+$hyoo_draw $mol_book2
+	title @ \Fast vector sketch
+	plugins /
+		<= Theme $mol_theme_auto
+	sub /
+		<= Main $mol_view
+			sub /
+				<= Side_left $mol_scroll
+					sub /
+						<= Tools_left $mol_list
+							rows <= tools_left /
+								<= Colors $hyoo_draw_colors
+									value => color
+				<= Pane $hyoo_draw_pane
+					color <= color
+					tool <= tool
+					grid <= grid
+					map <= map
+					yard <= yard
+					shift?val <=> center?val $mol_vector_2d<number> /
+						0
+						0
+					zoom?val <=> zoom?val 1
+					dom_tree => share_capture
+				<= Side_right $mol_scroll
+					sub /
+						<= Tools_right $mol_list
+							rows <= tools_right /
+								<= Chat $mol_chat
+									seed \8o0ox_5h6l8v
+									pages => chat_pages
+								<= Source_link $mol_link_source
+									uri \https://github.com/hyoo-ru/draw.hyoo.ru
+								<= Lights $mol_lights_toggle
+								<= Grid $mol_check_icon
+									hint @ \Grid
+									checked?val <=> grid?val true
+									Icon <= Grid_icon $mol_icon_grid_large
+								<= Map $mol_check_icon
+									hint @ \Map
+									checked?val <=> map?val false
+									Icon <= Map_icon $mol_icon_map
+								<= Tools $hyoo_draw_tools
+									value => tool
+								<= Share $mol_button_share
+									capture <= share_capture
+								<= Online $hyoo_sync_online
+									yard <= yard $hyoo_sync_client
+				<= Attribution $mol_view sub <= attribution /
+					<= CARTO $mol_link_iconed
+						title \CARTO
+						uri \https://carto.com/attributions

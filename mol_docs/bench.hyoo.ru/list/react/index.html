@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+	html {
+		font: 12pt/1.25 "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+	}
+	
+	body {
+		margin: 0;
+	}
+	
+	.list {
+		padding: .5rem;
+	}
+
+	.list-header {
+		padding: .5rem;
+		margin: 0;
+		font-size: 1.5em;
+		font-weight: normal;
+	}
+
+	.list-item {
+		padding: .5rem;
+		cursor: pointer;
+	}
+	
+	.list-item-selected {
+		background: #eee;
+	}
+	
+	.list-item-title {
+		font-weight: bold;
+	}
+</style>
+
+<body>
+
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+	
+	class Item extends React.Component {
+		
+		render() {
+			return React.createElement(
+				"div" ,
+				{
+					className : "list-item" + ( this.props.selected ? " list-item-selected " : "" ) ,
+					onClick : this.props.onClick
+				} ,
+				[
+					React.createElement(
+						"div" ,
+						{ className : 'list-item-title' } ,
+						this.props.title
+					) ,
+					React.createElement(
+						"div" ,
+						{ className : 'list-item-content' } ,
+						this.props.content
+					)
+				]
+			)
+		}
+		
+	}
+	
+	class Test extends React.Component {
+
+		state = {
+			data : {
+				sample : '' ,
+				items : []
+			} ,
+			selected : -1
+		}
+		
+		constructor( props ) {
+			super( props )
+			this.onMessage = this.onMessage.bind( this )
+		}
+		
+		onSelect( selected ) {
+			this.setState( { selected } )
+		}
+	
+		componentWillMount() {
+			window.addEventListener( 'message' , this.onMessage )
+		}
+	
+		componentDidUnmount() {
+			window.removeEventListener( 'message' , this.onMessage )
+		}
+	
+		onMessage( event ) {
+			switch( event.data[ 0 ] ) {
+				case 'set data' :
+					this.setState( { data : event.data[ 1 ] , selected : -1 } )
+					break
+			}
+		}
+	
+		render() {
+			return React.createElement(
+				"div" ,
+				{ className : 'list' } ,
+				this.state.data.items.map( item => React.createElement(
+					Item ,
+					{
+						key : item.id ,
+						title: item.title,
+						content: item.content,
+						selected : this.state.selected === item.id ,
+						onClick : this.onSelect.bind( this , item.id ),
+					}
+				) )
+			)
+		}
+	
+	}
+	
+	var test = new Test
+	
+	ReactDOM.render( React.createElement( Test ) , document.body )
+
+</script>

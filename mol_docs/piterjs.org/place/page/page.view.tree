@@ -1,0 +1,27 @@
+$piterjs_place_page $mol_page
+	place $piterjs_place
+		title? => title?
+		address? => address?
+		route? => route?
+	Title $mol_string
+		value? <=> title?
+		enabled <= editing false
+		hint \Название
+	tools /
+		<= Close $mol_link
+			arg * place null
+			sub /
+				<= Close_icon $mol_icon_close
+	body /
+		<= Info $mol_view sub <= info /
+			<= Address $mol_string
+				hint \Адрес
+				value? <=> address?
+				enabled <= editing false
+			<= Route $mol_textarea
+				hint \Как добраться
+				value? <=> route?
+				enabled <= editing false
+		<= Map $hyoo_map
+	auto /
+		<= map_locate null

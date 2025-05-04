@@ -1,0 +1,69 @@
+$hyoo_crus_node_dump $mol_expander
+	node $hyoo_crus_node
+		can_change => can_change
+		land => land
+	tag \keys
+	label /
+		<= Head $mol_paragraph sub / <= title \
+	addons /
+	Tools $mol_view sub /
+		^ addons
+		^ editors
+	editors /
+		<= Add_key $mol_textarea
+			enabled <= can_change
+			hint \+
+			value? <=> key_new? \
+			submit? <=> add_key? null
+		<= Add_value $mol_textarea
+			enabled <= can_change
+			hint \+
+			value? <=> value_new? \
+			submit? <=> add_value? null
+		<= Value_text $mol_textarea
+			enabled <= can_change
+			value? <=> text? \
+		<= Value_str $mol_textarea
+			enabled <= can_change
+			value? <=> value_str? \
+	content <= nodes /
+		<= Inner*0 $mol_view sub /
+			<= Node_inner* $hyoo_crus_node_dump
+				tag <= unit_tag*
+				addons <= node_addons* /
+					<= Unit_value* $hyoo_crus_sand_dump
+						land <= land
+						sand <= unit_value* null
+					<= Unit_tip* $mol_select
+						value? <=> unit_tip*? \bin
+						enabled <= can_change
+						dictionary *
+							bin \💠 bin
+							bool \🚩 bool
+							int \1️⃣ int
+							real \💫 real
+							ints \🔢 ints
+							reals \✨ reals
+							ref \🎯 ref
+							str \🔠 str
+							time \⏰ time
+							dur \🕓 dur
+							range \🎬 range
+							json \📑 json
+							jsan \📚 jsan
+							xml \🛐 xml
+							tree \🌴 tree
+					<= Unit_tag* $mol_select
+						value? <=> unit_tag*? \term
+						enabled <= can_change
+						dictionary *
+							term \💼 term
+							solo \🔝 solo
+							vals \🎹 vals
+							keys \🔑 keys
+					<= Unit_time* $mol_view sub / <= unit_time* \
+					<= Unit_wipe* $mol_button_minor
+						sub / <= Unit_wipe_icon* $mol_icon_close
+						enabled <= can_change
+						click? <=> unit_wipe*? null
+				node <= node_inner* $hyoo_crus_node

@@ -1,0 +1,26 @@
+[hyoo_life_population] {
+	padding: var(--mol_gap_text);
+}
+
+[hyoo_life_time] {
+	flex: 0 1 auto;
+	box-shadow: none;
+	padding: 0;
+}
+
+[hyoo_life_time_option] {
+	padding: var(--mol_gap_text);
+}
+
+[hyoo_life_store_link] {
+	align-items: center;
+}
+
+[hyoo_life_store_link][mol_link_current] {
+	opacity: .5;
+}
+
+[hyoo_life_map] {
+	flex: auto;
+	display: flex;
+}

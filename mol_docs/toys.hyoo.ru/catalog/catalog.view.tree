@@ -1,0 +1,52 @@
+$hyoo_toys_catalog $mol_page
+	toys /
+	toy!id $hyoo_toys_toy
+	filter_type \
+	filter_size \
+	sort_key \
+	filter_popular true
+	head /
+		<= Logo $mol_image
+			uri \hyoo/toys/toys_logo.svg
+			event * click?val <=> event_top?val null
+		<= Title
+		<= Tools
+	tools /
+		<= Filter_title $mol_search
+			query?val <=> filter_title?val \
+		<= Source_link $mol_link_source
+			uri \https://github.com/hyoo-ru/toys.hyoo.ru
+	-
+	body /
+		<= Goods $mol_gallery
+			items <= toy_cards /
+	-
+	Toy_card!id $mol_link
+		minimal_width 64
+		minimal_height 168
+		arg <= toy_arg!id *
+		sub /
+			<= Toy_main!id $mol_list rows /
+				<= Toy_title!id $mol_dimmer
+					needle <= filter_title
+					haystack <= toy_title!id \
+				<= Toy_type!id $mol_dimmer
+					needle <= filter_title
+					haystack <= toy_type!id \
+			<= Toy_image!id $mol_image
+				uri <= toy_image!id \
+				style *
+					filter <= toy_image_filter!id \
+			<= Toy_info!id $mol_view
+				sub /
+					<= Toy_price!id $mol_cost
+						value <= toy_price!id $mol_unit_money
+							valueOf 0
+					<= Toy_size!id $mol_view
+						sub /
+							<= toy_size_prefix @ \Size: 
+							<= toy_size!id \
+					<= Toy_reviews!id $mol_view
+						sub /
+							<= toy_reviews_prefix @ \Reviews: 
+							<= toy_reviews!id 0

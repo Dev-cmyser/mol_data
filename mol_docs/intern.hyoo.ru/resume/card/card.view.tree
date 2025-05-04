@@ -1,0 +1,177 @@
+$hyoo_intern_resume_card $mol_view
+	disabled false
+	person $hyoo_intern_person
+	submit? null
+	sub /
+		<= Resume_form $mol_form
+			form_fields <= profile_fields /
+				<= Names $mol_form_group sub /
+					<= Name_second_field $mol_form_field
+						name \Фамилия
+						bid <= name_second_bid \
+						Content <= Name_second_control $mol_string
+							hint \Иванов
+							value? <=> name_second? \
+							disabled <= disabled
+					<= Name_first_field $mol_form_field
+						name \Имя
+						bid <= name_first_bid \
+						Content <= Name_first_control $mol_string
+							hint \Иван
+							value? <=> name_first? \
+							disabled <= disabled
+					<= Name_patronymic_field $mol_form_field
+						name \Отчество
+						bid <= name_patronymic_bid \
+						Content <= Name_patronymic_control $mol_string
+							hint \Иванович
+							value? <=> name_patronymic? \
+							disabled <= disabled
+				<= Bdate_citizenship_city $mol_form_group sub /
+					<= Birthdate_field $mol_form_field
+						name \Дата рождения
+						Content <= Birthdate_control $mol_date
+							value? <=> birthdate_value? \2000-01-01
+							enabled <= enabled true
+					<= Citizenship_field $mol_form_field
+						name \Гражданство
+						Content <= Citizenship_control $mol_select
+							value? <=> citizenship? \russia
+							dictionary <= citizenship_dict *
+								russia \РФ
+							enabled <= enabled
+					<= City_field $mol_form_field
+						name \Место проживания
+						Content <= City_control $mol_string
+							value? <=> city? \Москва
+							disabled <= disabled
+				<= Institutions_field $mol_form_field
+					label /
+						<= institutions_field_name @ \Institutions
+						<= Institution_add $mol_button_minor
+							sub / <= Institution_add_icon $mol_icon_plus
+							click? <=> institution_add? null
+					Content <= Institution_content $mol_list
+						rows <= institution_rows /
+							<= Institution_form*0 $mol_list rows /
+								<= Student_group* $mol_form_group sub /
+									<= Specialty_field* $mol_form_field
+										name @ \Specialty
+										Content <= Specialty_control* $mol_string
+											value? <=> specialty*? \
+									<= Degree_field* $mol_form_field
+										name @ \Degree
+										Content <= Degree_control* $mol_string
+											value? <=> degree*? \
+								<= Date_finish* $mol_form_field
+									name @ \Graduation date
+									Content <= Date_finish_control* $mol_date
+										value_moment? <=> date_finish*? null
+								<= Institution_group* $mol_form_group sub /
+									<= Institution_field* $mol_form_field
+										name @ \Institution
+										Content <= Institution_control* $mol_string
+											value? <=> institution*? \
+									<= Department_field* $mol_form_field
+										name @ \Department
+										Content <= Department_control* $mol_string
+											value? <=> department*? \
+								<= Institution_drop_row* $mol_row sub /
+									<= Institution_drop* $mol_button_minor
+										sub / <= Institution_drop_icon* $mol_icon_delete
+										click? <=> institution_drop*? null
+				<= Work $mol_form
+					title @ \Work
+					- Foot null
+					form_fields /
+						- \job_status skills languages position company industry functions date_start date_end
+						<= Job_status_field $mol_form_field
+							name @ \Job status
+							Content <= Job_status_control $mol_switch
+								value? <=> job_status? \
+								options *
+									student @ \Student
+									working_for_hire @ \Working for hire
+									self_employed @ \Self-employed
+									unemployed @ \Unemployed
+						<= Skills_field $mol_form_field
+							- Content null
+							label /
+								<= name <= Skills_field_name $mol_paragraph 
+									title @ \Skills
+								<= Skills_control $mol_select_list
+									value? <=> skills? /
+									dictionary <= skills_dict *
+										programming @ \Programming
+										design @ \Design
+										managment @ \Managment
+							-
+								name @ \Skills
+								Content <= Skills_control $mol_select_list
+									value? <=> skills?
+									dictionary <= skills_dict *
+										programming @ \Programming
+										design @ \Design
+										managment @ \Managment
+						<= Jobs_field $mol_form_field
+							label /
+								<= jobs_field_name @ \Experience
+								<= Job_add $mol_button_minor
+									sub / <= Job_add_icon $mol_icon_plus
+									click? <=> job_add? null
+							Content <= Jobs_content $mol_list
+								rows <= job_rows /
+									<= Job_form*0 $mol_list
+										rows /
+											<= Employer_group* $mol_form_group sub /
+												<= Position_field* $mol_form_field
+													name @ \Position
+													Content <= Position_control* $mol_string
+														value? <=> position*? \
+											<= Date_group* $mol_form_group sub /
+												<= Date_start_field* $mol_form_field
+													name @ \Start date
+													Content <= Date_start_control* $mol_date
+														value_moment? <=> date_start*? null
+												<= Date_end_field* $mol_form_field
+													name @ \End date
+													Content <= Date_end_content* $mol_view sub /
+														<= Date_end_control* $mol_date
+															value_moment? <=> date_end*? null
+														<= Up_to_present_control* $mol_check_box
+															title @ \Up to present
+															checked? <=> present*? false
+											<= Company_group* $mol_form_group sub /
+												<= Company_field* $mol_form_field
+													name @ \Company
+													Content <= Company_control* $mol_string
+														value? <=> company*? \
+												<= Industry_field* $mol_form_field
+													name @ \Industry
+													Content <= Industry_contrl* $mol_string
+														value? <=> industry*? \
+											<= Functions_field* $mol_form_field
+												name @ \Functions
+												Content <= Functions_control* $mol_textarea
+													hint @ \Your job functions
+													value? <=> functions*? \
+											<= Job_drop_row* $mol_row sub /
+												<= Job_drop* $mol_button_minor
+													sub / <= Job_drop_icon* $mol_icon_delete
+													click? <=> job_drop*? null
+				<= Exp_field $mol_form_field
+					name \Опыт общественной/проектной деятельности/волонтерства
+					Content <= Exp_control $mol_textarea
+						value? <=> exp? \
+						enabled <= enabled
+				<= Contacts $mol_form_group sub /
+					<= Phone_field $mol_form_field
+						name @ \Phone
+						Content <= Phone_control $mol_phone
+					<= Email_field $mol_form_field
+						name @ \Email
+						Content <= Email_control $mol_string
+							hint @ \my_email@mail.ru
+				<= Accept $mol_paragraph
+					title \Нажимая кнопку «Подать заявку», ты соглашаешься на обработку персональных данных, указанных тобой в анкете (включая контактную информацию и фотографии), в рамках проекта «Карьерный портал Правительства Москвы» в соответствии с текстом согласия.
+				- канал привлечения (есть в тз, для статистики)

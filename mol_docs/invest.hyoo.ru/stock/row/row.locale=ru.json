@@ -1,0 +1,10 @@
+{
+	"$hyoo_invest_stock_row_title_block_label": "Описание",
+	"$hyoo_invest_stock_row_Rate_block_title": "Проц/год",
+	"$hyoo_invest_stock_row_Income_block_title": "Доход",
+	"$hyoo_invest_stock_row_Duration_block_title": "Длительность",
+	"$hyoo_invest_stock_row_Enter_amount_block_title": "Вложено",
+	"$hyoo_invest_stock_row_Enter_date_block_title": "Дата входа",
+	"$hyoo_invest_stock_row_Exit_amount_block_title": "Выведено",
+	"$hyoo_invest_stock_row_Exit_date_block_title": "Дата выхода"
+}

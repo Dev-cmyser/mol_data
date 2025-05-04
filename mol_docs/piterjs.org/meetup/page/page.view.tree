@@ -1,0 +1,151 @@
+$piterjs_meetup_page $mol_page
+	meetup $piterjs_meetup
+		title? => title?
+		description? => description?
+		afterparty? => afterparty?
+		start? => start?
+		joined_count => joined_count
+		join_allowed => join_allowed
+		review_allowed => review_allowed
+		editable => editable
+		review? => review?
+		reviews => reviews
+	address \
+	Title $mol_string_button
+		value? <=> title?
+		enabled <= editing
+		hint \Номер
+	tools /
+		<= Subscribe $mol_link_calendar
+			title <= subscribe_title \
+			details <= subscribe_details \
+			location <= address
+			interval <= interval $mol_time_interval / *
+				start <= start
+				duration <= duration $mol_time_duration / \PT3h
+		<= Start $mol_date
+			value_moment? <=> start?
+			enabled <= editing
+			align \bottom_left
+		<= Close $mol_link
+			arg *
+				meetup null
+				speech null
+				place null
+				video null
+			sub /
+				<= Close_icon $mol_icon_close
+	body /
+		<= Content $mol_list rows <= content /
+			<= Description $mol_textarea
+				hint \Резюме
+				value? <=> description?
+				enabled <= editing
+			<= Links $mol_view sub <= links / 
+				<= Video $mol_link
+					arg *
+						video \
+						place null
+						speech null
+					title \Трансляция
+				<= Place $mol_link
+					arg *
+						video null
+						place \
+						speech null
+					title \Площадка
+			<= Speeches $mol_list rows <= speeches /
+			<= Speech_add $mol_button_minor
+				click? <=> speech_add? null
+				sub /
+					<= Speech_add_icon $mol_icon_plus
+					\Добавить доклад
+			<= Hidden_fields $mol_list rows /
+				<= Afterparty_field $mol_form_field
+					name \Афтерпати
+					Content <= Afterparty $mol_textarea
+						hint \Адрес, ориентиры, чат
+						value? <=> afterparty?
+						enabled <= editing
+				<= Capacity_block $mol_view sub /
+					<= Capacity_field $mol_form_field
+						name \Максимальная вместимость
+						Content <= Capacity $mol_number
+							hint \100
+							value? <=> capacity? 0
+							enabled <= editing
+					<= Capacity_cut $mol_button_minor
+						title \закрыть регистрацию
+						click? <=> capacity_cut? null
+						sub /
+							<= Capacity_cut_icon $mol_icon_heart_box_outline
+			<= Join $mol_section
+				title \Регистрация
+				level 5
+				tools /
+					<= Free_space $mol_paragraph title <= free_space \нет мест
+				content <= join_content /
+					<= Profile $mol_form_field
+						name \Имя Фамилия
+						bid <= profile_bid \
+						Content <= Name_real $mol_string
+							value? <=> name_real? \
+							enabled <= profile_editable true
+					<= Joined_form $mol_view sub <= joined_form /
+						<= Joined $mol_check_box
+							checked? <=> joined? false
+							enabled <= join_enabled false
+							title \Я приду
+						<= Joined_confirm $mol_paragraph title \🔥 Ждём тебя!
+			<= Joined_bid $mol_text text \
+				\Если не сможешь прийти - не забудь отменить регистрацию, чтобы освободить место другим.
+				\Сделать это можно лишь с того же девайса. Но \\тут\#!safe\\ можешь перенести свою авторизацию на любой другой.
+				\Да, мы упарываемся по твоей приватности 💟
+			<= Review_field $mol_form_field
+				name \Общие впечатления
+				Bid <= Donate $mol_link
+					target \_blank
+					hint \Задонатить
+					uri \#!wiki/=wu07hq_io8xyr
+					sub / <= Donate_icon $mol_icon_gift_outline
+				- Bid <= Review_score $mol_switch
+					options *
+						lie \🤬
+						hard \🤯
+						equal \😴
+						think \🤔
+						love \😍
+				Content <= Review_block $mol_list rows /
+					<= Review $mol_textarea
+						hint \Что хорошо, а что улучшить?
+						value? <=> review?
+					<= Review_hint $mol_view sub / \+ По каждому спикеру далее
+			<= Reviews $mol_text text <= reviews
+	Speech!index $piterjs_speech_snippet
+		speech <= speech!index $piterjs_speech
+	foot /
+		<= Public $mol_check_icon
+			checked? <=> meetup_public? false
+			Icon <= Public_icon $mol_icon_eye
+			hint \Опубликовано
+		<= Editing $mol_check_icon
+			Icon <= Editing_icon $mol_icon_settings_outline
+			checked? <=> editing? false
+		<= Rights_toggle $mol_check_icon
+			checked? <=> rights? false
+			Icon <= Rights_toggle_icon $mol_icon_shield_account
+		<= Guests_link $mol_link
+			arg * guests \
+			hint \Список гостей
+			sub /
+				<= Guests_link_icon $mol_icon_account_group_outline
+		<= Texts_link $mol_link
+			arg * texts \
+			hint \Тексты анонсов
+			sub /
+				<= Texts_link_icon $mol_icon_bullhorn_outline
+		<= Stats_link $mol_link
+			arg * stats \
+			hint \Статистика
+			sub /
+				<= Stats_link_icon $mol_icon_chart_bar_stacked

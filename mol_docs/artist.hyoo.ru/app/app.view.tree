@@ -1,0 +1,81 @@
+$hyoo_artist_app $mol_page
+	title <= title_default @ \Artificial Artist
+	head /
+		<= Query $mol_search
+			hint <= title_default
+			query? <=> query_changed? \
+			submit? <=> imagine? null
+			suggests <= suggests /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/artist.hyoo.ru
+	body /
+		<= Images $mol_infinite
+			row_ids? <=> images? /
+			after* <= images_more* /
+			Row* <= Image* $mol_image
+				minimal_width 256
+				minimal_height 256
+				uri <= image* \
+	artists /
+		\Yayoi Kusama
+		\Pablo Picasso
+		\Leonardo da Vinci
+		\Banksy
+		\Rembrandt
+		\Frida Kahlo
+		\Vincent van Gogh
+		\Henri Matisse
+		\Salvador Dali
+		\Claude Monet
+		\Andy Warhol
+		\Georgia O'Keeffe
+		\Jackson Pollock
+		\Marcel Duchamp
+		\Edward Hopper
+		\Willem de Kooning
+		\Mark Rothko
+		\David Hockney
+	art_styles /
+		\Anime
+		\Abstract
+		\Minimalist
+		\Cyberpunk
+		\Steampunk
+		\Organic
+		\Geometric
+		\Sci-Fi
+		\Futuristic
+		\Vaporwave
+		\Gothic
+		\oil on canvas
+		\chinese painting
+		\graffiti
+		\watercolour
+		\graphite
+		\cinematic
+		\film noir
+		\fluorescent
+		\moody lighting
+		\silhouette
+		\ultraviolet
+		\x-ray
+		\polaroid
+		\double exposure
+		\fisheye lens
+		\bokeh
+	art_moods /
+		\Joyful
+		\Light-Hearted
+		\Exciting
+		\Calming
+		\Soothing
+		\Playful
+		\Fun
+		\Bright
+		\Colourful
+		\Dynamic
+		\Energetic
+		\Passionate
+		\Romantic
+		\Vibrant
+		\Vivid

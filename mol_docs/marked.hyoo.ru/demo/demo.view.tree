@@ -1,0 +1,12 @@
+$hyoo_marked_demo $mol_example_large
+	title \CROWD Text Merge
+	sub /
+		<= Sandbox $hyoo_marked_app
+	tags /
+		\MarkDown
+		\HTML
+	aspects /
+		\Application
+		\Language/MarkedText
+		\Algorithm/Parse
+		\Algorithm/Transform

@@ -1,0 +1,12 @@
+$hyoo_idea_talents_page $mol_page
+	domain $hyoo_idea_domain
+	title @ \Talent Search
+	tools /
+		<= Close null
+	persons /$hyoo_idea_person
+	projects /$hyoo_idea_project
+	body /
+		<= Results $mol_list
+			rows <= results /
+	Person_row*0_0 $hyoo_idea_person_card
+		person <= person* $hyoo_idea_person

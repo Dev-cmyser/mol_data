@@ -1,0 +1,33 @@
+[hyoo_realworld] {
+	--mol_theme_hue: 150deg;
+}
+
+[hyoo_realworld_tags] {
+	flex: 0 0 10rem;
+}
+
+[hyoo_realworld_sign_in] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_realworld_sign_up] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_realworld_person_page] {
+	flex: 0 0 20rem;
+}
+
+
+[hyoo_realworld_home_page] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_realworld_feed] {
+	flex: 0 0 30rem;
+}
+
+[hyoo_realworld_article] ,
+[hyoo_realworld_article_edit] {
+	flex: 0 0 50rem;
+}

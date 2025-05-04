@@ -1,0 +1,9 @@
+$hyoo_lupa $mol_stack
+	sub /
+		<= Camera $mol_video_camera
+			title \$hyoo_lupa - PWA Magnifying Glass
+			facing \environment
+			sharpness 4
+			torch true
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/lupa.hyoo.ru/

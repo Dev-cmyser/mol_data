@@ -1,0 +1,15 @@
+{
+	"$hyoo_page_side_info_Slides_hint": "Посмотреть как слайды",
+	"$hyoo_page_side_edit_Publish_hint": "Опубликовать",
+	"$hyoo_page_side_info_Section_list_title": "Разделы",
+	"$hyoo_page_side_info_Section_list_empty_title": "Нет разделов",
+	"$hyoo_page_side_info_Ref_list_empty_title": "Нет обратных ссылок",
+	"$hyoo_page_side_info_Ref_list_title": "Упоминания",
+	"$hyoo_page_side_info_title": "О странице",
+	"$hyoo_page_side_info_Size_title": "Размер",
+	"$hyoo_page_side_info_Chars_title": "Знаков",
+	"$hyoo_page_side_info_Words_title": "Слов",
+	"$hyoo_page_side_info_Weight_title": "Вес",
+	"$hyoo_page_side_info_Word_list_empty_title": "Нет слов",
+	"$hyoo_page_side_info_Word_list_title": "Ключевые слова"
+}

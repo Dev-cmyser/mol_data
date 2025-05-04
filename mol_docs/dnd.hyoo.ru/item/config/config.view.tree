@@ -1,0 +1,71 @@
+$hyoo_dnd_item_config $mol_page
+	item $hyoo_dnd_item
+		brief => brief
+		title? => name?
+		price? => price?
+		weight? => weight?
+		ability? => ability?
+		damage_hand1? => hand1?
+		damage_hand2? => hand2?
+		damage_near? => near?
+		damage_distant? => distant?
+		damage_type? => damage_type?
+		attack_distance_norm? => distance_norm?
+		attack_distance_max? => distance_max?
+	Title $mol_string
+		hint \Название
+		value? <=> name?
+	body /
+		<= Common $mol_form_group sub /
+			<= Price_block $mol_form_field
+				name \🟠 Цена
+				Content <= Price $mol_number
+					value? <=> price?
+			<= Weight_block $mol_form_field
+				name \🧱 Вес
+				Content <= Weight $mol_number
+					value? <=> weight?
+		<= Touch_range $mol_form_group sub /
+			<= Hand1_block $mol_form_field
+				name \🙋 Одноручный урон
+				Content <= Hand1 $mol_paginator
+					value? <=> hand1?
+			<= Hand2_block $mol_form_field
+				name \🙆 Двуручный урон
+				Content <= Hand2 $mol_paginator
+					value? <=> hand2?
+		<= Long_range $mol_form_group sub /
+			<= Near_block $mol_form_field
+				name \💫 Ближний урон
+				Content <= Near $mol_paginator
+					value? <=> near?
+			<= Distant_block $mol_form_field
+				name \💨 Дальний урон
+				Content <= Distant $mol_paginator
+					value? <=> distant?
+		<= Distance_limit $mol_form_group sub /
+			<= Distance_norm_block $mol_form_field
+				name \🛑 Дальность без помех
+				Content <= Distance_norm $mol_paginator
+					step 5
+					value? <=> distance_norm?
+			<= Distance_max_block $mol_form_field
+				name \⛔ Дальность с помехой
+				Content <= Distance_max $mol_paginator
+					step 5
+					value? <=> distance_max?
+		<= Damage_type_block $mol_form_field
+			name \💢 Вид урона
+			Content <= Damage_type $mol_switch
+				value? <=> damage_type?
+				keys <= damage_options /
+				option_title* <= damage_title* \
+		<= Ability_block $mol_form_field
+			name \🔰 Основная способность
+			Content <= Ability $mol_switch
+				value? <=> ability?
+				options *
+					strength \💪 Мощность
+					dexterity \🥏 Ловкость
+	foot /
+		<= Brief $mol_chip title <= brief

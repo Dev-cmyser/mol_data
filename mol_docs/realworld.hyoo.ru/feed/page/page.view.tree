@@ -1,0 +1,16 @@
+$hyoo_realworld_feed_page $mol_page
+	title @ \Articles
+	minimal_width 400
+	tools /
+		<= Add_link $mol_link
+			arg * edit \
+			sub / <= Add_icon $mol_icon_plus
+	body /
+		<= Article_links $mol_list
+			rows <= article_links /
+	Article_link!index $mol_link
+		arg *
+			article <= article_slug!index \
+		sub /
+			<= Article_card!index $hyoo_realworld_article_card
+				article <= article!index $hyoo_realworld_article

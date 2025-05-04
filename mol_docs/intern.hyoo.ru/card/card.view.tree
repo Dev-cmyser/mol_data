@@ -1,0 +1,8 @@
+$hyoo_intern_card $mol_view
+	disabled false
+	entity $hyoo_crowd_struct
+	sub /
+		<= Form $mol_form_draft
+			value_str*? => value_str*?
+			model <= entity
+			form_fields <= form_fields /

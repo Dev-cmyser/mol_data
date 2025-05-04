@@ -1,0 +1,47 @@
+$hyoo_ergo_proposal_page $mol_page
+	domain $hyoo_ergo_domain
+	proposal $hyoo_ergo_proposal
+	title @ \Proposal
+	tools /
+		<= Close_page $mol_link
+			arg * proposal null
+			sub / <= Close_page_icon $mol_icon_close
+	body /
+		<= Form $mol_form
+			form_fields <= form_fields /
+				<= Comment_field $mol_labeler
+					title @ \Comment
+					content / <= comment \
+				<= Changes_field $mol_form_field
+					name @ \Changes
+					control <= Changes_switch $mol_switch
+						value? <=> changes? \none
+						options <= changes_types *
+							none @ \None
+							text @ \Text
+							split @ \Split
+							merge @ \Merge
+							delete @ \Delete
+							sub @ \Sub thesis
+				<= Title_field $mol_form_field
+					name @ \Title
+					bid <= title_bid \
+					control <= Title_text $mol_textarea
+						hint @ \Updated title
+						value? <=> next_title? \
+				<= Title_labeler $mol_labeler
+					title @ \Title
+					content / <= next_title
+				<= Text_field $mol_form_field
+					name @ \Text
+					bid <= text_bid \
+					control <= Text_text $mol_textarea
+						hint @ \Text updated
+						value? <=> next_text? \
+			buttons /
+				<= Approve $mol_button_major
+					title @ \Approve
+					click? <=> approve? null
+				<= Decline $mol_button_minor
+					title @ \Decline
+					click? <=> decline? null

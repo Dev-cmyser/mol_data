@@ -1,0 +1,38 @@
+$hyoo_dnd_app $mol_book2_catalog
+	param \section
+	menu_title \Dungeons & Dragons
+	char $hyoo_dnd_char
+		image => char_image
+	style *
+		background-image <= background \
+	spreads *
+		summary <= Summary $hyoo_dnd_char_summary
+			char <= char
+			tools / <= Spread_close
+		main <= Main $hyoo_dnd_char_main
+			char <= char
+			tools / <= Spread_close
+		personality <= Personality $hyoo_dnd_char_personality
+			char <= char
+			tools / <= Spread_close
+		Params <= Params $hyoo_dnd_ability_config
+			char <= char
+			tools / <= Spread_close
+		skills <= Skills $hyoo_dnd_skill_config
+			char <= char
+			tools / <= Spread_close
+		inventory <= Inventory $hyoo_dnd_item_manage
+			char <= char
+			addon_tools / <= Spread_close
+			spread_current => Inventory_spread
+		speels <= Spells $hyoo_dnd_spell_manage
+			char <= char
+			addon_tools / <= Spread_close
+			spread_current => Spells_spread
+	menu_foot /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/dungeon.hyoo.ru
+		<= Lights $mol_lights_toggle
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto

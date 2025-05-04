@@ -1,0 +1,27 @@
+$hyoo_match_single_card $mol_view
+	single $hyoo_match_single
+		title => name
+		greet => greet
+		contacts => contacts
+		places => places
+		sex_self => sex_self
+		age_self => age_self
+		sex_pref_all => sex_pref
+		age_pref_all => age_pref
+	minimal_width 120
+	minimal_height 120
+	sub /
+		<= Photo $mol_image
+			uri <= photo \
+		<= Info $mol_list rows /
+			<= Filters $mol_view sub /
+				<= Name $mol_paragraph title <= name
+				<= Tags $mol_paragraph title <= tags \
+				<= Places $hyoo_match_places
+					enabled false
+					Pick null
+					value? <= places
+			<= Brief $mol_text
+				text <= greet
+			<= Contacts $mol_text
+				text <= contacts

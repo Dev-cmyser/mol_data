@@ -1,0 +1,28 @@
+$hyoo_talks_message_bubble $mol_list
+	message $hyoo_talks_message
+	attr *
+		^
+		hyoo_talks_message_bubble_side <= side \other
+	event *
+		dblclick?event <=> editable_faorce?event null
+	rows /
+		<= Meta $mol_view
+			sub /
+				<= Author $hyoo_talks_person_avatar
+					person <= author $hyoo_talks_person
+				<= When $mol_paragraph
+					sub / <= moment \
+		<= Text $mol_textarea
+			value?val <=> text?val \
+			enabled <= editable false
+			highlight <= highlight \
+		<= Previews $mol_view
+			sub <= previews /
+	Peek $mol_check
+		title <= peek_label \...
+		checked?val <=> peek?val false
+	Preview!index $mol_link
+		uri <= preview_uri!index \
+		sub /
+			<= Preview_embed!index $mol_embed_native
+				uri <= preview_uri!index \

@@ -1,0 +1,15 @@
+$hyoo_intern_mentor_card $mol_view
+	disabled false
+	sub /
+		<= Form $mol_form_draft
+			value_str*? => value_str*?
+			form_fields /
+				<= Person_field $mol_form_field
+					Content <= Person $hyoo_intern_person_card
+						person <= person $hyoo_intern_person
+						disabled <= disabled
+				<= Company_field $mol_form_field
+					name \Организация
+					Content <= Company $mol_string
+						value? <=> value_str*company?
+						disabled <= disabled

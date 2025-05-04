@@ -1,0 +1,28 @@
+$hyoo_intern_campaign_form $mol_form
+	campaign $hyoo_intern_campaign
+		name? => name?
+		info? => info?
+		image_node => image_node
+	form_fields /
+		<= Image_field $mol_form_field
+			name \Логотип
+			control <= Image_control $hyoo_intern_person_avatar
+				blob_node <= image_node
+				control true
+		<= Name_field $mol_form_field
+			name \Название кампании
+			control <= Name_control $mol_string
+				value? <=> name?
+		<= Info_field $mol_form_field
+			name \Описание
+			control <= Info_control $mol_textarea
+				value? <=> info?
+		<= Invite_link_field $mol_form_field
+			name \Ссылка для регистрации
+			control <= Invite_link_control $mol_button_copy
+				title <= invite_link \
+		- <= Current_field $mol_form_field
+			name \Текущая кампания
+			control <= Current_control $mol_check_box
+				title \Выбрать
+				checked? <=> campaign_current? false

@@ -1,0 +1,68 @@
+$hyoo_mol $mol_book2_catalog
+	plugins /
+		<= Theme $mol_theme_auto
+	Placeholder null
+	menu_title @ \$mol framework
+	menu_tools <= tools_root /
+		<= Sources $mol_link_source
+			uri \https://github.com/hyoo-ru/mam_mol
+		<= Lights $mol_lights_toggle
+	menu_foot /
+		<= Lang $mol_locale_select
+	param \section
+	spreads *
+		docs
+			<= Docs $hyoo_page
+				side_main_id \j0mafl_shvwnd
+				menu_title @ \Encyclopedia
+				News null
+				tools_ext / <= Spread_close
+		apps <= Apps $hyoo_apps
+			menu_title @ \Applications
+			tools / <= Spread_close
+		demos <= Demos $mol_app_demo
+			menu_title @ \Demos
+			tools / <= Spread_close
+		bench <= Bench $hyoo_mol_bench
+			menu_tools / <= Spread_close
+		view.tree <= View_tree $hyoo_tree
+			title @ \View.Tree Sandbox
+			Presets null
+			source_tools /
+				<= View_tree_syntax $mol_link
+					hint @ \view.tree syntax
+					uri \#!section=docs/=vv2nig_s5zr0f
+					sub /
+						<= View_tree_syntax_icon $mol_icon_help
+				<= Spread_close
+			pipeline_default <= tree_pipeline /
+				\$mol_tree2_from_string
+				\$mol_view_tree2_to_js
+				\$mol_tree2_js_to_text
+				\$mol_tree2_text_to_string
+			source_default <= tree_source \
+				\$hyoo_mol_example_app $mol_page
+				\	dictionary *
+				\		^
+				\		units /
+				\			null
+				\			false
+				\			true
+				\		numbs /number
+				\			+5
+				\			+Infinity
+				\			-Infinity
+				\			NaN
+				\		text \
+				\			\hello
+				\			\word
+				\	body /$mol_view
+				\		<= Selector $hyoo_mol_example_selector
+				\			empty @ \Multilingual string
+				\			value? <=> selector_value? \bidi bind
+				\			options <= dictionary
+				\			focused => selector_focused
+				\
+		icons <= Icons $mol_frame
+			title @ \Icons
+			uri \https://nin-jin.github.io/mol_icon/

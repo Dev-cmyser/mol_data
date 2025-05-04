@@ -1,0 +1,38 @@
+$hyoo_intern_cabinet_sign $hyoo_intern_cabinet
+	person $hyoo_intern_person
+		campaign_current => campaign_current
+	menu_tools /
+	spreads *
+		person <= Person_page $hyoo_intern_person_page
+			title \1. Заполните профиль
+			body /
+				<= Person_form $hyoo_intern_person_form
+					person <= person
+		safe <= Sage_page $hyoo_meta_safe
+			title \2. Сохраните ключи
+		campaign <= Campaign_page $mol_page
+			title \3. Настройтк кампанию
+			tools /
+				<= Campaign_add $mol_button_major
+					title \Создать кампанию
+					click? <=> campaign_add? null
+					enabled <= campaign_add_enabled false
+			body <= campaign_body /
+				<= About $mol_text text \
+					\Кампания стажировки - это мерроприятия в рамках которого проходит одна стажировка.
+					\Для старта новой стажировки на странице учетной записи будет необходимо создать новую кампанию.
+					\
+					\Нажмите на кнопку "Создать кампанию" и настройте первую кампанию.
+				<= Campaign $hyoo_intern_campaign_form
+					campaign <= campaign_creating $hyoo_intern_campaign
+		sign <= Sign_page $mol_page
+			title \4. Приступаем
+			body /
+				<= About2 $mol_text text \
+					\Осталось только войти в кампанию.
+					\
+					\Вернуться к настройкам кампаний вы можете в любой момент на странице "Учетная запись".
+				<= Start_button $mol_button_major
+					title \Открыть кампанию
+					click? <=> start? null
+					enabled <= start_button_enabled false

@@ -1,0 +1,37 @@
+$hyoo_meme $mol_page
+	title \$hyoo_meme
+	data /
+	plugins /
+		<= Theme $mol_theme_auto
+	event *
+		^
+		paste? <=> paste? null
+	tools /
+		<= Add $mol_button_open
+			files?val <=> add?val /
+			hint @ \Add image
+		<= Download $mol_button_download
+			file_name <= file_name \meme.png
+			blob <= export_jpg $mol_blob
+			hint @ \Download meme
+		<= Copy $mol_button_copy
+			blobs / <= export_png $mol_blob
+			hint @ \Copy meme
+		<= Lights $mol_lights_toggle
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/meme.hyoo.ru/
+	body /
+		<= Frames $mol_list
+			rows <= frames /
+				<= Ref $mol_view sub / \meme.hyoo.ru
+	Frame* $hyoo_meme_frame
+		data?val <=> frame_data*?val *
+			back \about:blank
+			before \
+			inside \
+			after \
+		tools <= frame_tools* /
+			<= Frame_drop* $mol_button_minor
+				click? <=> frame_drop*? null
+				sub /
+					<= Frame_drop_icon* $mol_icon_close

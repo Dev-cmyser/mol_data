@@ -1,0 +1,26 @@
+$hyoo_intern_catalog_entities $hyoo_intern_catalog_scroll
+	entity_links $hyoo_intern_entity_links
+	access \mod
+	item* null
+	Page_content_view* $mol_list
+		sub /
+			<= Card_view* $mol_view
+	Page_content_edit* $mol_list
+		sub /
+			<= Card_edit* $mol_view
+			<= Drop* $mol_button_minor
+				title \Удалить
+				click <= drop* null
+	menu_tools /
+		<= Filter $mol_check_icon
+			Icon <= Filter_icon $mol_icon_filter
+			checked? <=> filter_opened? false
+	menu_foot /
+		<= Add $mol_button_minor
+			sub / <= Add_icon $mol_icon_plus
+			click? <=> add? null
+	Filter_form $mol_form_draft
+		form_fields <= filter_form_fields /
+		buttons /
+			<= Apply_filter $mol_button_minor
+				title \Применить

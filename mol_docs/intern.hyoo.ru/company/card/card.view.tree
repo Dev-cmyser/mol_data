@@ -1,0 +1,23 @@
+$hyoo_intern_company_card $mol_view
+	disabled false
+	company $hyoo_intern_company
+	sub /
+		<= Form $mol_form_draft
+			value_str*? => value_str*?
+			model <= company
+			form_fields /
+				<= Name_field $mol_form_field
+					name \Наименование
+					Content <= Name $mol_string
+						value? <=> value_str*name?
+						disabled <= disabled
+				<= Scope_field $mol_form_field
+					name \Сфера деятельности
+					Content <= Scope $mol_string
+						value? <=> value_str*scope?
+						disabled <= disabled
+				<= Adress_field $mol_form_field
+					name \Адрес
+					Content <= Adress $mol_string
+						value? <=> value_str*adress?
+						disabled <= disabled

@@ -1,0 +1,82 @@
+[mol_page][piterjs_meetup_page] {
+	flex: 0 0 30rem;
+}
+
+[piterjs_meetup_page_title] {
+	flex: 1000 1000 3rem;
+}
+
+[piterjs_meetup_page_tools] {
+	flex-grow: 1;
+}
+
+[piterjs_meetup_page_links] {
+	flex-wrap: wrap;
+}
+
+[piterjs_meetup_page_video] {
+	display: inline;
+}
+
+[piterjs_meetup_page_place] {
+	display: inline;
+}
+
+[piterjs_meetup_page_description] {
+	box-shadow: none;
+	flex-grow: 0;
+	font-family: sans-serif;
+}
+
+[piterjs_meetup_page_donate] {
+	margin: -.5rem -.75rem;
+}
+
+[piterjs_meetup_page_review_hint] {
+	color: var(--mol_theme_shade);
+	padding: var(--mol_gap_text);
+}
+
+[piterjs_meetup_page_review_field_label] {
+	justify-content: space-between;
+}
+
+[piterjs_meetup_page_reviews] {
+	padding: var(--mol_gap_block);
+	background: var(--mol_theme_card);
+}
+
+[piterjs_meetup_page_hidden_fields] {
+	padding: var(--mol_gap_block);
+}
+
+[piterjs_meetup_page_afterparty] {
+	box-shadow: none;
+	flex-grow: 0;
+	font-family: sans-serif;
+}
+
+[piterjs_meetup_page_join] {
+	padding: var(--mol_gap_block);
+	background-color: var(--mol_theme_card);
+	border-radius: var(--mol_gap_round);
+	box-shadow: 0 0 0.5rem 0rem hsla(0,0%,0%,.125);
+}
+
+[piterjs_meetup_page_joined_confirm] {
+	padding: var(--mol_gap_text);
+	color: var(--mol_theme_focus);
+}
+
+[piterjs_meetup_page_free_space] {
+	padding: var(--mol_gap_text);
+	color: var(--mol_theme_shade);
+}
+
+[piterjs_meetup_page_capacity_field] {
+	flex: 1
+}
+
+[piterjs_meetup_page_capacity_cut] {
+	align-self: flex-end;
+}

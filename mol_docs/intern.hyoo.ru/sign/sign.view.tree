@@ -1,0 +1,38 @@
+$hyoo_intern_sign $mol_page
+	person $hyoo_intern_person
+	title \Вход в личный кабинет
+	Safe $hyoo_meta_safe
+		body => safe
+	steps /
+		<= safe
+		<= personal /
+			<= Name_field $mol_form_field
+				name \Имя
+				Content <= Name $mol_string
+					value? <=> value_str*name?
+			<= Name_family_field $mol_form_field
+				name \Фамилия
+				Content <= Name_family $mol_string
+					value? <=> value_str*name_family?
+			<= Email_field $mol_form_field
+				name \Почта
+				Content <= Email $mol_string
+					value? <=> value_str*email?
+	step? 0
+	body /
+		<= Form $mol_form_draft
+			model <= person
+			submit? => submit?
+			value_str*? => value_str*?
+			form_fields <= step_current /
+			buttons <= buttons /
+				<= Back_button $mol_button_minor
+					title \Назад
+					click? <=> back? null
+					enabled <= back_enabled false
+				<= Next_button $mol_button_major
+					title \Далее
+					click? <=> next? null
+				<= Submit_button $mol_button_major
+					title \Готово
+					click? <=> submit?

@@ -1,0 +1,27 @@
+$hyoo_intern_catalog_scroll $mol_book2
+	Placeholder null
+	ids /
+		\test
+	ids_numered /
+	pages /
+		<= Rows $mol_page
+			title <= menu_title \Rows
+			tools <= menu_tools /$mol_view
+			body <= menu_body /
+				<= Row_list $mol_list
+					rows <= links /
+						<= Row_link*0 $mol_link
+							title <= row_title* \
+							arg * id <= id* \
+							click*? <=> click*? null
+			foot <= menu_foot /$mol_view
+		<= Pages $mol_scroll
+			sub <= spreads /
+	Page* $mol_view
+		sub /
+			<= Page_link* $mol_link
+				minimal_height 40
+				title <= page_title* \
+				arg * id <= id*
+			<= Page_content* $mol_view
+				sub <= page_content* /$mol_view_content

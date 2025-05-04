@@ -1,0 +1,17 @@
+$hyoo_square_app $mol_page
+	title \Square Code
+	head /
+		<= Text_scroll $mol_scroll sub /
+			<= Text $mol_textarea
+				hint \Square Code Content
+				value? <=> text? \
+		<= Tools
+	plugins /
+		<= Theme $mol_theme_auto
+	tools /
+		<= Lights $mol_lights_toggle
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/square.hyoo.ru
+	body /
+		<= Code $hyoo_square_svg
+			str <= text

@@ -1,0 +1,41 @@
+$hyoo_intern_catalog_scroll_demo $hyoo_intern_catalog_scroll
+	Page_content* $mol_view
+		sub /
+			<= Page_table* $mol_view
+				sub /
+					<= Id_labeler* $mol_labeler
+						title \ID
+						Content <= Id* $mol_check_box
+							title <= row_id*? \0000
+							checked? <=> row_checked*? false
+					<= Title_labeler* $mol_labeler
+						title \Product Name
+						Content <= Title* $mol_link_iconed
+							uri <= row_uri* \
+							title <= row_title* \
+					<= Color_labeler* $mol_labeler
+						title \Color
+						Content <= Color* $mol_select
+							value? <=> row_color*? \
+							options <= colors /
+					<= Status_labeler* $mol_labeler
+						title \Status
+						Content <= Status* $mol_switch
+							value? <=> row_status*? \
+							options <= status_options *
+								minor \Store
+								major \Sale
+								critical \Support
+					<= Quantity_labeler* $mol_labeler
+						title \Quantity
+						Content <= Quantity* $mol_number
+							value? <=> row_quantity*? 0
+					<= Date_labeler* $mol_labeler
+						title \Supply Time
+						Content <= Date* $mol_date
+							value_moment?val <=> row_moment*?val $mol_time_moment
+					<= Info* $mol_filler
+						min_symbols 500
+			<= Accept* $mol_button_minor
+				title \Откликнуться
+				click? <=> accept_invitation? null

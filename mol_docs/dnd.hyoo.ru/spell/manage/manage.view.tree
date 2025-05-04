@@ -1,0 +1,30 @@
+$hyoo_dnd_spell_manage $mol_book2_catalog
+	char $hyoo_dnd_char
+	menu_title \Заклинания
+	menu_tools /
+		<= Spell_add $mol_link
+			arg * spell <= spell_id_next \0
+			sub /
+				<= Spell_add_icon $mol_icon_plus
+	param \spell
+	Spread* $hyoo_dnd_spell_config
+		spell <= spell* $hyoo_dnd_spell
+		tools /
+			<= Spread_close
+	menu_links <= levels /
+		<= Level*0 $mol_list rows /
+			<= Level_head* $mol_bar
+				sub /
+					<= Level_title* $mol_chip title <= level_title* \Уровень {level}
+					<= Level_slot_ready* $mol_paginator value? <=> level_slot_ready*? 0
+					<= Level_slot_max* $mol_chip title <= level_slot_max* \
+			^ level_spells* /
+	menu_item_content* /$mol_view
+		<= Menu_link*
+		<= Spell_delete* $mol_button_minor
+			click? <=> spell_delete* null
+			sub /
+				<= Spell_delete_icon* $mol_icon_trash_can_outline
+	menu_link_content* /$mol_view
+		<= Menu_link_title*
+		<= Spell_brief* $mol_view sub / <= spell_brief* \

@@ -1,0 +1,11 @@
+$hyoo_intern_confirm $mol_page
+	title \Подтверждение аккаунта
+	campaign $hyoo_intern_campaign
+	yard $hyoo_sync_client
+	body /
+		<= Person_card $hyoo_intern_person_card
+			person <= person $hyoo_intern_person
+			disabled true
+		<= Confirm $mol_button_major
+			title \Подтвердить
+			click? <=> confirm? null

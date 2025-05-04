@@ -1,0 +1,24 @@
+$hyoo_intern_cabinet_norole $hyoo_intern_cabinet
+	campaign_join $hyoo_intern_campaign
+	menu_tools /
+	spreads *
+		info <= Info_page $mol_page
+			title \Информация для кандидатов
+			body /
+				<= Info_text $mol_text
+					text <= campaign_info \ 
+				<= Actions $mol_row sub /
+					<= Resume_link $mol_button_major
+						title \Заполнить заявку
+						click? <=> spread*resume?
+					<= Im_staff $mol_button_minor
+						title \Я сотрудник
+						click? <=> staff_request? null
+		resume <= Resume_page $mol_page
+			title \Заполнить заявку
+			body /
+				<= Resume $hyoo_intern_resume_card
+					person <= user
+				<= Send_resume $mol_button_major
+					title \Подать заявку
+					click? <=> send_resume? null

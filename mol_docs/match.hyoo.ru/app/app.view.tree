@@ -1,0 +1,40 @@
+$hyoo_match_app $mol_book2_catalog
+	lobby $hyoo_match_lobby
+	self $hyoo_match_single
+	pair $hyoo_match_single
+	plugins /
+		<= Theme $mol_theme_auto
+	auto /
+		<= lobby_update null
+		<= redirects null
+	menu_title \match.hyoo.ru
+	menu_tools /
+		<= Lights $mol_lights_toggle
+	menu_body /
+		<= Menu_links
+		<= Stats $mol_paragraph title <= stats \
+	menu_foot /
+		<= Online $hyoo_sync_online
+			yard <= yard $hyoo_sync_client
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/match.hyoo.ru/
+		<= Support $mol_link_iconed
+			hint \Поддержка
+			uri \https://vk.com/hyoo_match
+			sub /
+				<= Support_icon $mol_icon_face_agent
+	Placeholder null
+	Final $hyoo_match_final
+		self <= self
+	Pair $hyoo_match_single_page
+		pair <= pair
+	spreads *
+		\
+			<= Intro $hyoo_match_intro
+		settings <= Settings $hyoo_match_single_settings
+			single <= self
+		look <= Look $mol_book2 pages <= look_pages /
+		safe <= Safe $hyoo_meta_safe
+			yard <= yard
+		lobby <= Lobby $hyoo_match_lobby_page
+			lobby <= lobby

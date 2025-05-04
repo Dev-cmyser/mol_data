@@ -1,0 +1,14 @@
+[piterjs_meetup_snippet] {
+	display: flex;
+	white-space: nowrap;
+	padding: 0;
+}
+
+[piterjs_meetup_snippet_title] {
+	padding: .5rem .75rem;
+	flex: 1 1 auto;
+}
+
+[piterjs_meetup_snippet_date] {
+	padding: .5rem .75rem;
+}

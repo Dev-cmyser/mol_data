@@ -1,0 +1,58 @@
+$hyoo_crowd_app $mol_book2
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= Left $hyoo_crowd_app_peer
+			title \CROWD Text Demo
+			hint \Text of Alice
+			sync <= sync
+			tools /
+				<= Sync $mol_button_major
+					title \Sync
+					enabled <= sync_enabled false
+					click?event <=> sync?event null
+		<= Right $hyoo_crowd_app_peer
+			title \
+			hint \Text of Bob
+			sync <= sync
+			tools /
+				<= Lights $mol_lights_toggle
+				<= Source $mol_link_source
+					uri \https://github.com/hyoo-ru/crowd.hyoo.ru/
+
+$hyoo_crowd_app_peer $mol_page
+	store $hyoo_crowd_land
+	sync 0
+	sync_clocks? /$hyoo_crowd_clock
+	changes 0
+	delta /$hyoo_crowd_unit
+	body /
+		<= Text $mol_textarea
+			hint <= hint \
+			value?val <=> text?val \
+			sidebar_showed true
+			
+		<= Stats $mol_text
+			text <= stats \
+				\# Stats
+				\
+				\~~Peer:~~ {peer}
+				\~~Changes:~~ {changes}
+				\
+				\| | ~~Alive~~ | ~~Dead~~ | ~~Total~~
+				\|--|--|--
+				\| ~~Units~~ | {units:alive} | {units:dead} | {units:total}
+				\
+				\| | ~~Now~~ | ~~Sync~~
+				\|--|--|--
+				\| ~~Time~~ | {stamp:now} | {stamp:sync}
+				\
+				\| | ~~Text~~ | ~~State~~ | ~~Delta~~
+				\|--|--|--|--
+				\| ~~Bin Size~~ | {size:text} | {size:state} | {size:delta}
+				\
+		<= Delta_section $mol_section
+			title \Delta
+			content / <= Delta $mol_grid
+				records <= delta_view *

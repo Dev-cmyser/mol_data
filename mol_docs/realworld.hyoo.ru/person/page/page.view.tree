@@ -1,0 +1,25 @@
+$hyoo_realworld_person_page $mol_page
+	title @ \Profile
+	section?name \
+	tools /
+		- <= Sign_out $mol_button_minor
+			title \
+			click?val <=> sign_out?val null
+			sub / <= Logout_icon $mol_icon_logout
+		<= Close $mol_link
+			arg *
+				person null
+			sub / <= Close_icon $mol_icon_close
+	avatar \
+	name \
+	biography \
+	body /
+		<= Image $mol_image
+			uri <= avatar
+			title <= image_title @ \User image
+		<= Username $mol_labeler
+			title <= username_label @ \Username
+			content / <= name
+		<= Bio $mol_labeler
+			title <= biography_label @ \Bio
+			content / <= biography

@@ -1,0 +1,83 @@
+$piterjs_speech_page $mol_page
+	speech $piterjs_speech
+		title? => title?
+		description? => description?
+		start? => start?
+		slides? => slides?
+		video? => video?
+		editable => editable
+		review? => review?
+		reviews => reviews
+	speaker $piterjs_speaker
+		donate? => donate?
+		contact? => contact?
+	Title $mol_string_button
+		value? <=> title?
+		enabled <= editing
+		hint \Название
+	tools /
+		<= Start $mol_pick_time
+			value_moment? <=> start?
+			enabled <= editing
+		<= Close $mol_link
+			arg * speech null
+			sub /
+				<= Close_icon $mol_icon_close
+	body /
+		<= Poster_zone $mol_view
+			minimal_width 0
+			minimal_height 0
+			sub /
+				<= Poster $piterjs_speech_poster
+					speech <= speech
+					aspect <= poster_aspect? \1:1
+		<= Description $mol_textarea
+			hint \О чём
+			value? <=> description?
+			enabled <= editing
+		<= Links $mol_view sub <= links /
+			<= Slides $mol_string_link
+				value? <=> slides?
+				enabled <= editing
+				title \Слайды
+			<= Video $mol_string_link
+				value? <=> video?
+				enabled <= editing
+				title \Видео
+			<= Donate $mol_string_link
+				value? <=> donate?
+				enabled <= editing
+				title \Задонатить
+			<= Contact $mol_string_link
+				value? <=> contact?
+				enabled <= editing
+				title \Связаться
+		<= Review_field $mol_form_field
+			name \Впечатления
+			Content <= Review $mol_textarea
+				hint \Что хорошо, а что улучшить?
+				value? <=> review?
+		<= Reviews $mol_text text <= reviews
+		<= Speaker $piterjs_speaker_snippet
+			speaker <= speaker
+			editing <= editing
+	foot /
+		<= Public $mol_check_icon
+			checked? <=> speech_public? false
+			Icon <= Public_icon $mol_icon_eye
+		<= Editing $mol_check_icon
+			Icon <= Editing_icon $mol_icon_settings_outline
+			checked? <=> editing? false
+		<= Poster_copy $mol_pick
+			hint \Скачать постер
+			trigger_content /
+				<= Poster_copy_icon $mol_icon_camera
+			bubble_content /
+				<= Poster_1_1 $mol_button_download
+					blob <= poster_1_1_blob? $mol_blob
+					file_name <= poster_1_1_name \poster_universal.png
+					title \1:1
+				<= Poster_16_19 $mol_button_download
+					blob <= poster_16_9_blob? $mol_blob
+					file_name <= poster_16_9_name \poster_fhd.png
+					title \16:9

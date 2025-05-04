@@ -1,0 +1,7 @@
+$hyoo_budget_intro $mol_page
+	title @ \Private Budgets
+	body /
+		<= Hint $mol_text
+			text @ \⬅️ Start by creating a fund, category, and first expense.
+		<= Readme $mol_text
+			text <= readme \

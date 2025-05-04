@@ -1,0 +1,5 @@
+
+$hyoo_invest_labeler $mol_labeler
+	attr * 
+		^
+		hyoo_invest_labeler_mood <= mood \

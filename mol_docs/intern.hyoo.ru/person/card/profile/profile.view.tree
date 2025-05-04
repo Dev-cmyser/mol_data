@@ -1,0 +1,16 @@
+$hyoo_intern_person_card_profile $mol_view
+	person $hyoo_intern_person
+		id => id
+		name => name
+		avatar_node => avatar_node
+	sub /
+		<= Avatar $hyoo_intern_person_avatar
+			blob <= avatar_node
+		<= Info $mol_list
+			rows <= info /
+				<= Title $mol_paragraph
+					title <= title \
+				<= Name $mol_paragraph
+					title <= name
+				<= Name_sub $mol_paragraph
+					sub <= name_sub /

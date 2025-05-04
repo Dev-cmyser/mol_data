@@ -1,0 +1,30 @@
+$hyoo_slides_page $mol_book2
+	role \
+	contents?val \
+	slide?val 0
+	Placeholder null
+	pages /
+		<= Speaker $mol_page
+			head <= speaker_tools /
+			body /
+				<= Speaker_content $mol_text
+					uri_base <= uri_base \
+					flow_tokens <= speaker_content /
+		<= Listener $mol_page
+			tools <= tools /
+			title <= title
+			Head => Listener_head
+			Tools null
+			sub /
+				<= Listener_head
+				<= Listener_content $mol_text
+					code_sidebar_showed false
+					minimal_height 0
+					uri_base <= uri_base \
+					flow_tokens <= listener_content /
+				<= Link $mol_link
+					uri <= uri_page \
+					sub / <= uri_page \
+					minimal_height 24
+				<= Progress $mol_portion
+					portion <= progress 0

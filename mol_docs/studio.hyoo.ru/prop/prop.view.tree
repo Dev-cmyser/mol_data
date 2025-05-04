@@ -1,0 +1,49 @@
+$hyoo_studio_prop $mol_view
+	tree?val $mol_tree2_empty
+	sign? \
+	sub /
+		<= Expander $mol_expander
+			Label <= Label $mol_view
+				sub /
+					<= Label_content $mol_view
+						sub <= label_sub /
+							<= Trigger $mol_check_expand
+								Icon => Trigger_icon
+								sub <= trigger_sub /
+									<= Expander_title $mol_paragraph
+										title <= name \
+									<= Trigger_icon
+								checked? <=> expanded? false
+								expandable <= expandable true
+							<= Prop_tools
+			expanded? <=> expanded?
+			Tools <= Prop_tools $mol_view
+				sub <= prop_tools /
+					<= Value_tools $mol_view
+						sub <= value_tools
+					<= Key $mol_check_icon
+						hint @ \Multiple values by key
+						Icon <= Key_icon $mol_icon_key_change
+						checked? <=> multiple? false
+					<= Next $mol_check_icon
+						hint @ \Changeable
+						Icon <= Next_icon $mol_icon_atom_variant
+						checked? <=> changeable? false
+					<= Styles $mol_check_icon
+						hint @ \Styles
+						Icon <= Styles_icon $mol_icon_language_css3
+						checked? <=> styles_opened? false
+					<= Behavior $mol_check_icon
+						hint @ \Behavior
+						Icon <= Behavior_icon $mol_icon_language_javascript
+						checked? <=> behavior_opened? false
+			content <= prop_content /
+				<= Value $hyoo_studio_value
+					hide_tools true
+					value_tools => value_tools
+					belong_to \prop
+					tree? <=> value? $mol_tree2_empty
+					props_of* <= props_of* $mol_tree2_empty
+					props_bindable <= props_bindable $mol_tree2_empty
+					class_list <= class_list /string
+					Bound_prop* <= Bound_prop* $hyoo_studio_prop

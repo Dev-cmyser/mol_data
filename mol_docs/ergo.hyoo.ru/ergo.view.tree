@@ -1,0 +1,36 @@
+$hyoo_ergo $mol_book2
+	domain $hyoo_ergo_domain
+	title @ \Ergo
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= Index_page $hyoo_ergo_index_page
+			domain <= domain
+			tools /
+				<= Thesis_add $mol_link
+					hint @ \New Thesis
+					arg * thesis_new \
+					sub / <= Thesis_add_icon $mol_icon_plus
+				<= User_settings $mol_link
+					hint @ \User
+					arg * user <= user_id \
+					sub / <= User_settings_icon $mol_icon_account_settings
+				<= Source $mol_link_source
+					uri \https://github.com/hyoo-ru/ergo.hyoo.ru
+				<= Lights $mol_lights_toggle
+		<= User_page $hyoo_ergo_person_page
+			user <= user $hyoo_ergo_person
+		<= Thesis_page $hyoo_ergo_thesis_page
+			domain <= domain
+			thesis <= thesis $hyoo_ergo_thesis
+		<= Thesis_new_page $hyoo_ergo_thesis_create
+			domain <= domain
+		<= Proposal_list_page $hyoo_ergo_proposal_list
+			domain <= domain
+			thesis <= proposal_list_thesis $hyoo_ergo_thesis
+		<= Proposal_new_page $hyoo_ergo_proposal_new
+			domain <= domain
+			thesis <= proposal_new_thesis $hyoo_ergo_thesis
+		<= Proposal_page $hyoo_ergo_proposal_page
+			domain <= domain
+			proposal <= proposal $hyoo_ergo_proposal

@@ -1,0 +1,71 @@
+[piterjs_app] {
+	display: flex;
+}
+
+[piterjs_app][mol_theme="$mol_theme_dark"] {
+	--mol_theme_focus: #FFE515;
+	--mol_theme_current: #FFE515;
+}
+
+[piterjs_app][mol_theme="$mol_theme_light"] {
+	--mol_theme_focus: #c2ab03;
+	--mol_theme_current: #c2ab03;
+}
+
+[piterjs_app] [mol_theme="$mol_theme_base"] {
+	--mol_theme_back: #FFE515;
+	--mol_theme_text: black;
+	--mol_theme_shade: rgba( 0 , 0 , 0 , .5 );
+	--mol_theme_control: black;
+	stroke: currentColor;
+}
+
+[piterjs_app] [mol_theme="$mol_theme_accent"] {
+	--mol_theme_back: #f7df1e;
+	--mol_theme_text: black;
+	--mol_theme_hover: hsl(53, 93%, 44%);
+	stroke: currentColor;
+}
+
+[piterjs_app_menu] {
+	flex: 0 0 15rem;
+}
+
+[piterjs_app_menu_content] {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+[piterjs_app_links] {
+	flex: none;
+}
+
+[piterjs_app_conf] {
+	white-space: nowrap;
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+}
+
+[piterjs_app_conf_title] {
+	margin: .5rem .75rem;
+}
+
+[piterjs_app_conf_date] {
+	margin: .5rem .75rem;
+}
+
+[piterjs_app_others_link] {
+	padding: .5rem .75rem;
+}
+
+[piterjs_app_user] {
+	font-size: .75rem;
+	padding: .5rem 0;
+	color: var(--mol_theme_shade);
+}
+
+[piterjs_app] [mol_page] {
+	margin: 0;
+}

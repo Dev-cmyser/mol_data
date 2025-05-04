@@ -1,0 +1,5 @@
+include \/mol/offline/install
+
+deploy \/hyoo/lingua/app/manifest.json
+deploy \/hyoo/lingua/logo/logo.svg
+deploy \/hyoo/lingua/logo/logo.png

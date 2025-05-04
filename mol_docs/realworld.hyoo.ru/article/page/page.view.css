@@ -1,0 +1,17 @@
+[hyoo_realworld_article_page_comment_add] {
+	margin: .75rem;
+}
+
+[hyoo_realworld_article_page_comments] {
+	display: flex;
+	flex-direction: column;
+	flex: none;
+}
+
+[hyoo_realworld_article_page_comments] > * {
+	margin: .75rem;
+}
+
+[hyoo_realworld_article_page_tag_link] {
+	margin: 0;
+}

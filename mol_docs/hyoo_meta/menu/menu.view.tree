@@ -1,0 +1,62 @@
+$hyoo_meta_menu $mol_page
+	editable true
+	item_moved*? null
+	yard $hyoo_sync_yard<any>
+	item* $hyoo_meta_model
+		title => item_title*
+	list $hyoo_crowd_list
+		list => ids
+		world => world
+	item_list* $hyoo_crowd_list
+	drop_allow /
+		\move
+		\link
+	Logo $mol_avatar
+		id <= id \
+	tools_ext /
+	head /
+		<= Title
+		<= Tools
+		<= Search $mol_search
+			query? <=> search? \
+	tools /
+		<= Search_toggle $mol_check_icon
+			hint @ \Fulltext search
+			checked? <=> search_show? false
+			Icon <= Search_icon $mol_icon_magnify
+		<= Editing $mol_check_icon
+			hint @ \Edit list
+			checked? <=> editing? false
+			Icon <= Editing_icon $mol_icon_pencil_outline
+		<= Add $mol_button_minor
+			hint @ \Add new
+			click? <=> add? null
+			sub /
+				<= Add_icon $mol_icon_plus
+		^ tools_ext
+	body /
+		<= Found $hyoo_meta_menu_items
+			editing <= editing
+			drop_allow /
+			list <= list
+			ids <= found /$mol_int62_string
+			highlight <= search
+			item_uri* <= item_uri* \
+			item_moved*? <=> item_moved*?
+			- item_list* <= item_list*
+			item_add*? <=> item_add*? null
+		<= Content $hyoo_meta_menu_items
+			editing <= editing
+			drop_allow <= drop_allow
+			list <= list
+			item_uri* <= item_uri* \
+			item_expanded*? <=> item_expanded*? false
+			item_moved*? <=> item_moved*?
+			item_list* <= item_list*
+			item_add*? <=> item_add*? null
+		<= Drop_end $mol_drop
+			enabled <= editable
+			adopt? <=> transfer_adopt? null
+			receive? <=> receive_end? null
+			Sub <= Drop_zone $mol_view
+			allow <= drop_allow

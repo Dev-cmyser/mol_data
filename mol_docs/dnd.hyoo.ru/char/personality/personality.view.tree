@@ -1,0 +1,38 @@
+$hyoo_dnd_char_personality $mol_page
+	title \Характер
+	char $hyoo_dnd_char
+		moral? => moral?
+		ethics? => ethics?
+		traits? => traits?
+		ideals? => ideals?
+		affection? => affection?
+		weakness? => weakness?
+	body /
+		<= Moral_block $mol_form_field
+			name \Мораль
+			Content <= Moral $mol_switch
+				value? <=> moral?
+				keys <= moral_options /string
+				option_title* <= moral_title* \
+		<= Ethics_block $mol_form_field
+			name \Этика
+			Content <= Ethics $mol_switch
+				value? <=> ethics?
+				keys <= ethics_options /string
+				option_title* <= ethics_title* \
+		<= Traits_block $mol_form_field
+			name \Черты
+			Content <= Traits $mol_textarea
+				value? <=> traits?
+		<= Ideals_block $mol_form_field
+			name \Идеалы
+			Content <= Ideals $mol_textarea
+				value? <=> ideals?
+		<= Affection_block $mol_form_field
+			name \Привязанности
+			Content <= Affection $mol_textarea
+				value? <=> affection?
+		<= Weakness_block $mol_form_field
+			name \Слабости
+			Content <= Weakness $mol_textarea
+				value? <=> weakness?

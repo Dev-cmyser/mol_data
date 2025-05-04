@@ -1,0 +1,39 @@
+$hyoo_iq $mol_page
+	title_result @ \IQ: {score}
+	title_wait @ \IQ: need {required} clicks
+	required 200
+	history?val /boolean
+	auto /
+		<= Brain $hyoo_iq_neuron
+		<= score 0
+	plugins /
+		<= Theme $mol_theme_auto
+		<= Hotkey $mol_hotkey
+			key *
+				left?event <=> left?event
+				right?event <=> right?event
+	tools /
+		<= Lights $mol_lights_toggle
+		<= Sources $mol_link_source
+			uri \https://github.com/hyoo-ru/iq.hyoo.ru/
+	body /
+		<= History $mol_chart
+			Legend null
+			graphs /
+				<= Score $mol_plot_line
+					series_y <= score_series?val /number
+				<= Ruler_vert $mol_plot_ruler_vert
+					title \
+				<= Ruler_hor $mol_plot_ruler_hor
+					title \
+		<= Choices $mol_view
+			sub /
+				<= Left $mol_button_major
+					title <= left_title @ \Left
+					click?event <=> left?event null
+				<= Right $mol_button_major
+					title <= right_title @ \Right
+					click?event <=> right?event null
+		<= Description $mol_view
+			sub /
+				<= description @ \Click buttons to maximize your score!

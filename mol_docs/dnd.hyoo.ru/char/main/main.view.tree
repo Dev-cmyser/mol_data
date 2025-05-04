@@ -1,0 +1,50 @@
+$hyoo_dnd_char_main $mol_page
+	title \Основное
+	char $hyoo_dnd_char
+		name? => name?
+		biography? => biography?
+		age? => age?
+		level? => level?
+		race_id? => race_id?
+		story_id? => story_id?
+		class_id? => class_id?
+	body /
+		<= Base_block $mol_form_group sub /
+			<= Name_block $mol_form_field
+				name \Имя
+				Content <= Name $mol_string
+					value? <=> name?
+		<= Grade $mol_form_group sub /
+			<= Level_block $mol_form_field
+				name \🏅 Уровень
+				Content <= Level $mol_paginator
+					value? <=> level?
+			<= Age_block $mol_form_field
+				name \📅 Возраст
+				Content <= Age $mol_number
+					value? <=> age?
+		<= Race_block $mol_form_field
+			name \Раса
+			Content <= Race $mol_switch
+				value? <=> race_id?
+				keys <= race_options /string
+				option_title* <= race_title* \
+		<= Race_descr $mol_text text <= race_descr \
+		<= Class_block $mol_form_field
+			name \Класс
+			Content <= Class $mol_switch
+				value? <=> class_id?
+				keys <= class_options /string
+				option_title* <= class_title* \
+		<= Class_descr $mol_text text <= class_descr \
+		<= Story_block $mol_form_field
+			name \Предыстроия
+			Content <= Story $mol_switch
+				value? <=> story_id?
+				keys <= story_options /string
+				option_title* <= story_title* \
+		<= Story_descr $mol_text text <= story_descr \
+		<= Biography_block $mol_form_field
+			name \Биография
+			Content <= Biography $mol_textarea
+				value? <=> biography?

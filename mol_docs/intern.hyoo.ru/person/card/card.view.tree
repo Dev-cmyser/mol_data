@@ -1,0 +1,33 @@
+$hyoo_intern_person_card $mol_view
+	disabled false
+	person $hyoo_intern_person
+	sub /
+		<= Form $mol_form_draft
+			model <= person
+			value_str*? => value_str*?
+			form_fields /
+				<= Person_id_field $mol_form_field
+					name \person_id
+					Content <= Person_id $mol_string
+						value <= value_str*id
+						disabled true
+				<= Peer_field $mol_form_field
+					name \peer_id
+					Content <= Peer $mol_string
+						value? <=> value_str*peer_id?
+						disabled true
+				<= Name_field $mol_form_field
+					name \Имя
+					Content <= Name $mol_string
+						value? <=> value_str*name?
+						disabled <= disabled
+				<= Name_family_field $mol_form_field
+					name \Фамилия
+					Content <= Name_family $mol_string
+						value? <=> value_str*name_family?
+						disabled <= disabled
+				<= Email_field $mol_form_field
+					name \Почта
+					Content <= Email $mol_string
+						value? <=> value_str*email?
+						disabled <= disabled

@@ -1,0 +1,70 @@
+$hyoo_page_side_view $mol_page
+	profile $hyoo_page_side
+	peer* $hyoo_page_side
+	book $hyoo_page_side
+	highlight \
+	side $hyoo_page_side
+		id => id
+		editable => editable
+		title? => title?
+		details? => side_details?
+		released => released
+		release => side_release
+		changed_moment => changed_moment
+		authors => authors
+		following => following
+	plugins /
+		<= Search_start $mol_hotkey
+			key * F? <=> search_start? null
+			mod_ctrl true
+	auto /
+		<= slides_send null
+		<= history_mark null
+	Logo <= Menu_toggle $mol_check
+		checked? <=> menu_showed? false
+		hint @ \Menu Showing
+		sub /
+			<= Avatar $mol_avatar
+				id <= id
+	head /
+		<= Title
+		<= Tools
+		<= Search $mol_search_jumper
+			query?val <=> search_query?val \
+			Root <= Details
+			clear? <=> search_stop? null
+	tools /
+		<= Edit_toggle $mol_check_icon
+			hint @ \Edit page
+			checked? <=> editing? false
+			Icon <= Edit_icon $mol_icon_pencil_outline
+			label <= edit_toggle_label /
+				<= Unreleased $mol_speck
+		<= Search_toggle $mol_check_icon
+			hint @ \Find on page
+			checked? <=> search_show? false
+			Icon <= Search_icon $mol_icon_magnify
+		<= Info_toggle $mol_check_icon
+			hint @ \Info page
+			checked? <=> info? false
+			Icon <= Info_icon $mol_icon_information_outline
+		<= Bookmark_toggle $mol_check_icon
+			hint @ \Bookmark page
+			checked? <=> bookmark? false
+			Icon <= Bookmark_icon $mol_icon_bookmark_outline
+	body /
+		<= Details $mol_text
+			text <= details \
+			highlight <= search_query
+			- Empty <= Details_empty $mol_text text \...
+		<= Signature $mol_view
+			sub /
+				<= Changed $mol_date
+					value_moment <= changed_moment
+				<= Author_list $mol_view
+					sub <= author_list /
+						<= Author_link*0_0 $hyoo_meta_link
+							meta <= peer*
+							uri <= author_link* \https://page.hyoo.ru/#!={person}
+				<= Following $hyoo_meta_link
+					meta <= following

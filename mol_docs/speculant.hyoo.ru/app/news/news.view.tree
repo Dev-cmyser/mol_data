@@ -1,0 +1,16 @@
+$hyoo_speculant_app_news $mol_list
+	model $hyoo_speculant_world
+	unread_count 0
+	News_item!id $hyoo_speculant_app_news_item
+		news_item <= news_item!id \
+		news_read?val <=> news_read!id?val false
+	rows /
+		<= List $mol_list
+			rows <= news_list /
+$hyoo_speculant_app_news_item $mol_list
+	news_item \
+	news_read?val false
+	rows /
+		<= Date $mol_view sub / <= date \
+		<= News_item_title $mol_text
+			text <= text \

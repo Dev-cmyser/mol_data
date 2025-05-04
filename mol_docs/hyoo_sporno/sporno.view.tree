@@ -1,0 +1,14 @@
+$hyoo_sporno $hyoo_calc
+	Source $mol_link_source
+		uri \https://github.com/hyoo-ru/sporno.site
+	title_default @ \Facts Investigation
+	formulas_template *
+		A1 <= template_date @ \~~Date~~
+		B1 <= template_fact @ \~~Fact~~
+		C1 <= template_source @ \~~Source~~
+		D1 <= template_common @ \~~Common Consequences~~
+		E1 <= template_spec1 @ \~~Speculation **<foo>**~~
+		F1 <= template_spec2 @ \~~Speculation **<bar>**~~
+		G1 \~~...~~
+	hint @ \✅ Plausibly | ⭕ Improbably | ❌ Disproved | [Discuss](https://t.me/+iIBmIcOH49ZkYTcy)
+	hint_showed? true

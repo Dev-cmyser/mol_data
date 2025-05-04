@@ -1,0 +1,8 @@
+$hyoo_game_eye $mol_3d_pane
+	objects /$mol_3d_object
+	Realm $hyoo_game_realm
+	pos? /number
+		0
+		0
+	angle? 1
+	wireframe false

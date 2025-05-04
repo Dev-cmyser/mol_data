@@ -1,0 +1,7 @@
+$hyoo_dnd_parameter $mol_view
+	sub /
+		<= Title $mol_view
+			sub / <= title
+		<= Value $mol_view
+			minimal_width 40
+			sub <= value /

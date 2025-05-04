@@ -1,0 +1,24 @@
+[hyoo_mol_menu] {
+	flex: 0 0 18rem;
+}
+
+[hyoo_mol_main] {
+	flex: 0 0 60rem;
+}
+
+[hyoo_mol_slides] {
+	flex: 1000 0 80rem;
+}
+
+[hyoo_mol_view_tree] {
+	flex: 1000 0 60rem;
+}
+
+[hyoo_mol_icons] {
+	flex: 1000 0 40rem;
+}
+
+[hyoo_page_menu_aura_showing],
+[hyoo_mol_docs_menu_lights] {
+	display: none;
+}

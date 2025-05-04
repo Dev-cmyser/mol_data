@@ -1,0 +1,170 @@
+$hyoo_search_app $mol_book2
+	plugins /
+		<= Theme $mol_theme_auto
+	Placeholder null
+	query_results?next \
+	pages /
+		<= Main $mol_page
+			title <= query
+			bring <= main_bring
+			Title <= Query $mol_search
+				hint @ \Search..
+				query?val <=> query?val \
+				submit?event <=> submit?event null
+				bring => main_bring
+			tools /
+				<= Exact $mol_check_icon
+					checked?val <=> exact?val false
+					Icon <= Exact_icon $mol_icon_bullseye_arrow
+					hint @ \Exact Match
+				<= Exclude $mol_select_list
+					value?val <=> exclude?val /string
+					options <= exclude_options /string
+					badge_title!index <= exclude_badge_title!index \
+					pick_hint @ \Exclude words..
+					pick_enabled true
+					Pick_icon <= Exclude_icon $mol_icon_minus_circle_outline
+				<= Where $mol_select
+					value?next <=> where?next \anywhere
+					Filter null
+					dictionary *
+						anywhere @ \Anywhere
+						allintitle @ \In Title
+						allintext @ \In Text
+						allinurl @ \In Url
+						allinanchor @ \In Anchor
+				<= Type $mol_select
+					value?next <=> type?next \WWW
+					Filter null
+					options /
+						\WWW
+						\Image
+						\PNG
+						\SVG
+						\JPG
+						\WEBP
+						\GIF
+						\BMP
+						\ICO
+						\RAW
+						\PDF
+						\RTF
+						\TXT
+						\XLS
+						\PPT
+						\DOC
+				<= Settings_open $mol_link
+					arg * settings \
+					sub /
+						<= Settings_open_icon $mol_icon_settings
+			body_content / <= Content $mol_view sub <= main_content /
+				<= Error $mol_view sub / <= error null
+				<= Result_list $mol_list
+					rows <= result_list /
+					Empty <= Result_list_empty $mol_view
+						sub /
+							<= result_list_empty @ \No results
+				<= Attribution $mol_view
+					dom_name \div
+					minimal_height 40
+				<= Attribution_loader $mol_view
+					dom_name \script
+					attr *
+						src \https://www.gstatic.com/prose/brand.js
+						targetId \$hyoo_search_app.Root(0).Attribution()
+			foot <= searcher_links /
+		<= Settings $mol_page
+			title @ \Settings
+			tools /
+				<= Donate $mol_link
+					hint @ \Support Us
+					uri \https://boosty.to/hyoo
+					sub / <= Donate_icon $mol_icon_gift_outline
+				<= Lights $mol_lights_toggle
+				<= Info $mol_link
+					hint @ \Article about
+					uri \https://page.hyoo.ru/#!=o9jnhf_7v21c4
+					sub /
+						<= Info_icon $mol_icon_information_slab_circle_outline
+				<= Sources $mol_link_source
+					uri \https://github.com/hyoo-ru/search.hyoo.ru
+				<= Settings_close $mol_link
+					arg * settings null
+					sub /
+						<= Settings_close_icon $mol_icon_close
+			body /
+				<= Settings_fields $mol_list
+					rows /
+						<= Searchers_field $mol_form_field
+							name @ \Alternative Searcher Engines
+							Content <= Searchers $mol_textarea
+								hint @ \Every search query prefix on new line
+								value?next <=> searchers?next \
+									\https://www.google.com/search?q=
+									\https://yandex.ru/search/?text=
+									\https://duckduckgo.com/?q=
+									\https://searx.tuxcloud.net/search?q=
+						<= Blacklist_field $mol_form_field
+							name @ \Domain Black List
+							Content <= Blacklist $mol_textarea
+								hint @ \Every domain on new line
+								value?next <=> blacklist?next \
+									\pinterest.com
+									\itnan.ru
+						<= Query_dump_field $mol_form_field
+							name @ \Query Dump
+							Content <= Query_dump $mol_text_code
+								text <= query_dump \
+	Sideview!uri $mol_view
+		title @ \Found
+		sub /
+			<= Sideview_hint $mol_paragraph
+				title @ \Open in new tab if didn't load
+			<= Sideview_embed!uri $mol_embed_native
+				uri <= sideview?val \about:blank
+				sub /
+	Result_item!index $mol_link
+		uri <= result_uri!index \
+		target \search_result
+		sub /
+			<= Result_info!index $mol_row
+				sub /
+					<= Result_image!index $mol_image
+						uri <= result_image!index \
+						title \
+					<= Result_main!index $mol_list
+						rows <= result_main!index /
+							<= Result_title!index $mol_dimmer
+								haystack <= result_title!index \
+								needle <= query
+							<= Result_host!index $mol_dimmer
+								haystack <= result_host!index \
+								needle <= query
+							<= Result_descr!index $mol_dimmer
+								haystack <= result_descr!index \
+								needle <= query
+			<= Result_tools!index $mol_list
+				rows /
+					<= Result_ban!index $mol_select
+						Trigger_icon <= Result_ban_icon!index $mol_icon_close
+						hint @ \Ban site..
+						Filter null
+						align_hor \left
+						options <= result_ban_options!index /string
+						value?val <=> result_ban!index?val \
+					<= Result_cache!index $mol_link
+						uri <= result_cache!index \
+						hint @ \Open cached
+						sub /
+							<= Result_cache_icon!index $mol_icon_backup_restore
+					<= Result_open!index $mol_link
+						arg *
+							settings null
+							sideview <= result_embed!index \
+						hint @ \Open in side bar
+						sub /
+							<= Result_open_icon!index $mol_icon_book_open_outline
+	Searcher_link!id $mol_link_iconed
+		title \
+		uri <= searcher_link!id \
+	

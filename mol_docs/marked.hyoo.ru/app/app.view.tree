@@ -1,0 +1,36 @@
+$hyoo_marked_app $mol_book2
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= Marked $mol_page
+			title \MarkedText
+			tools /
+				<= Lights $mol_lights_toggle
+				<= Source $mol_link_source
+					uri \https://github.com/hyoo-ru/marked.hyoo.ru/
+				<= Preview $mol_switch
+					value? <=> preview? \
+					options *
+						html \HTML
+						view \View
+			body /
+				<= Marked_text $mol_textarea
+					value?val <=> marked?val \
+		<= Html $mol_page
+			title \HTML
+			tools /
+				<= Preview_close
+			body /
+				<= Html_text $mol_text_code
+					sidebar_showed true
+					text <= html \
+		<= View $mol_page
+			title \View
+			tools /
+				<= Preview_close
+			body /
+				<= View_text $mol_text
+					text <= marked
+	Preview_close $mol_link 
+		sub / <= Preview_close_icon $mol_icon_close
+		arg * preview null

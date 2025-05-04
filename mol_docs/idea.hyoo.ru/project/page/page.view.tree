@@ -1,0 +1,74 @@
+$hyoo_idea_project_page $mol_page
+	auto /
+		<= slides_send null
+	project $hyoo_idea_project
+		domain => domain
+		domain().user().id => user_id
+		id => id
+		logo_node => logo_node
+		logo => logo
+		name => name
+		brief => brief
+		site => site
+		stage => stage
+		description => description
+	title @ \Project
+	slides_content \
+		\# {name}
+		\
+		\> {brief}
+		\
+		\{description}
+	self false
+	team_member_no_role @ \Member
+	tools /
+		<= Slides $mol_link_iconed
+			uri <= slides \https://slides.hyoo.ru/#!slides={source}
+			title \
+		<= Edit $mol_link
+			arg * project_edit \
+			sub / <= Edit_icon $mol_icon_pencil
+		<= Close $mol_link
+			arg *
+				project null
+				project_edit null
+			sub / <= Close_icon $mol_icon_close
+	editing false
+	Form $hyoo_idea_project_form
+		project <= project
+	Title $mol_view sub /
+		<= Logo $hyoo_idea_project_logo blob <= logo_node
+		<= Face_list $mol_list rows /
+			<= Name $mol_paragraph title <= name
+			<= Brief $mol_paragraph title <= brief
+	body /
+		<= Main $mol_list rows <= main /
+			<= Stage $hyoo_idea_project_stage
+				enabled false
+				stage <= stage
+			<= Site $mol_link_iconed
+				uri <= site
+				hint @ \Project Site
+			<= Description $mol_text
+				text <= description
+		<= Team $mol_section
+			title @ \Team
+			tools /
+				<= Request_button $mol_link
+					arg *
+						invite_project <= id
+						invite_person <= user_id
+					title @ \Want to join team
+			content / <= Team_list $mol_list rows <= team_member_list /
+				<= Team_member*0_0 $hyoo_idea_person_card
+					person <= team_member* $hyoo_idea_person
+					name_sub / <= team_member_role* \
+		<= Posts $mol_section
+			title <= Posts_title @ \Posts: {count}
+			content <= posts_content /
+				<= Post_add $hyoo_idea_post_add
+					submit? <=> post_add? null
+		<= Post_list $mol_list
+			rows <= post_list /
+				<= Post*0_0 $hyoo_idea_post_card
+					post <= post* $hyoo_idea_post

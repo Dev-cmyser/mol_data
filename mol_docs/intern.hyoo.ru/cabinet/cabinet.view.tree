@@ -1,0 +1,48 @@
+$hyoo_intern_cabinet $mol_book2_catalog
+	user $hyoo_intern_person
+	campaign $hyoo_intern_campaign
+	yard $hyoo_sync_client
+	Placeholder null
+	menu_tools /
+		<= User $mol_link
+			arg * section \person
+			sub / <= User_icon $mol_icon_account
+			hint \Учетная запись
+	Menu_logo $hyoo_intern_person_avatar
+		blob_node <= campaign_image_node $hyoo_crowd_blob
+		control false
+		size 36
+	menu_title <= campaign_name \$hyoo_intern
+	menu_body /
+		<= Menu_links
+	menu_foot /
+		<= Lights $mol_lights_toggle
+		<= Online $hyoo_sync_online
+			yard <= yard
+	param \section
+	Person_page $hyoo_intern_person_page
+		person <= user
+	- Confirm_page $hyoo_intern_confirm
+		campaign <= campaign_current
+		yard <= yard
+	Staff_request_page $mol_page
+		title \Заявка сотрудника
+		body /
+			<= Staff_request_list $mol_list rows /
+				<= Person_form $hyoo_intern_person_form
+					person <= user
+				<= Role_select_field $mol_form_field
+					name \Выберите вашу роль
+					bid \*
+					control <= Role_select_control $mol_switch
+						value? <=> staff_request_role? \
+						options *
+							curator \Куратор
+							manager \Кадровый специалист
+							mentor \Наставник
+				<= Staff_link_field $mol_form_field
+					name \Передайте эту ссылку администратору, вы увидите личный кабинет когда администратор подтвердит заявку
+					control <= Staff_link_copy $mol_button_copy
+						enabled <= staff_link_copy_enabled false
+						text <= staff_request_link \
+						title \Копировать ссылку

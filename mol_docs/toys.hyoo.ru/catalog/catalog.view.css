@@ -1,0 +1,92 @@
+[hyoo_toys_catalog] {
+	flex: 1 0 40rem;
+}
+
+[hyoo_toys_catalog_logo] {
+	box-shadow: none;
+	height: 1.5rem;
+	align-self: center;
+	flex: none;
+}
+
+[hyoo_toys_catalog_title] {
+	flex: 1 1 auto;
+}
+
+[hyoo_toys_catalog_tools] {
+	flex: 1000 1 auto;
+}
+
+[hyoo_toys_catalog_body_content] {
+	padding: 0;
+}
+
+[hyoo_toys_catalog_filter_title] {
+	align-self: stretch;
+}
+
+[hyoo_toys_catalog_goods] {
+	align-items: flex-start;
+	min-height: 1rem;
+	padding: .375rem;
+}
+
+[hyoo_toys_catalog_toy_card] {
+	flex-direction: column;
+	flex: 1 1 10rem;
+	width: 10rem;
+	margin: .375rem;
+	padding: 0;
+	background: var(--mol_theme_card);
+	gap: 0;
+	align-self: flex-end;
+}
+
+[hyoo_toys_catalog_toy_image] {
+	flex: 0 0 14rem;
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: scale-down;
+	background: white;
+}
+
+[hyoo_toys_catalog_toy_main] {
+	padding: .5rem .75rem;
+	flex-grow: 1;
+}
+
+[hyoo_toys_catalog_toy_title] {
+	display: block;
+	text-shadow: 0 0;
+}
+
+[hyoo_toys_catalog_toy_type] {
+	display: block;
+	color: var(--mol_theme_shade);
+}
+
+[hyoo_toys_catalog_toy_option] {
+	display: flex;
+	flex-direction: row;
+	align-items:flex-start;
+	flex-wrap: wrap;
+}
+
+[hyoo_toys_catalog_toy_info] {
+	margin: .5rem .75rem;
+	display: flex;
+	flex-direction: column;
+}
+
+[hyoo_toys_catalog_toy_price] {
+	font-size: 1.5em;
+	color: var(--mol_theme_text);
+}
+
+[hyoo_toys_catalog_toy_size] {
+	color: var(--mol_theme_shade);
+}
+
+[hyoo_toys_catalog_toy_reviews] {
+	color: var(--mol_theme_shade);
+}

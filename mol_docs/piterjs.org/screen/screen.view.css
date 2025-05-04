@@ -1,0 +1,21 @@
+[piterjs_screen] {
+	font-family: "Fira Sans", "Verdana", sans-serif;
+	background: var(--mol_theme_back);
+	flex: auto;
+	display: flex;
+	z-index: 0;
+	position: relative;
+	min-width: 100%;
+}
+
+
+[piterjs_screen_open] {
+	left: 0;
+	top: 0;
+}
+
+[piterjs_screen_close] {
+	right: 0;
+	bottom: 0;
+	transform: rotate(180deg);
+}

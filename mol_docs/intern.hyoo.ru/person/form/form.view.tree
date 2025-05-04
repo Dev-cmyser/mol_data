@@ -1,0 +1,39 @@
+$hyoo_intern_person_form $mol_form
+	person $hyoo_intern_person
+		name? => name?
+		name_family? => name_family?
+		email? => email?
+		phone? => phone?
+	form_fields /
+		<= Avatar_field $mol_form_field
+			name \Фото
+			control <= Avatar_control $mol_view sub /
+				<= Avatar_upload $mol_button_open
+					files? <=> avatar_file? /
+					multiple false
+					accept \image/*
+				<= Avatar_drop $mol_button_minor
+					hint \Удалить аватар
+					click? <=> avatar_drop? null
+					sub / <= Avatar_drop_icon $mol_icon_cross
+		<= Name_group $mol_form_group sub /
+			<= Name_field $mol_form_field
+				name \Имя
+				bid \*
+				control <= Name_control $mol_string
+					value? <=> name?
+			<= Name_family_field $mol_form_field
+				name \Фамилия
+				bid \*
+				control <= Name_family_control $mol_string
+					value? <=> name_family?
+		<= Contact_group $mol_form_group sub /
+			<= Phone_field $mol_form_field
+				name \Телефон
+				control <= Phone_control $mol_phone
+					value? <=> phone?
+			<= Email_field $mol_form_field
+				name \Почта
+				control <= Email_control $mol_string
+					hint @ \my_email@mail.ru
+					value? <=> email?

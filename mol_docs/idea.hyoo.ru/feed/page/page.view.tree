@@ -1,0 +1,10 @@
+$hyoo_idea_feed_page $mol_page
+	person $hyoo_idea_person
+	title @ \Feed
+	tools /
+		<= Close null
+	body /
+		<= Posts $mol_infinite
+			after* <= posts_after* /
+			Row* <= Post* $hyoo_idea_post_card
+				post <= post* $hyoo_idea_post

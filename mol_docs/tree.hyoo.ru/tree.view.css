@@ -1,0 +1,20 @@
+[hyoo_tree_presets] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_tree_source] {
+	flex: 1 0 30rem;
+}
+
+[hyoo_tree_source_body] {
+	flex-direction: row;
+}
+
+[hyoo_tree_result] {
+	flex: 1 0 30rem;
+}
+
+[hyoo_tree_result_body] {
+	flex-direction: row;
+}
+

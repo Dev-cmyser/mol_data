@@ -1,0 +1,10 @@
+$hyoo_case_property_snippet $mol_dimmer
+	haystack <= title
+	needle <= highlight \
+	property $hyoo_case_property
+	attr *
+		^
+		title <= hint \
+	style *
+		^
+		maxWidth <= max_width \

@@ -1,0 +1,31 @@
+$hyoo_offer $mol_book2
+	attr *
+		mol_theme \$mol_theme_dark
+	pages /
+		<= Main_page $mol_page
+			title \HyOO - приложения для бизнеса
+			body /
+				<= Menu $mol_list rows /
+					<= Corporate_link $mol_link
+						arg * business \corporate
+						title <= corporate_title @ \Corporative clients
+					<= Private_link $mol_link
+						arg * business \private
+						title <= private_title @ \Private business
+					<= Dev_link $mol_link
+						arg * business \dev
+						title <= dev_title @ \Developers	
+		<= Corporate_page $hyoo_offer_corporate
+			title <= corporate_title
+			tools / <= Details_close
+		<= Private_page $hyoo_offer_private
+			title <= private_title
+			tools / <= Details_close
+		<= Dev_page $hyoo_offer_dev
+			title <= dev_title
+			tools / <= Details_close
+	Placeholder null
+	Details_close $mol_link
+		arg * business null
+		sub / <= Details_close_icon $mol_icon_cross
+			

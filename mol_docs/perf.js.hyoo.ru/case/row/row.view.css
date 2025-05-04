@@ -1,0 +1,33 @@
+[hyoo_js_perf_case_row] {
+	flex: 0 1 auto;
+	flex-wrap: wrap;
+	background: var(--mol_theme_card);
+	border-radius: var(--mol_gap_round);
+}
+
+[hyoo_js_perf_case_row_prefix] ,
+[hyoo_js_perf_case_row_source] {
+	flex: 1 1 40rem;
+	vertical-align: top;
+}
+
+[hyoo_js_perf_case_row_prefix_tools] {
+	flex-grow: 1000;
+}
+
+[hyoo_js_perf_case_row_eval_labeler] {
+	flex: 1 1 26rem;
+}
+[hyoo_js_perf_case_row_results] {
+	flex: 1 1 26rem;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+[hyoo_js_perf_case_row_eval_labeler_trigger] {
+	flex-grow: 0;
+}
+
+[hyoo_js_perf_case_row_title] {
+	text-shadow: 0 0;
+}

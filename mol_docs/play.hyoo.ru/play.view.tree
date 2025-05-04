@@ -1,0 +1,64 @@
+$hyoo_play $mol_drop
+	playlist \
+	files?next /
+	file_current?val null
+	Sub <= Book $mol_book2
+		Placeholder null
+		attr * mol_theme \$mol_theme_dark
+		pages <= pages /
+			<= Queue $mol_page
+				title @ \Media Player
+				tools /
+					<= Playing $mol_check_icon
+						checked?next <=> playing?next
+						Icon <= Playing_icon $mol_icon_play
+					<= Open $mol_button_open
+						files?next <=> files_add?next /
+					<= Sources $mol_link_source
+						uri \https://github.com/hyoo-ru/play.hyoo.ru
+					<= Chat $mol_chat
+						seed <= play_title \
+						pages => chat_pages
+				body /
+					<= Queue_files $mol_list rows <= queue_files /
+				foot /
+					<= Water $mol_link
+						hint @ \Relaxing
+						arg * playlist \./hyoo/play/lib/water.m3u8
+						sub /
+							<= Water_icon $mol_icon_waves
+					<= Wind $mol_link
+						hint @ \Touching
+						arg * playlist \./hyoo/play/lib/wind.m3u8
+						sub /
+							<= Wind_icon $mol_icon_weather_windy
+					<= Light $mol_link
+						hint @ \Inspiring
+						arg * playlist \./hyoo/play/lib/light.m3u8
+						sub /
+							<= Light_icon $mol_icon_flash_outline
+					<= Fire $mol_link
+						hint @ \Aggressive
+						arg * playlist \./hyoo/play/lib/fire.m3u8
+						sub /
+							<= Fire_icon $mol_icon_fire
+					<= Movie $mol_link
+						hint @ \Movie
+						arg * playlist \./hyoo/play/lib/movie.m3u8
+						sub /
+							<= Movie_icon $mol_icon_filmstrip
+			<= Player $mol_video_player
+				title <= play_title \
+				uri <= play_uri \
+				poster \https://www.koolmusic.com/img/equalizer.gif
+				playing?next => playing?next
+	File!index $mol_view
+		sub /
+			<= File_play!index $mol_button_minor
+				title <= file_title!index \
+				enabled <= file_enabled!index true
+				click?event <=> file_play!index?event null
+			<= File_drop!index $mol_button_minor
+				click?event <=> file_drop!index?event null
+				sub /
+					<= File_drop_icon!index $mol_icon_close

@@ -1,0 +1,58 @@
+$hyoo_github_compare $mol_page
+	title @ \GitHub projects comparison
+	plugins /
+		<= Theme $mol_theme_auto
+	tools /
+		<= Light $mol_lights_toggle
+		<= Sources $mol_link_source
+			uri \https://github.com/hyoo-ru/github.hyoo.ru/tree/master/compare
+	body /
+		<= Content $mol_list
+			rows /
+				<= Columns $mol_view sub <= columns /
+					<= Add $mol_search
+						query?val <=> add_query?val \
+						suggest_select!text?event <=> add!text?event \
+						suggests <= add_suggests /string
+						hint @ \Add project...
+					<= Issues_label $mol_view
+						sub /
+							<= issues_label @ \Open issues
+					<= Capacity_label $mol_view
+						sub /
+							<= capacity_label @ \Sum of open issues ages (years)
+				<= Projects $mol_list
+					rows <= projects /
+	Project!id $mol_view
+		sub /
+			<= Homepage!id $mol_link_iconed
+				uri <= homepage!id \
+				hint @ \Homepage
+				content /
+			<= Repo!id $mol_link
+				uri <= repo!id \
+				title <= id!id \
+				hint @ \Repository
+			<= Remove!id $mol_button_minor
+				hint @ \Remove
+				sub / <= Remove_icon!id $mol_icon_cross
+				click?event <=> remove!id?event null
+			<= Issues!id $mol_link
+				uri <= issues_link!id \
+				sub /
+					<= Issues_count!id $mol_view
+						sub / <= issues_count!id 0
+					<= Issues_portion!id $mol_portion
+						portion <= issues_portion!id 0
+			<= Capacity!id $mol_view
+				sub /
+					<= Capacity_info!id $mol_list
+						rows /
+							<= Capacity_text!id $mol_view
+								sub / <= capacity_text!id \
+							<= Capacity_portion!id $mol_portion
+								portion <= capacity_portion!id 0
+					<= Capacity_refresh!id $mol_button_minor
+						hint @ \Refresh
+						sub / <= Capacity_refresh_icon!id $mol_icon_reload
+						click?event <=> refresh!id?event null

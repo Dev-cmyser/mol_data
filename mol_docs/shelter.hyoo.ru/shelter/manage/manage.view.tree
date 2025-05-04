@@ -1,0 +1,100 @@
+$hyoo_shelter_shelter_manage $mol_book2
+	shelters $hyoo_shelter_shelter_list / *
+	animals $hyoo_shelter_shelter_animals / *
+	pages /
+		<= Filter_page $mol_page
+			tools /
+				<= Source_link $mol_link_source
+					uri \https://github.com/hyoo-ru/shelter.hyoo.ru
+				<= Lights $mol_lights_toggle
+				<= Logout $mol_button_minor
+					click?event <=> logout?event null
+					sub /
+						<= Logout_icon $mol_icon_logout
+			title <= filter_title \Фильтры
+			body /
+				<= Filter_list $mol_list
+					rows <= filter_list /
+						<= Filter_shelter_list $hyoo_shelter_shelter_manage_filter_group
+							title \Приюты
+							items <= filter_shelter_list /
+			foot /
+				<= Summaries $mol_view
+					sub /
+						<= Summary_title $mol_view sub / \Отчёты
+						<= Summary_options $mol_view
+							sub /
+								<= Summary_1W $mol_link
+									hint \Скачать сводный отчёт
+									file_name \1W.pdf
+									target \_blank
+									uri <= summary_1w \
+									sub / \Неделя
+								<= Summary_1M $mol_link
+									hint \Скачать сводный отчёт
+									file_name \1M.pdf
+									target \_blank
+									uri <= summary_1m \
+									sub / \Месяц
+								<= Summary_3M $mol_link
+									hint \Скачать сводный отчёт
+									file_name \3M.pdf
+									target \_blank
+									uri <= summary_3m \
+									sub / \Квартал
+								<= Summary_1Y $mol_link
+									hint \Скачать сводный отчёт
+									file_name \1Y.pdf
+									target \_blank
+									uri <= summary_1y \
+									sub / \Год
+		<= Animals_page $mol_page
+			tools <= animals_page_tools /
+				<= Search $mol_search
+					query?val <=> search?val \
+				<= Add $mol_button_major
+					click?event <=> add?event null
+					hint \Добавить животное
+					sub /
+						<= Add_icon $mol_icon_plus
+			title <= animals_title \Управление приютом
+			body /
+				<= Animal_list $mol_list
+					rows <= animal_list /
+					Empty <= Animal_list_empty $mol_row
+						sub / \Нет животных
+	Shelter_link_all $mol_link
+		arg * shelter null
+		sub / \Все
+	Shelter_link!id $mol_link
+		arg * shelter <= shelter_id!id \
+		sub / <= shelter_name!id \
+	Animal_edit!id $hyoo_shelter_animal_edit
+		enabled <= can_edit true
+		Download => Animal_download!id
+		tools /
+			<= Animal_download!id
+			<= Close!id $mol_link
+				arg * animal null
+				sub /
+					<= Close_icon!id $mol_icon_close
+		animal <= animal!id
+	-
+	Animal_card!id $hyoo_shelter_animal_card
+		animal <= animal!id $hyoo_shelter_animal / *
+		highlight <= search
+		shelters <= card_shelters $hyoo_shelter_shelter_list / *
+	-
+	Download $mol_link
+		hint \Скачать список животных в виде документа
+		file_name <= download_name \
+		uri <= download_link \
+		sub /
+			<= Download_icon $mol_icon_download
+
+$hyoo_shelter_shelter_manage_filter_group $mol_list
+	rows /
+		<= Title $mol_view
+			sub / <= title
+		<= Items $mol_list
+			rows <= items /

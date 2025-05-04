@@ -1,0 +1,35 @@
+$hyoo_intern $mol_book2
+	plugins /
+		<= Theme $mol_theme_auto
+	user $hyoo_intern_person
+	campaign_join null
+	yard $hyoo_sync_client
+	Person_page $hyoo_intern_person_page
+	role? \sign
+	cabinets *
+		sign <= Sign_cabinet $hyoo_intern_cabinet_sign
+			yard <= yard
+			person <= user
+		norole <= Norole_cabinet $hyoo_intern_cabinet_norole
+			yard <= yard
+			user <= user
+			campaign_join <= campaign_join
+		admin <= Admin_cabinet $hyoo_intern_cabinet_admin
+			yard <= yard
+			user <= user
+		curator <= Curator_cabinet $hyoo_intern_cabinet_curator
+			yard <= yard
+			user <= user
+			campaign <= campaign
+		intern <= Intern_cabinet $hyoo_intern_cabinet_intern
+			yard <= yard
+			user <= user
+			campaign <= campaign
+		mentor <= Mentor_cabinet $hyoo_intern_cabinet_mentor
+			yard <= yard
+			user <= user
+			campaign <= campaign
+		manager <= Manager_cabinet $hyoo_intern_cabinet_manager
+			yard <= yard
+			user <= user
+			campaign <= campaign

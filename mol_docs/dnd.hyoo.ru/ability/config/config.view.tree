@@ -1,0 +1,24 @@
+$hyoo_dnd_ability_config $mol_page
+	title \Способности
+	char $hyoo_dnd_char
+		ability* => ability_total*
+		ability_addon*? => ability_addon*?
+		ability_safe* => ability_safe*
+		ability_modifier* => ability_modifier*
+	pending? 25
+	body <= ability_list /
+		<= Ability_row*some $mol_view sub /
+			<= Ability_title* $mol_chip
+				title <= ability_title* \
+				hint <= ability_hint* \
+			<= Ability_total* $mol_chip
+				hint \Значение
+				sub <= ability_total_value* / <= ability_total*
+			<= Ability_modifier* $mol_chip
+				hint \Модификатор
+				sub <= ability_modifier_value* / <= ability_modifier*
+			<= Ability_safe* $mol_chip
+				hint \Спасение
+				sub <= ability_safe_value* / <= ability_safe*
+			<= Ability_addon* $mol_paginator
+				value? <=> ability_addon*?

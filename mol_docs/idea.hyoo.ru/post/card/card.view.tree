@@ -1,0 +1,43 @@
+$hyoo_idea_post_card $mol_list
+	post $hyoo_idea_post
+		id => id
+		content => content
+		created_moment => created_moment
+		project => project
+		likes_total => likes_total
+		liked? => liked?
+	rows /
+		<= Head $hyoo_idea_project_card
+			project <= project
+		<= Content $mol_text
+			text <= content
+		<= Foot $mol_view sub /
+			<= Comments_toggle $mol_check_icon
+				Icon <= Comments_icon $mol_icon_comment_text_multiple
+				label / <= comments_count 0
+				checked? <=> comments_showed? false
+			- <= Like $mol_check_icon
+				Icon <= Like_icon $mol_icon_lightbulb_on
+				label / <= likes_count 0
+				checked? <=> liked?
+			- <= Share $mol_button_share
+				capture <= dom_node
+		<= Comments $mol_list
+			rows <= comment_rows /
+				<= Comment*0_0 $mol_list rows /
+					<= Comment_author* $hyoo_idea_person_card
+						person <= comment_author* $hyoo_idea_person
+						actions /
+							<= Comment_ago* $hyoo_idea_ago
+								title @ \{count} {unit} назад
+								moment <= comment_created_moment* $mol_time_moment
+					<= Name_sub_list* $mol_list rows /
+						<= Comment_text* $mol_text text <= comment_text* \
+				<= Comment_add $mol_bar sub /
+					<= Text $mol_textarea
+						hint @ \New comment..
+						value? <=> comment? \
+					<= Submit $mol_button_minor
+						hint @ \Send comment
+						click? <=> comment_add? null
+						sub / <= Submit_icon $mol_icon_send

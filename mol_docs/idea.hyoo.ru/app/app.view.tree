@@ -1,0 +1,42 @@
+$hyoo_idea_app $mol_book2_catalog
+	domain $hyoo_idea_domain
+		yard => yard
+		user => user
+	plugins /
+		<= Theme $mol_theme_auto
+	menu_head /
+		<= Menu_snippet $mol_view sub /
+			<= Logo $mol_image
+				uri \/hyoo/idea/logo/logo.svg
+			<= Label $mol_list rows /
+				<= Title $mol_paragraph
+					title <= menu_title \$hyoo_idea
+				<= Descr $mol_paragraph
+					title <= descr @ \Fresh Ideas Network
+		<= Person_link $mol_link
+			arg * person <= user_id \0_0
+			hint @ \Profile
+			sub /
+				<= Person_icon $mol_icon_account
+	menu_foot /
+		<= Online $hyoo_sync_online
+			yard <= yard
+		<= Lights $mol_lights_toggle
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/idea.hyoo.ru
+	spreads *
+		news <= Feed $hyoo_idea_feed_page
+			person <= user
+			Close <= Spread_close
+		projects <= Project_list $hyoo_idea_projects
+			domain <= domain
+			Close <= Spread_close
+		talents <= Talents_page $hyoo_idea_talents_page
+			domain <= domain
+			Close <= Spread_close
+	Project_page* $hyoo_idea_project_page
+		project <= project_opened $hyoo_idea_project
+	Person_page* $hyoo_idea_person_page
+		person <= person_opened $hyoo_idea_person
+	Invite_page $hyoo_idea_invite_page
+		domain <= domain

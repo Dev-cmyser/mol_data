@@ -1,0 +1,49 @@
+[hyoo_lamps_title] {
+	flex: 0 1 auto;
+}
+
+[hyoo_lamps_filter] {
+	align-self: stretch;
+}
+
+[hyoo_lamps_menu] {
+	min-height: 100%;
+}
+
+[hyoo_lamps_info] {
+	padding: 0;
+}
+
+[hyoo_lamps_lamp_row] {
+	display: flex;
+	flex: 0 0 auto;
+	padding: .5rem .75rem;
+}
+
+[hyoo_lamps_lamp_row_link] {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: flex-start;
+}
+
+[hyoo_lamps_lamp_row_title] {
+	flex: 1000 1 auto;
+}
+
+[hyoo_lamps_lamp_row_thumb] {
+	height : 3rem;
+	display: block;
+}
+
+[hyoo_lamps_addon_page] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_lamps_light] ,
+[hyoo_lamps_body] {
+	justify-content: space-between;
+}
+
+[hyoo_lamps_info] [mol_labeler_content] {
+	padding: var(--mol_gap_text);
+}

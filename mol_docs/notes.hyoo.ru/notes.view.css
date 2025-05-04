@@ -1,0 +1,42 @@
+[hyoo_notes_tagging_page] {
+	flex: 0 0 20rem;
+}
+
+[hyoo_notes_notes_page] {
+	flex: 0 0 30rem;
+}
+
+[hyoo_notes_note_page] {
+	flex: 1000 0 50rem;
+}
+
+[hyoo_notes_notes_list] {
+	flex: 0 0 auto;
+}
+
+[hyoo_notes_note_add_hint] {
+	display: flex;
+	padding: 0 .75rem;
+	justify-content: flex-end;
+	align-items: center;
+	color: var(--mol_theme_shade);
+}
+
+[hyoo_notes_note_row] {
+	display: flex;
+}
+
+[hyoo_notes_note_title] {
+	flex-grow: 1;
+}
+
+[hyoo_notes_note_moment] {
+	flex-shrink: 1000;
+    flex-basis: 11ch;
+    min-width: max-content;
+    font-family: monospace;
+}
+
+[hyoo_notes_tag_link] {
+	flex: auto;
+}

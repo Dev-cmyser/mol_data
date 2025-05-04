@@ -1,0 +1,58 @@
+$hyoo_dnd_spell_config $mol_page
+	spell $hyoo_dnd_spell
+		brief => brief
+		title? => name?
+		level? => level?
+		material? => material?
+		distance? => distance?
+		damage? => damage?
+		damage_type? => damage_type?
+		remarks? => remarks?
+	Title $mol_string
+		hint \Название
+		value? <=> name?
+	body /
+		<= Common $mol_form_group sub /
+			<= Level_block $mol_form_field
+				name \🏅 Уровень
+				Content <= Level $mol_paginator
+					value? <=> level?
+			<= Distance_block $mol_form_field
+				name \💨 Дальность
+				Content <= Distance $mol_number
+					value? <=> distance?
+		<= Damage_group $mol_form_group sub /
+			<= Damage_type_block $mol_form_field
+				name \💢 Вид урона
+				Content <= Damage_type $mol_select
+					value? <=> damage_type?
+					options <= damage_options /
+					option_label* <= damage_title* \
+			<= Damage_block $mol_form_field
+				name \💥 Степень урона
+				Content <= Damage $mol_string
+					value? <=> damage?
+		<= Components_group $mol_form_group sub /
+			<= Components_block $mol_form_field
+				name \📦 Компоненты
+				Content <= Components $mol_check_list
+					option_checked*? <=> component_checked*? false
+					options *
+						verbal \👅 Вербальный
+						somatic \🖐 Соматический
+			<= Material_block $mol_form_field
+				name \🍭 Материал
+				Content <= Material $mol_string
+					value? <=> material?
+		- <= Classes_block $mol_form_field
+			name \Классы
+			Content <= Classes $mol_check_list
+				option_checked*? <=> class_checked*? false
+				keys <= classes_options /
+				option_title* <= class_title* \
+		<= Remarks_block $mol_form_field
+			name \Заметки
+			Content <= Remarks $mol_textarea
+				value? <=> remarks?
+	foot /
+		<= Brief $mol_chip title <= brief

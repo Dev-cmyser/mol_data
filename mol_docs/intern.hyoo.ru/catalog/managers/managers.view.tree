@@ -1,0 +1,7 @@
+$hyoo_intern_catalog_managers $hyoo_intern_catalog_entities
+	menu_title \Кадровые специалисты
+	Card_view* $hyoo_intern_manager_card
+		disabled true
+		manager <= item* $hyoo_intern_manager
+	Card_edit* $hyoo_intern_manager_card
+		manager <= item*

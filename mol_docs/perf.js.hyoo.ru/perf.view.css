@@ -1,0 +1,28 @@
+[hyoo_js_perf_cases_pane_tools] {
+	flex-grow: 0;
+}
+
+[hyoo_js_perf_body] {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0;
+}
+
+[hyoo_js_perf_common] {
+	flex-direction: column;
+	flex: 0 0 30rem;
+}
+
+[hyoo_js_perf_common_content] {
+	gap: var(--mol_gap_block);
+}
+
+[hyoo_js_perf_cases_pane] {
+	flex: 1000 0 90rem;
+	background: var(--mol_theme_back);
+}
+
+[hyoo_js_perf_cases] {
+	gap: var(--mol_gap_block);
+}

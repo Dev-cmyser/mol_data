@@ -1,0 +1,58 @@
+$hyoo_budget_fund_book $mol_book2_catalog
+	param \category
+	fund $hyoo_budget_fund
+		can_change => editable
+	menu_title <= fund_title
+	Menu_title $mol_string_button
+		hint @ \fund title
+		value? <=> fund_title? \
+		enabled <= editable
+	menu_tools /
+		<= Access_link $mol_link
+			hint @ \Access
+			arg *
+				access \
+				category null
+			sub /
+				<= Access_icon $mol_icon_security
+		<= Export $mol_button_download
+			hint @ \Download fund data
+			file_name <= export_file_name \xxx.csv
+			blob <= export_blob $mol_blob
+		<= Category_make $mol_button_minor
+			hint @ \New category
+			click? <=> category_make? null
+			enabled <= editable
+			sub /
+				<= Category_make_icon $mol_icon_plus
+		^ menu_addon /
+	menu_link_content* /
+		<= Menu_link_title*
+		<= Category_ballance* $mol_view
+			sub / <= category_ballance* 0
+		<= Category_portion* $mol_portion
+			portion <= category_portion* 0
+			attr * hyoo_budget_fund_book_category_mood <= category_mood* \positive
+	Menu_links_empty $mol_status
+		title @ \Add new category ⤴️
+	menu_foot /
+		<= Visible $mol_check_icon
+			hint @ \Visible in menu
+			checked? <=> visible? true
+			sub /
+				<= Visible_icon $mol_icon_eye
+		<= Ballance $mol_chip
+			title <= ballance @ \{value} ¤ total
+		- <= Limit $mol_number
+			hint @ \limit
+			value? <=> limit? null number
+			Inc null
+			Dec null
+	Spread* <= Category_page* $hyoo_budget_category_page
+		category <= category* $hyoo_budget_category
+		addon /
+			<= Spread_close
+		visible? <=> category_visible*? true
+	Access_page $hyoo_budget_fund_access
+		fund <= fund
+		close_arg * access null

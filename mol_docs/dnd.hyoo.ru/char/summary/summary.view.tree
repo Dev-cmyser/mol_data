@@ -1,0 +1,146 @@
+$hyoo_dnd_char_summary $mol_page
+	title \Сводка
+	char $hyoo_dnd_char
+		name => name
+		biography => biography
+		age => age
+		level? => level?
+		experience? => experience?
+		charm_count => charm_count
+		spell_count => spell_count
+		moral => moral
+		ethics => ethics
+		traits => traits
+		ideals => ideals
+		affection => affection
+		weakness => weakness
+		remarks? => remarks?
+		master_bonus => master_bonus
+		hits? => hits?
+		hits_addon? => hits_addon?
+		hits_max? => hits_max?
+		hits_dice => hits_dice
+		hits_heal => hits_heal
+	Ability_cofig $hyoo_dnd_ability_config
+		char <= char
+		ability_list => ability_list
+		Ability_addon null
+	Skill_cofig $hyoo_dnd_skill_config
+		char <= char
+		skill_list => skill_list
+		Skill_addon null
+	Item_list $hyoo_dnd_item_manage
+		char <= char
+		menu_links => item_list
+		Item_delete* null
+	Spell_list $hyoo_dnd_spell_manage
+		char <= char
+		Menu_links => spell_list
+		Spell_delete* null
+	body /
+		<= Columns $mol_view sub /
+			<= Info $mol_list rows /
+				<= Top $mol_view sub /
+					<= Base $mol_view sub /
+						<= Name $mol_chip
+							hint \Имя
+							title <= name
+						<= Age $mol_chip
+							hint \Возраст
+							sub /
+								\📅
+								<= age
+						<= Speed $mol_chip
+							hint \Скорость
+							sub /
+								\🦶
+								<= speed 1
+				<= Main $mol_view sub /
+					<= Life $mol_view sub /
+						<= Race $mol_link
+							hint \Раса
+							title <= race_title \
+							uri <= race_link \
+						<= Class $mol_link
+							hint \Класс
+							title <= class_title \
+							uri <= class_link \
+						<= Story $mol_link
+							hint \Предыстория
+							title <= story_title \
+							uri <= story_link \
+					<= Alignment $mol_view sub /
+						<= Goodness $mol_chip
+							hint \Мораль
+							title <= moral_title \
+						<= Principality $mol_chip
+							hint \Этика
+							title <= ethics_title \
+				<= Personality $mol_list rows /
+					<= Biography $mol_text text <= biography
+					<= Traits $mol_text text <= traits
+					<= Ideals $mol_text text <= ideals
+					<= Affection $mol_text text <= affection
+					<= Weakness $mol_text text <= weakness
+					<= Remarks $mol_textarea
+						hint \Заметки
+						value? <=> remarks?
+			<= Stat_main $mol_list rows /
+				<= Grade_block $hyoo_dnd_char_summary_block
+					title \Прогресс
+					content /
+						<= Level $hyoo_dnd_parameter
+							title \🏅 Уровень
+							Value <= Level_value $mol_paginator
+								value? <=> level?
+						<= Master_bonus $hyoo_dnd_parameter
+							title \🥇 Мастерство
+							value /
+								\+
+								<= master_bonus
+						<= Experience $hyoo_dnd_parameter
+							title \✨ Опыт
+							Value <= Experience_value $mol_paginator
+								value? <=> experience?
+								step 100
+						<= Charm_count $hyoo_dnd_parameter
+							title \🎆 Заговоры
+							value / <= charm_count
+						<= Spell_count $hyoo_dnd_parameter
+							title \🎇 Заклинания
+							value / <= spell_count
+				<= Hits_block $hyoo_dnd_char_summary_block
+					title \Хиты
+					content /
+						<= Hits_max $hyoo_dnd_parameter
+							title \💟 Предел
+							Value <= Hits_max_value $mol_paginator
+								value? <=> hits_max?
+						<= Hits $hyoo_dnd_parameter
+							title \💗 Здоровье
+							Value <= Hits_value $mol_paginator
+								value? <=> hits?
+						<= Hits_addon $hyoo_dnd_parameter
+							title \💖 Бафы
+							Value <= Hits_addon_value $mol_paginator
+								value? <=> hits_addon?
+						<= Hits_heal $hyoo_dnd_parameter
+							title \💊 Лечение
+							value / <= hits_heal
+				<= Abilities $mol_list rows <= ability_list
+			<= Skills $hyoo_dnd_char_summary_block
+				title \Навыки
+				content <= skill_list
+			<= Perks_block $hyoo_dnd_char_summary_block
+				title \Умения
+				Content <= Perks $mol_text
+					text <= perks \
+			<= Inventory_block $hyoo_dnd_char_summary_block
+				title \Инвентарь
+				content / <= Inventory $mol_list rows <= item_list
+			<= Spell_block $hyoo_dnd_char_summary_block
+				title \Заклинания
+				content / <= spell_list
+
+$hyoo_dnd_char_summary_block $mol_section
+	level 5

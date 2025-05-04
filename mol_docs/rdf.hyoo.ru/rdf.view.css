@@ -1,0 +1,57 @@
+[hyoo_rdf_tools] {
+	flex-grow: 0;
+}
+
+[hyoo_rdf_body] {
+	padding: 0;
+}
+
+[hyoo_rdf_subjects] {
+	margin: var(--mol_gap_block);
+	display: flex;
+	flex-direction: column;
+}
+
+[hyoo_rdf_subject_row] {
+	display: flex;
+	align-items: flex-start;
+}
+
+[hyoo_rdf_subject] {
+	flex: 1 100 15rem;
+	position: sticky;
+	top: 0;
+}
+
+[hyoo_rdf_predicates] {
+	display: flex;
+	flex-direction: column;
+	flex: 100 1 75%;
+}
+
+[hyoo_rdf_predicate_row] {
+	display: flex;
+	align-items: flex-start;
+}
+
+[hyoo_rdf_predicate] {
+	flex: 1 100 15rem;
+	position: sticky;
+	top: 0;
+}
+
+[hyoo_rdf_objects] {
+	display: flex;
+	flex-direction: column;
+	flex: 100 1 66%;
+}
+
+[hyoo_rdf_resource] {
+	display: flex;
+	min-height: calc( 1.5em + 1rem );
+}
+
+[hyoo_rdf_value] {
+	display: flex;
+	padding: var(--mol_gap_text);
+}

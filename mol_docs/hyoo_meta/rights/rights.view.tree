@@ -1,0 +1,31 @@
+$hyoo_meta_rights $mol_page
+	title @ \Rights
+	meta $hyoo_meta_model
+		editors => editors
+	body /
+		<= Content $mol_list
+			rows <= blocks /
+				<= Editor_list $mol_list
+					rows <= editor_list /
+						<= Editor_link*0_0 $hyoo_meta_link
+							meta <= peer* $hyoo_meta_person
+				<= Editor_add $mol_form_field
+					name @ \Add new
+					bid <= editor_add_bid @ \Irrevocable!
+					Content <= Editor_add_form $mol_list
+						rows <= editor_add_rows /
+							<= Editor_add_bar $mol_bar sub /
+								<= Editor_add_id $mol_string
+									hint @ \Id or Profile Link
+									value? <=> editor_add_id? \
+									enabled <= editable false
+								<= Editor_add_submit $mol_button_major
+									enabled <= editor_add_allowed false
+									click? <=> editor_add_submit? null
+									sub /
+										<= Editor_add_icon $mol_icon_plus
+							<= Editor_add_preview $hyoo_meta_link
+								meta <= editor_add_preview $hyoo_meta_model
+							<= Editor_fill_all $mol_button_minor
+								title @ \Allow anyone
+								click? <=> editor_fill_all? null

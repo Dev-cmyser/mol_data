@@ -1,0 +1,13 @@
+$hyoo_dnd_skill_config $mol_page
+	title \Навыки
+	char $hyoo_dnd_char
+		skill* => skill*
+		skill_has*? => skill_has*?
+	body <= skill_list /
+		<= Skill_row*some $mol_view sub /
+			<= Skill_addon* $mol_check_box
+				checked? <=> skill_has*?
+			<= Skill_title* $mol_chip
+				title <= skill_title* \
+			<= Skill_value* $mol_chip
+				title <= skill_value* \

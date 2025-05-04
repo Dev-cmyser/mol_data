@@ -1,0 +1,16 @@
+$hyoo_square_svg $mol_svg_root
+	view_box \0 0 24 24
+	style *
+		width <= width 24
+		height <= height 24
+	bin Uint8Array
+	str \
+	sub /
+		<= Path_lo_text $mol_svg_path
+			geometry <= path*lo_text \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
+		<= Path_lo_data $mol_svg_path
+			geometry <= path*lo_data \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
+		<= Path_hi_text $mol_svg_path
+			geometry <= path*hi_text \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
+		<= Path_hi_data $mol_svg_path
+			geometry <= path*hi_data \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0

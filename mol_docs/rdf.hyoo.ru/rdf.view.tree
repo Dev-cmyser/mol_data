@@ -1,0 +1,28 @@
+$hyoo_rdf $mol_page
+	plugins /
+		<= Theme $mol_theme_auto
+	title @ \RDF graph browser
+	head /
+		<= Uri $mol_string
+			value? <=> uri? \http://dbpedia.org/ontology/
+			hint <= uri_hint \URI
+		<= Tools
+	tools /
+		<= Lights $mol_lights_toggle
+		<= Source_link $mol_link_source
+			uri \https://github.com/hyoo-ru/rdf.hyoo.ru
+	body / <= Subjects $mol_list rows <= subject_rows /
+	Subject_row* $mol_view sub /
+		<= Subject* $mol_link
+			title <= subject_title* \
+			uri <= subject_uri* \
+		<= Predicates* $mol_list rows <= predicate_rows* /
+	Predicate_row* $mol_view sub /
+		<= Predicate* $mol_link
+			title <= predicate_title* \
+			uri <= predicate_uri* \
+		<= Objects* $mol_list rows <= object_rows* /
+	Resource* $mol_link
+		title <= resource_title* \
+		uri <= resource_uri* \
+	Value* $mol_view sub / <= value* \

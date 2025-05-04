@@ -1,0 +1,42 @@
+<!doctype html>
+<html mol_view_root>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+<link rel="manifest" href="piterjs/app/manifest.json">
+
+<!-- description -->
+<meta name="description" content="Ежемесячный питерский митап о JavaScript, Node.js и всём, что окружает современного фронтендера. Распространяем практики и паттертны разработки, делимся опытом применения инструментов, техник и принципов, рассказываем о боли и кайфе JavaScript-программирования.">
+<meta name="application-name" content="PiterJS">
+<meta name="apple-mobile-web-app-title" content="PiterJS">
+
+<!-- open graph -->
+<meta property="og:title" content="PiterJS" />
+<meta property="og:description" content="Ежемесячный питерский митап о JavaScript, Node.js и всём, что окружает современного фронтендера."/>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="PiterJS"/>
+<meta property="og:url" content="https://piterjs.org/" />
+<meta property="og:image" content="piterjs/logo/logo_128.png" />
+
+<!-- colors -->
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- logo -->
+<link href="piterjs/logo/logo_48.png" rel="icon" />
+<link rel="apple-touch-icon" sizes="128x128" href="piterjs/logo/logo_128.png">
+<link rel="apple-touch-icon-precomposed" sizes="128x128" href="piterjs/logo/logo_128.png">
+<meta name="msapplication-TileImage" content="piterjs/logo/logo_192.png">
+
+<!-- full screen -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<body mol_view_root>
+
+<div mol_view_root="$piterjs_app"></div>
+
+<script>Array.prototype.at ||= function(i){ return this[ ( this.length + i )% this.length ] }</script><!--safari14-->
+<script src="web.js" charset="utf-8"></script>

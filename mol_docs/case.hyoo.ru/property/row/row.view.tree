@@ -1,0 +1,76 @@
+$hyoo_case_property_row $mol_view
+	editable false
+	property $hyoo_case_property
+	attr *
+		^
+		hyoo_case_property_row_size <= size \large
+	sub /
+		<= Expand $mol_check_expand
+			expanded?val <=> expanded?val true
+		<= Title $mol_link
+			arg <= title_arg *
+			sub /
+				<= Title_snippet $hyoo_case_entity_snippet
+					entity <= kind $hyoo_case_entity
+		<= Add $mol_pop
+			focused?val => add_show?val
+			Anchor <= Add_switch $mol_button_minor
+				hint <= add_hint @ \Create new..
+				click?event <=> add_one?event null
+				sub /
+					<= Add_icon $mol_icon_plus
+			showed <= add_show
+			bubble_content / <= Add_options $mol_list
+				rows <= add_options /
+		<= Pick $mol_select
+			hint @ \Pick..
+			value?val <=> pick?val \
+			options <= pick_options /string
+			filter_pattern => pick_query
+			option_content* /
+				<= Pick_option* $hyoo_case_entity_snippet
+					entity <= entity* $hyoo_case_entity
+					highlight <= pick_query
+			option_label* <= pick_option_title* \
+		<= Content $mol_list rows <= content /
+	Add_option* $mol_button_minor
+		click?event <=> add*?event null
+		sub /
+			<= Add_option_snippet* $hyoo_case_entity_snippet
+				entity <= entity* $hyoo_case_entity
+	Text $mol_textarea
+		hint <= text_hint \…
+		value?val <=> text?val \
+		length_max <= length_max +Infinity
+		sidebar_showed false
+	Bool $mol_check_box
+		checked?val <=> bool?val false
+	Numb $mol_number
+		hint \NaN
+		value?val <=> numb?val 0
+	Link_row* $mol_view
+		minimal_height 40
+		sub <= link_content* /
+			<= Link_drag* $mol_drag
+				transfer *
+					text/plain <= link_title* \
+					text/html <= link_html* \
+					text/uri-list <= link_uri* \
+				Sub <= Link_drop* $mol_drop
+					adopt?transfer <=> transfer_adopt?transfer null
+					receive?obj <=> receive_before*?obj null
+					Sub <= Link_view* $mol_view
+			<= Drop* $mol_button_minor
+				hint @ \Drop link
+				click?event <=> drop*?event null
+				sub /
+					<= Drop_icon!id $mol_icon_close
+	Link_link!id $mol_link
+		arg <= link_arg!id *
+		sub /
+			<= Link_snippet* $hyoo_case_entity_snippet
+				entity <= link_entity* $hyoo_case_entity
+	Link_form* $hyoo_case_entity_form
+		entity <= link_entity* $hyoo_case_entity
+		editable <= editable
+

@@ -1,0 +1,8 @@
+$hyoo_crus_sand_dump $mol_view
+	land $hyoo_crus_land
+	sand $hyoo_crus_sand
+	Ref $mol_link
+		title <= title
+		arg <= arg *
+	Other $mol_dump_value
+		value <= value null

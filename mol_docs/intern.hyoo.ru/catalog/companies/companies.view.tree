@@ -1,0 +1,11 @@
+$hyoo_intern_catalog_companies $hyoo_intern_catalog_entities
+	menu_title \Организации
+	Card_view* $hyoo_intern_company_card
+		disabled true
+		company <= item* $hyoo_intern_company
+	Card_edit* $hyoo_intern_company_card
+		company <= item*
+	filter_form_fields /
+		<= Scope_field $mol_form_field
+			name \Сфера деятельности
+			Content <= Scope $mol_string

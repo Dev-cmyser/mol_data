@@ -1,0 +1,63 @@
+$hyoo_intern_person_page $mol_page
+	title \Учетная запись
+	person $hyoo_intern_person
+		name? => name?
+		name_family? => name_family?
+		email? => email?
+		phone? => phone?
+	body /
+		<= Not_confirmed $mol_card 
+			sub /
+				<= Not_confirmed_text $mol_paragraph
+					title \Аккаунт не подтвержден. Для подтверждения необходимо передать администратору ссылку:
+				<= Confirm_link $mol_button_copy
+					title? <=> confirm_link? \
+		<= Deck $mol_deck items /
+			<= Profile $mol_form
+				title @ \Профиль
+				form_fields /
+					<= Avatar_field $mol_form_field
+						name \Фото
+						control <= Avatar_control $mol_view sub /
+							<= Avatar_upload $mol_button_open
+								files? <=> avatar_file? /
+								multiple false
+								accept \image/*
+							<= Avatar_drop $mol_button_minor
+								hint \Удалить аватар
+								click? <=> avatar_drop? null
+								sub / <= Avatar_drop_icon $mol_icon_cross
+					<= Name_group $mol_form_group sub /
+						<= Name_field $mol_form_field
+							name \Имя
+							control <= Name_control $mol_string
+								value? <=> name?
+						<= Name_family_field $mol_form_field
+							name \Фамилия
+							control <= Name_family_control $mol_string
+								value? <=> name_family?
+					<= Contact_group $mol_form_group sub /
+						<= Phone_field $mol_form_field
+							name \Телефон
+							control <= Phone_control $mol_phone
+								value? <=> phone?
+						<= Email_field $mol_form_field
+							name \Почта
+							control <= Email_control $mol_string
+								hint @ \my_email@mail.ru
+								value? <=> email?
+			<= Keys $hyoo_meta_safe
+				title \Ключи
+				Head null
+			<= Campaigns $mol_view
+				title \Кампании стажировки
+				sub /
+					<= Desc $mol_paragraph title \Описание что это и зачем
+					<= Campaign_add $mol_button_major
+						title \Создать кампанию
+						click? <=> campaign_add? null
+					<= Campaign_list $mol_list
+						rows <= campaign_list /
+							<= Campaign*0 $hyoo_intern_campaign_form
+								- user <= person
+								campaign <= campaign* $hyoo_intern_campaign

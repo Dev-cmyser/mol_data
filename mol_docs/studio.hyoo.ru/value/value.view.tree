@@ -1,0 +1,38 @@
+$hyoo_studio_value $mol_ghost
+	tree? $mol_tree2_empty
+	Bound $hyoo_studio_value_bound
+	List $hyoo_studio_value_list
+	Dict $hyoo_studio_value_dict
+	Object $hyoo_studio_value_object
+	String $hyoo_studio_value_string
+	Number $hyoo_studio_value_number
+	Unit $hyoo_studio_value_unit
+	value_tools /
+	type \
+	head /
+	belong_to \prop
+	hide_tools false
+	props_of* $mol_tree2_empty
+	props_bindable $mol_tree2_empty
+	class_list /string
+	Bound_prop* $hyoo_studio_prop
+
+$hyoo_studio_value_unit $mol_view
+	head /
+	belong_to \prop
+	hide_tools false
+	props_of* $mol_tree2_empty
+	props_bindable $mol_tree2_empty
+	class_list /string
+	Bound_prop* $hyoo_studio_prop
+	sub /
+		^ head
+		<= Value_tools $mol_view
+			sub <= visible_tools <= tools /
+				<= Type $hyoo_studio_type
+					tree? <=> tree? $mol_tree2_empty
+					type? => type?
+					belong_to <= belong_to
+					class_list <= class_list /string
+		<= Self $mol_view
+			sub <= self /

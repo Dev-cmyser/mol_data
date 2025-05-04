@@ -1,0 +1,43 @@
+$hyoo_survey_meet_form $mol_page
+	meet $hyoo_survey_meet
+	Title $mol_string_button
+		value? <=> title? \
+		hint @ \Meet title
+		enabled <= is_my false
+	tools /
+		<= Visible $mol_check_icon
+			Icon <= Visible_icon $mol_icon_eye
+			checked? <=> visible? false
+			hint @ \Visibility in menu
+		<= Close null
+		- <= Share $mol_button_share
+			capture <= Title
+	body /
+		<= Descr $mol_textarea
+			hint @ \Description
+			value? <=> descr? \
+			enabled <= is_my false
+		<= Bid $mol_text text @ \
+			\//Constructive feedback makes the world a better!// Tell:
+			\💗 What did you **like**?
+			\📌 What could be done **better**?
+			\🙏 More ideas and **suggestions** for the future?
+		<= Opinion_my $mol_textarea
+			value? <=> opinion_my? \
+		<= Hints $mol_bar sub /
+			<= Marked_link $mol_link_iconed
+				uri \https://marked.hyoo.ru/
+				title \
+			<= Form_hint $mol_hint
+				dictionary *
+					auto @ \Saved automatically
+					marked @ \MakedText is supported
+					reply @ \Leave your contacts if you are waiting for a response
+		<= Opinions $mol_section
+			title @ \Opinions
+			tools /
+				<= Opinions_hint $mol_hint
+					dictionary * visible @ \Visible only to you
+			content <= opinions /
+				<= Opinion*0 $mol_text
+					text <= opinion* \

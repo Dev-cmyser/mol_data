@@ -1,0 +1,21 @@
+$hyoo_intern_person_avatar $mol_row
+	blob_node $hyoo_crowd_blob
+	control false
+	size 128
+	width <= size
+	height <= size
+	sub /
+		<= Preview $mol_image
+			style *
+				width <= width
+				height <= height
+			uri <= uri \
+		<= Control $mol_view sub /
+			<= Avatar_upload $mol_button_open
+				files? <=> avatar_file? /
+				multiple false
+				accept \image/*
+			<= Avatar_drop $mol_button_minor
+				hint \Удалить аватар
+				click? <=> avatar_drop? null
+				sub / <= Avatar_drop_icon $mol_icon_cross

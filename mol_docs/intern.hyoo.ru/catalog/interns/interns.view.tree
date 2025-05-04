@@ -1,0 +1,7 @@
+$hyoo_intern_catalog_interns $hyoo_intern_catalog_entities
+	menu_title \Стажеры
+	Card_view* $hyoo_intern_person_card
+		disabled true
+		person <= item* $hyoo_intern_person
+	Card_edit* $hyoo_intern_person_card
+		person <= item*

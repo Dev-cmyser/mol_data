@@ -1,0 +1,40 @@
+$hyoo_survey_app $mol_book2_catalog
+	- \Конструктивный отзыв делает мир лучше!
+	param \meet
+	menu_title @ \✨ Meets
+	menu_tools /
+		<= Meet_add $mol_button_minor
+			click? <=> meet_add? null
+			hint @ \Add new Meet
+			sub /
+				<= Meet_add_icon $mol_icon_plus
+	menu_foot /
+		<= Sources $mol_link_source
+			uri \https://github.com/hyoo-ru/survey.hyoo.ru
+		<= Lights $mol_lights_toggle
+		<= Crus_status $hyoo_crus_status
+	plugins /
+		<= Theme $mol_theme_auto
+	Spread* <= Meet* $hyoo_survey_meet_form
+		meet <= meet* $hyoo_survey_meet
+		visible? <=> meet_visible*? false
+		Close <= Spread_close
+	Placeholder $mol_page
+		title @ \🤗 Graceful Feedback
+		body /
+			<= About $mol_text
+				text @ \
+					\= How to Use
+					\➕ Make new Meet at left menu
+					\🔗 Share link to Meet
+					\👁‍🗨 See feedback incoming
+					\
+					\= How it Works
+					\🔐 Only author see opinions
+					\💨 Instant saving
+					\💟 No ads ad spyes
+					\
+					\= How to Support
+					\\\Give us feedback\#!meet=exSXOpæh_RkmNkÆN6\\
+					\\\Donate\https://boosty.to/hyoo\\
+					\\\Join to Community\https://t.me/h_y_o_o/417\\

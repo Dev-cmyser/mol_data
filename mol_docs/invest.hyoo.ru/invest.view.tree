@@ -1,0 +1,29 @@
+$hyoo_invest $mol_page
+	plugins /
+		<= Theme $mol_theme_auto
+	tools /
+		<= Sources $mol_link_source
+			uri \https://github.com/hyoo-ru/invest.hyoo.ru
+		<= Lights $mol_lights_toggle
+	title @ \Private investments
+	body /
+		<= Stock_list $mol_list rows <= stock_rows <= stock_list /
+	-
+	store $hyoo_invest_store / *
+		stocks /
+	Stock_row!id $hyoo_invest_stock_row
+		stock <= stock!id $hyoo_invest_stock / *
+		tools <= stock_row_tools!id /
+			<= Stock_drop!id $mol_button_minor
+				click?event <=> stock_drop!id?event null
+				sub /
+					<= Stock_drop_icon!id $mol_icon_close
+	Stock_summary $hyoo_invest_stock_row
+		enabled false
+		rate_annual <= rate_annual 0
+		stock <= stock_summary $hyoo_invest_stock / *
+			title <= stock_summary_title @ \Summary
+			enter_amount <= enter_amount 0
+			enter_date <= enter_date \
+			exit_amount <= exit_amount 0
+			exit_date <= exit_date \

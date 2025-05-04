@@ -1,0 +1,228 @@
+$hyoo_apps $mol_book2
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= Menu $mol_page
+			title <= menu_title @ \$hyoo apps
+			tools <= tools /
+				<= Source $mol_link_source uri \https://github.com/hyoo-ru/apps.hyoo.ru
+				<= Lights $mol_lights_toggle
+			Title => Menu_title
+			Tools => Menu_tools
+			head /
+				<= Menu_title
+				<= Menu_tools
+				<= Filter $mol_search
+					query? <=> filter? \
+			body /
+				<= Menu_items $mol_list
+					rows <= group_list /
+						<= Group*id $mol_expander
+							title <= group_name* \
+							expanded? <=> group_expanded*? false
+							content <= group_items* /
+								<= Menu_item* $mol_view
+									sub /
+										<= Menu_link_out* $mol_link_iconed
+											uri <= app_uri_default* \
+											arg <= app_arg* *
+											sub /
+												<= Menu_link_title* $mol_dimmer
+													haystack <= app_title* \
+													needle <= filter
+										<= Menu_link_in* $mol_link
+											arg <= app_arg* *
+											sub /
+												<= Menu_link_in_icon* $mol_icon_chevron_right
+		<= App*id $mol_frame
+			uri? <=> app_uri_embed*? \
+	groups *
+		release @ \For All
+		develop @ \For Experts
+		preview @ \For Curious
+	apps *$hyoo_apps_app
+		studio *
+			target \develop
+			title @ \Online Studio
+			uri \https://studio.hyoo.ru/
+		marked *
+			target \develop
+			title \MarkedText
+			uri \https://marked.hyoo.ru/
+		idea *
+			target \release
+			title @ \Fresh Ideas Network
+			uri \https://idea.hyoo.ru/
+		board *
+			target \release
+			title @ \Private Dashboard
+			uri \https://board.hyoo.ru/
+		notes *
+			target \release
+			title @ \Private Notes
+			uri \https://notes.hyoo.ru/
+		page *
+			target \release
+			title @ \Wiki Pages
+			uri \https://page.hyoo.ru/
+		slides *
+			target \release
+			title @ \Slideshow
+			uri \https://slides.hyoo.ru/
+		search *
+			target \release
+			title @ \Web Search
+			uri \https://search.hyoo.ru/
+		artist *
+			target \release
+			title @ \Artificial Artist
+			uri \https://artist.hyoo.ru/
+		match *
+			target \release
+			title @ \Dating Service
+			uri \https://match.hyoo.ru/
+		lingua *
+			target \release
+			title @ \Translator
+			uri \https://lingua.hyoo.ru/
+		talks *
+			target \release
+			title @ \Messenger
+			uri \https://talks.hyoo.ru/#!chat=fsh1o2_jdzewo
+		map *
+			target \release
+			title @ \Earth Map
+			uri \https://map.hyoo.ru/
+		scout *
+			target \release
+			title @ \Scout Games
+			uri \https://scout.hyoo.ru/
+		fallacy *
+			target \release
+			title @ \Fallacies Collection
+			uri \https://fallacy.hyoo.ru/
+		meme *
+			target \release
+			title @ \Meme maker
+			uri \https://meme.hyoo.ru/
+		calc *
+			target \release
+			title @ \Spreadsheet
+			uri \https://calc.hyoo.ru/#!title=a*x**2%20%2B%20b*x%20%2B%20c%20%3D%200/A1=x%20%3D%20%5B%0A%09%28%20-_.b%20%2B%20sqrt%28_.D%29%20%29%20%2F%202%20%2F%20_.a%2C%0A%09%28%20-_.b%20-%20sqrt%28_.D%29%20%29%20%2F%202%20%2F%20_.a%2C%0A%5D/A2=D%20%3D%20_.b**2%20-%204*_.a*_.c/C1=a%20%3D%203/C2=b%20%3D%206/C3=c%20%3D%20-9
+		play *
+			target \release
+			title @ \Media Player
+			uri \https://play.hyoo.ru/
+		life *
+			target \release
+			title @ \Life game
+			uri \https://life.hyoo.ru/
+		iq *
+			target \release
+			title @ \IQ Tester
+			uri \https://iq.hyoo.ru/
+		todomvc *
+			target \release
+			title @ \ToDoMVC
+			uri \https://todomvc.hyoo.ru/
+		game *
+			target \preview
+			title @ \3D Arcade
+			uri \https://game.hyoo.ru/
+		draw *
+			target \preview
+			title @ \Draw Tool
+			uri \https://draw.hyoo.ru/
+		invest *
+			target \preview
+			title @ \Private Investments
+			uri \https://invest.hyoo.ru/
+		lamps *
+			target \preview
+			title @ \Lamps Database
+			uri \https://lamps.hyoo.ru/
+		questions *
+			target \preview
+			title @ \StackOverflow Client
+			uri \https://mol.js.org/app/questions/-/
+		shelter *
+			target \preview
+			title @ \Shelters ERP
+			uri \https://shelter.hyoo.ru/#login=user
+		mail *
+			target \preview
+			title @ \Universal EMail client
+			uri \https://mail.hyoo.ru/#!folder=inbox/mail=qwe
+		gazporn *
+			target \preview
+			title @ \CEO Dashboard
+			uri \https://nin-jin.github.io/chart/
+		toys *
+			target \preview
+			title @ \Online Toys Store
+			uri \https://toys.hyoo.ru/#size=M/popular
+		mol *
+			target \develop
+			title @ \$mol UI Framework
+			uri \https://mol.hyoo.ru/
+		science *
+			target \develop
+			title @ \Science Search
+			uri \https://science.hyoo.ru/
+		crus *
+			target \develop
+			title @ \CRUS-DB
+			uri \https://crus.hyoo.ru/
+		piterjs *
+			target \develop
+			title @ \PiterJS Meetups
+			uri \https://piterjs.org/
+		habhub *
+			target \develop
+			title @ \Articles Reader
+			uri \https://habhub.hyoo.ru/
+		jseval *
+			target \develop
+			title @ \Instant JS Sandbox
+			uri \https://eval.js.hyoo.ru/
+		jsperf *
+			target \develop
+			title @ \JS Performance Tool
+			uri \https://perf.js.hyoo.ru/#!prefix=let%20res/sources=%5B"res%20%3D%20window.location.href"%2C"res%20%3D%20document.location.href"%2C"res%20%3D%20location.href"%5D/postfix=%24mol_assert_like%28%20res%2C%20location.href%20%29
+		jsopt *
+			target \develop
+			title @ \JS Optimizations
+			uri \https://opt.js.hyoo.ru/
+		bench *
+			target \develop
+			title @ \Online Benchmark
+			uri \https://bench.hyoo.ru/#bench=https%3A%2F%2Fhyoo-ru.github.io%2Ftodomvc%2Fbenchmark%2F/sort=fill
+		toxic *
+			target \develop
+			title @ \Toxic Repos
+			uri \https://nin-jin.github.io/toxic-repos/
+		request *
+			target \develop
+			title @ \HTTP Debug Tool
+			uri \https://http.hyoo.ru/#uri=https%3A%2F%2Fapi.github.com%2Frepos%2Fhyoo-ru%2Fmam_mol
+		tree *
+			target \develop
+			title @ \Tree Sandbox
+			uri \https://tree.hyoo.ru/
+		- issues *
+			target \develop
+			title @ \GitHub Projects Comparison
+			uri \https://compare.github.hyoo.ru/#projects=hyoo-ru%2Fmam_mol%2Cfacebook%2Freact%2Cvuejs%2Fvue
+		icons *
+			target \develop
+			title @ \Icons Gallery
+			uri \https://nin-jin.github.io/mol_icon/
+		visavis *
+			target \develop
+			title @ \Chemistry Plots
+			uri \https://visavis.mpds.io/#!section=examples
+		rdf *
+			target \develop
+			title @ \RDF Browser
+			uri \http://rdf.hyoo.ru/

@@ -1,0 +1,31 @@
+[hyoo_toys_filters] {
+	flex: 0 0 17rem;	
+}
+
+[hyoo_toys_filters_body_content] {
+	gap: .75rem;
+	padding: .75rem 0;
+}
+
+[hyoo_toys_filters_body_content] > * {
+	padding: .75rem;
+	background: var(--mol_theme_card);
+}
+
+[hyoo_toys_filter_type] {
+	flex-direction: column;
+	flex: none;
+}
+
+[hyoo_toys_filter_size] {
+	flex: none;
+}
+
+[hyoo_toys_sort] {
+	flex-direction: column;
+	flex: none;
+}
+
+[hyoo_toys_filter_popular][mol_check_checked] {
+	color: var(--mol_theme_current);
+}

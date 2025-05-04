@@ -1,0 +1,30 @@
+$hyoo_page_menu $hyoo_meta_menu
+	title @ \In Bookmarks
+	attr *
+		^
+		mol_theme \$mol_theme_special
+	head /
+		<= Profile $hyoo_meta_link
+			meta <= side $hyoo_page_side
+			hint @ \Profile
+			Title null
+			relation \nofollow
+		<= Title
+		<= Tools
+	Logo null
+	foot /
+		<= Online $hyoo_sync_online
+			yard <= yard
+		<= Safe_showing $mol_check_icon
+			hint @ \Private Keys
+			Icon <= Safe_icon $mol_icon_key_variant
+			checked? <=> safe_showing? false
+		<= About $mol_link_iconed
+			hint @ \About $hyoo_page
+			title \
+			uri \http://page.hyoo.ru/
+		<= Aura_showing $mol_check_icon
+			hint @ \Backgrounds Showing
+			Icon <= Aura_icon $mol_icon_image
+			checked? <=> aura_showing? true
+		<= Lights $mol_lights_toggle

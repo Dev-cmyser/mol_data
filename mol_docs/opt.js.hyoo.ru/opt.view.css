@@ -1,0 +1,37 @@
+[hyoo_js_opt_menu_content] {
+	justify-content: space-between;
+	flex: 1 0 auto;
+}
+
+[hyoo_js_opt_script] {
+	flex: 1 0 60rem;
+}
+
+[hyoo_js_opt_script_tools] {
+	flex-grow: 1000;
+}
+
+[hyoo_js_opt_script_foot] {
+	padding: var(--mol_gap_block);
+	justify-content: flex-end;
+}
+
+[hyoo_js_opt_script_native_anchor] {
+	color: var(--mol_theme_focus);
+	padding: var(--mol_gap_text);
+}
+
+[hyoo_js_opt_script_point_hint] {
+	white-space: pre;
+}
+
+[hyoo_js_opt_script_func_marker] {
+	color: var(--mol_theme_focus);
+	font-size: .75rem;
+	text-shadow: 0 0;
+	padding: var(--mol_gap_text);
+}
+
+[hyoo_js_opt_script_func_marker_optimized="true"] {
+	color: var(--mol_theme_special);
+}

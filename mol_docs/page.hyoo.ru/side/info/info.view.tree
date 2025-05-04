@@ -1,0 +1,69 @@
+$hyoo_page_side_info $mol_page
+	Text $mol_text
+		flow_tokens => text_tokens
+		block_text* => text_header_title*
+		header_arg* => section_arg*
+		header_level* => section_level*
+	side $hyoo_page_side
+		details => details
+		details_node => details_node
+		referrers_list => referrers_list
+		referrers_stat* => referrers_stat*
+	title @ \Page Info
+	tools /
+		<= Slides $mol_link_iconed
+			hint @ \View as Slides
+			uri <= slides_uri \https://slides.hyoo.ru/#!slides={source}
+			title \
+		<= Close $mol_button_minor
+			click? <=> close? null
+			sub /
+				<= Close_icon $mol_icon_close
+	body /
+		<= Stat $mol_view sub /
+			<= Size $mol_labeler
+				title @ \Size
+				content /
+					<= size \0
+			<= Chars $mol_labeler
+				title @ \Chars
+				content /
+					<= chars \0
+			<= Words $mol_labeler
+				title @ \Words
+				content /
+					<= words \0
+			<= Weight $mol_labeler
+				title @ \Weight
+				content /
+					<= weight \0B
+		<= Section_list $mol_expander
+			title @ \Sections
+			expanded? <=> section_expanded? false
+			content <= section_list /
+				<= Section_link*0 $mol_link
+					arg <= section_arg*
+					title <= section_title* \
+		<= Ref_list $mol_expander
+			title @ \Referrers
+			expanded? <=> ref_expanded? false
+			content <= ref_list /
+				<= Ref_item*0_0 $mol_view
+					sub /
+						<= Ref_item_link* $mol_link_iconed
+							uri <= ref_uri* \
+						<= Ref_item_stat* $mol_view
+							sub / <= ref_stat* 0
+		<= Word_list $mol_expander
+			title @ \Key Words
+			content / <= Word_list_items $mol_row
+				sub <= word_list_items /
+					<= Word_item*0_0 $mol_view
+						sub /
+							<= Word_item_text* $mol_view
+								sub / <= word_item_text* \
+							<= Word_item_stat* $mol_speck
+								value <= word_item_stat* 0
+								theme \$mol_theme_special
+				- Empty <= Word_list_empty $mol_card
+					title @ \No words

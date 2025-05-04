@@ -1,0 +1,43 @@
+[hyoo_map] {
+	display: grid;
+	flex: 1 1 20rem;
+}
+
+[hyoo_map] > * {
+	grid-area: 1/1;
+}
+
+[hyoo_map_main] {
+	display: grid;
+	contain: strict;
+}
+
+[hyoo_map_main_head] {
+	grid-area: 1 / 1;
+	flex-wrap: nowrap;
+	margin-bottom: auto;
+	background: none;
+	box-shadow: none;
+}
+
+[hyoo_map_pane] {
+	width: 100%;
+	grid-area: 1 / 1;
+}
+
+[hyoo_map_attribution] {
+	grid-area: 1 / 1;
+	margin-top: auto;
+	margin-left: auto;
+	padding: var(--mol_gap_block);
+}
+
+[hyoo_map_tiles_tile] {
+	filter: var(--mol_theme_image);
+}
+
+[hyoo_map_photo] {
+	[hyoo_map_tiles_tile] {
+		filter: none;
+	}
+}

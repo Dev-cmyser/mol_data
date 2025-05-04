@@ -1,0 +1,25 @@
+{
+	"name": "$hyoo_thanks",
+	"version": "1.0",
+	"manifest_version": 3,
+	"description": "Fair auto domations.",
+	"icons": {
+		"128": "thanks.png"
+	},
+	"permissions": [ "windows", "tabs", "storage", "scripting" ],
+	"host_permissions": [ "https://thanks.hyoo.ru/*" ],
+	"background": {
+		"service_worker": "worker.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://*.youtube.com/*"],
+			"js": ["sites/youtube.com.js"]
+		},
+		{
+			"matches": ["https://dev.to/*"],
+			"js": ["sites/dev.to.js"]
+		}
+	],
+	"action": {}
+}

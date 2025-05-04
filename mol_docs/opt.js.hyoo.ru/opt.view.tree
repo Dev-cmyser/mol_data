@@ -1,0 +1,102 @@
+$hyoo_js_opt $mol_book2
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto
+	files null
+	pages /
+		<= Menu_page $mol_page
+			title \Modules
+			tools /
+				<= Source $mol_link_source
+					uri \https://github.com/hyoo-ru/opt.js.hyoo.ru
+				<= Lights $mol_lights_toggle
+			body /
+				<= Menu_content $mol_list rows /
+					<= Menu $mol_list
+						rows <= menu_content /
+							<= File*uri $mol_link
+								title <= file_uri* \
+								arg *
+									file <= file_uri* \
+									inline null
+					<= Hint $mol_text text \
+						\### How to Use
+						\	npx turbotracer path/to/script.js
+						\	npx turbotracer "https://example.org"
+						\### Other JS Tools
+						\[Benchmarks](https://perf.js.hyoo.ru) [Sandbox](https://eval.js.hyoo.ru)
+		<= Script*0 $hyoo_js_opt_script
+			title <= script_title* \
+			script <= script* \
+			source <= script_source* *
+				uri \
+				start 0
+				end 0
+			points <= points* /
+			path <= script_path* /number
+
+$hyoo_js_opt_script $mol_page
+	path /number
+	points /
+	script \
+	source *
+		uri \
+		start 0
+		end 0
+	point_offset* /
+		0
+		0
+	tools /
+		<= Search $mol_search_jumper
+			query? <=> search? \
+			Root <= Body
+		<= Close $mol_link
+			arg <= close_arg * 
+			sub /
+				<= Close_icon $mol_icon_close
+	foot /
+		<= Filters $mol_check_list
+			options <= filters *
+			option_checked*? <=> filter_enabled*? true
+		<= Jump $mol_paginator
+			value? <=> jump? 0
+	body /
+		<= Code $mol_text_code
+			text <= code \
+			highlight <= search
+			sidebar_showed true
+		<= Func*0 $mol_follower
+			Anchor <= Point_anchor* $mol_view
+			Sub <= Func_marker* $hyoo_js_opt_script_func_marker
+				attempts <= func_attempts* 0
+				optimized <= func_optimized* true
+				hint <= point_hint* \
+				arg <= inline_arg* *
+			offset <= point_offset*
+		<= Native*0 $mol_follower
+			Anchor <= Point_anchor* $mol_view
+			Sub <= Native_marker* $mol_pop_over
+				align \bottom_right
+				Anchor <= Native_anchor* $mol_view
+					sub /
+						<= Native_icon* $mol_icon_flash
+				bubble_content /
+					<= Point_hint* $mol_text_code
+						text <= point_hint* \
+			offset <= point_offset*
+		<= Inline*0 $mol_follower
+			Anchor <= Point_anchor* $mol_view
+			Sub <= Inline_button* $mol_link
+				hint \Inlined
+				arg <= inline_arg* *
+				current <= inline_current* false
+				sub /
+					<= Inline_icon* $mol_icon_map_marker_check
+			offset <= point_offset*
+
+$hyoo_js_opt_script_func_marker $mol_link
+	attr *
+		^
+		hyoo_js_opt_script_func_marker_optimized <= optimized true
+	sub /
+		<= attempts 0

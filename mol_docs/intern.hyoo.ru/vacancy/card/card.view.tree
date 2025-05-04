@@ -1,0 +1,22 @@
+$hyoo_intern_vacancy_card $mol_view
+	vacancy $hyoo_intern_vacancy
+	sub /
+		<= Form $mol_form_draft
+			model <= vacancy
+			value_str*? => value_str*?
+			form_fields /
+				<= Scope_field $mol_form_field
+					name \Сфера деятельности
+					Content <= Scope $mol_string
+				<= Company_field $mol_form_field
+					name \Организация
+					Content <= Company $mol_string
+				<= Tasks_field $mol_form_field
+					name \Обязанности и задачи
+					Content <= Tasks $mol_string
+				<= Requirements_field $mol_form_field
+					name \Требования
+					Content <= Requirements $mol_string
+				<= Tests_field $mol_form_field
+					name \Тестовые задания
+					Content <= Tests $mol_string

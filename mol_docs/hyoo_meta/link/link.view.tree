@@ -1,0 +1,13 @@
+$hyoo_meta_link $mol_link
+	minimal_height 40
+	meta $hyoo_meta_model
+		id => id
+		title => title
+	param \
+	all_title @ \All
+	sub /
+		<= Avatar $mol_avatar
+			id <= id
+		<= Title $mol_dimmer
+			haystack <= title
+			needle <= highlight \

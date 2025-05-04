@@ -1,0 +1,6 @@
+$hyoo_intern_catalog_vacancies $hyoo_intern_catalog_entities
+	menu_title \Вакансии (заявки на стажеров)
+	Card_view* $hyoo_intern_vacancy_card
+		vacancy <= item* $hyoo_intern_vacancy
+	Card_edit* $hyoo_intern_vacancy_card
+		vacancy <= item*

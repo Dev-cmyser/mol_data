@@ -1,0 +1,28 @@
+[hyoo_realworld_article_card] {
+	margin-bottom: 1px;
+	padding: .5rem;
+}
+
+[hyoo_realworld_article_card] > * {
+	margin: 0 .25rem;
+}
+
+[hyoo_realworld_article_card_title] {
+	font-weight: bolder;
+}
+
+[hyoo_realworld_article_card_author] {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex: 1 1 100%;
+}
+
+[hyoo_realworld_article_card_author] > * {
+	margin: .25rem;
+}
+
+[hyoo_realworld_article_card_avatar] {
+	width: 24px;
+	height: 24px;
+}

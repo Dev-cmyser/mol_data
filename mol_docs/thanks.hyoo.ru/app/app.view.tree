@@ -1,0 +1,129 @@
+$hyoo_thanks_app $mol_book2_catalog
+	target? \
+	menu_title @ \Valuable Like
+	menu_foot /
+		<= Source $mol_link_source
+			uri \https://github.com/hyoo-ru/thanks.hyoo.ru
+		<= Lights $mol_lights_toggle
+	plugins /
+		^
+		<= Theme $mol_theme_auto
+	param \section
+	Target $mol_page
+		title <= target_title @ \Thanks {name}
+		body /
+			<= Target_likes $hyoo_thnaks_app_likes
+				value? <=> target_likes? 0
+			<= target_hint $mol_link
+				arg * section null
+				title @ \What is it?
+	spreads *
+		\
+			<= Welcome $mol_page
+				title @ \About service
+				body /
+					<= Welcome_text $mol_text
+						text <= welcome_text @ \
+							\" \\Fair and easy money support for authors\https://docs.google.com/presentation/d/18UKSwM0I55RqzlmJzTU7UDTmFlHIiJdcoYJRtE2jLpU/edit#slide=id.p\\
+							\# How it works
+							\- The author places [this link]({my_link}) next to their content, which contains the wallet address.
+							\- The user signs up for **one fixed subscription** - as much as you can afford to encourage authors.
+							\- During the month, they uses the Internet and **sticks the likes**.
+							\- At the end of the month, the subscription amount is **automatically distributed** among the authors.
+							\
+							\# Good for authors
+							\- **No need to be a millionaire** to start earning an income - just publish good content.
+							\- **No obligation**. Content is published when it's ready, not on a schedule.
+							\- **No need to degrade** content by diluting it with ads.
+							\
+							\# Good for the users
+							\- **Spending is strictly limited**. Only one subscription with no additional microtransactions.
+							\- Each **link has financial weight** and gives positive reinforcement to authors.
+							\
+							\# Payment Systems
+							\For now we only support [TON in test mode](https://wallet.ton.org/?testnet=true), but soon we will be able to operate with different currencies.
+							\
+							\# Site content
+							\Our [browser plugin](https://github.com/hyoo-ru/thanks.hyoo.ru/tree/master/extension) can automatically track likes on the following sites: [YouTube](https://youtube.com), [DevTo](https://dev.to).
+							\Submit [requests to support new sites](https://github.com/hyoo-ru/thanks.hyoo.ru/issues). But even if a site isn't supported - the user can always follow the link and give us a weighty like by hand.
+							\
+							\# Sounds great?
+							\Then as a user [recharge your personal fund](https://t.me/testgiver_ton_bot) and put [browser extension](https://github.com/hyoo-ru/thanks.hyoo.ru/tree/master/extension), and as an author, put [link]({my_link}) next to your content.
+		awaiting <= Awaiting $mol_page
+			title @ \Subscription
+			tools / 
+				<= Wallet_balance*0 $mol_link
+					hint @ \Wallet
+					uri \https://t.me/testgiver_ton_bot
+					sub /
+						<= Wallet_icon $mol_icon_wallet
+						<= wallet_balance \
+			body /
+				<= Subscription_block $mol_labeler
+					title @ \Monthly Subscription (TON)
+					Content <= Subscription $mol_number
+						value? <=> subscription? 0.1
+				<= Awaiting_targets_block $mol_labeler
+					title @ \This Month Shares
+					Content <= Awaiting_targets $mol_grid
+						records <= shares /
+		wallet <= Wallet_page $mol_page
+			title @ \Wallet
+			tools /
+				<= Wallet_balance*1
+			body /
+				<= Deck $mol_deck
+					items /
+						<= Wallet_deck $mol_view
+							title @ \Wallet
+							sub /
+								<= Wallet_block $mol_labeler
+									label /
+										<= wallet_label @ \Address
+										<= Wallet_copy $mol_button_copy
+											text <= wallet_address
+									Content <= Wallet_address $mol_paragraph
+										title <= wallet_address \
+						<= Import_deck $mol_form_field
+							title @ \Import
+							bid <= import_info @ \{num} secret words is required
+							content /
+								<= Import_words $mol_textarea
+									value? <=> import_words? \
+								<= Import_button $mol_button_major
+									title @ \Import
+									click? <=> import_wallet? null
+									enabled <= import_button_enabled false
+						<= Export_deck $mol_form_field
+							title @ \Export
+							bid @ \Copy the 24 secret words to a safe place
+							Content <= Export_words $mol_paragraph
+								title <= export_words \
+		story <= Story $mol_page
+			title @ \Arnold's Story
+			body /
+				<= Story_text $mol_text
+					text <= story_text @ \
+						\Arnold is a typical Internet user. He reads articles, watches videos, and uses web services. He has a small amount of 100 notes, which he is willing to spend to encourage those authors who make his life better.
+						\
+						\He decides to give each author 10 candy canes. He looked at the end of the month and was horrified to find that he had spent 1000 candy wrappers. So for the next month he starved.
+						\
+						\But Arnold was not discouraged, and the next month he decided to pay out 1 candy bar each. But this month was poor for content, so he spent only 20 candy canes. That's better, but the remaining 80 candy canes could have been used to motivate the authors, so Arnold wouldn't be so sad to live.
+						\
+						\But Arnold was enterprising, so the next month he began writing down who did him good, and at the end of the month he spent half a day to settle accounts with all the authors. He got tired of it. And when he imagined that he would have to do it every month, he decided that it was no good and he needed to look for alternatives.
+						\
+						\Arnold decided to try subscriptions next month. He spent half a day choosing the 100 authors he was most interested in and subscribing to them. But here's the trouble, only 5 of them really released the content interesting to him this month, and the rest were just so 95 rewarded by releasing content not interesting to him. What's more, 80% of the content he was interested in was published by authors who didn't have subscriptions. And then he got discouraged, realizing that every month he would have to rebalance subscriptions, which would waste a lot of effort.
+						\
+						\But misfortune doesn't come alone - Arnold was laid off from his job. This limited his finances, but gave him a lot of free time. And since he was creative, he decided to make his own content and make money from it. For the next month he published new, good, unique content. Audience well-liked them, but no one not only did not subscribe to it, but did not even send a single donation, because his audience was still very small and lazy. He no longer had the money to promote it, nor the motivation to make content.
+						\
+						\Arnold would have been totally disappointed if he hadn't stumbled upon Valuable Like under one of his interesting materials. "This is it," he exclaimed, and added a link to it to every piece he wrote. People came, liked it, and he got as many as 10 fanfictions at the end of the month.
+						\
+						\That gave Arnold the motivation to keep creating. More and better. His audience grew. And after a year, his income was over 100 candy wrappers a month. 10 of them he decided to spend on donations himself, so he subscribed to Valuable Like.
+						\
+						\Thanks to a browser plug-in, Valuable Like keeps track of what Arnold liked, and at the end of the month automatically divides a fixed amount of 10 vanish coins proportionally between all the authors who made his life a little bit better this month.
+						\
+						\No more routine distracted Arnold from his creativity - only now he felt like a truly free man. And there was much more interesting and high-quality content on the Web. Even if Arnold's own contribution to it was quite insignificant.
+
+$hyoo_thnaks_app_likes $mol_number
+	dec_icon $mol_icon_thumb_down
+	inc_icon $mol_icon_thumb_up

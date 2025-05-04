@@ -1,0 +1,22 @@
+$hyoo_intern_cabinet_mentor $hyoo_intern_cabinet
+	profile_title \Профиль наставника
+	spreads *
+		profile <= Profile
+		company <= Company_page $mol_page
+			title \Организация
+			body /
+				<= Company $hyoo_intern_company_card
+		- interns <= Interns $hyoo_intern_catalog_interns
+			menu_title \Найти кандидата
+		vacancy <= Vacancy_page $mol_page
+			title \Заявка на стажера
+			body /
+				<= Vacancy $hyoo_intern_vacancy_card
+		interns <= Interns $hyoo_intern_catalog_interns
+			menu_title \Отклики на заявку
+		- interns <= Interns $hyoo_intern_catalog_interns
+			menu_title \Ход стажировки
+		- (тз) Модуль «Заявка» – должен видеть информацию о стажере, который к нему направлен: результаты заданий, статус приглашения, контакты стажера, резюме, результаты оценки
+		- (тз) Модуль «Обратная связь о работе стажера» – должен позволять по итогам 2-х месяцев стажировки ставить оценку работы стажера и оставить текстовый отзыв.
+		- (тз, доп) Модуль «Школа наставников» – должен позволять переходить на платформу с треком Школы наставников, видеть % прохождения программы и рейтинг.
+		- (тз, доп) Модуль «Расписание стажера» – должен позволять видеть расписание мероприятий в рамках программы развития, а также сроки распределения стажеров.

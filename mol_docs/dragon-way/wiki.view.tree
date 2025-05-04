@@ -1,0 +1,42 @@
+$my_wiki $mol_book2
+	note* $my_wiki_note
+	note_current $my_wiki_note
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= View_page $mol_page
+			title <= note_title
+			Title <= Title $mol_string
+				hint \Title
+				value? <=> note_title? \
+				enabled <= editing
+				selection? <=> title_selection? /
+			tools /
+				<= Lights $mol_lights_toggle
+				<= Source $mol_link_source
+					uri \https://github.com/hyoo-ru/dragon-way/
+				<= Add $mol_button_minor
+					hint \Make new page
+					click? <=> add? null
+					sub /
+						<= Add_icon $mol_icon_plus
+				<= Edit_toggle $mol_check_icon
+					hint \Edit page
+					checked? <=> editing? false
+					Icon <= Edit_icon $mol_icon_pencil
+				<= Profile $mol_link
+					hint \Profile
+					arg <= profile_arg *
+					sub /
+						<= Profile_icon $mol_icon_account
+			body /
+				<= Content $mol_list rows /
+					<= Body $hyoo_crus_dom_edit
+						hint \Node Content
+						node <= note_body $hyoo_crus_dom
+						enabled <= editing
+					<= Note_changed_moment $mol_date
+						value_moment <= note_changed_moment $mol_time_moment
+						enabled false
+

@@ -1,0 +1,32 @@
+$hyoo_life_map $mol_plot_pane
+	gap_hor 0
+	gap_vert 0
+	-
+	zoom?val 16
+	scale $mol_vector_2d<number> /
+		<= zoom
+		<= zoom
+	-
+	step null
+	style *
+		^
+		backgroundSize <= grid_size \
+		backgroundPosition <= grid_pos \
+	-
+	graphs /
+		<= Alive $mol_plot_dot
+			diameter <= zoom
+			series_x <= alive_points_x /number
+			series_y <= alive_points_y /number
+		<= Hot $mol_plot_dot
+			diameter <= zoom
+			series_x <= hot_points_x /number
+			series_y <= hot_points_y /number
+	-
+	-
+	snapshot \
+	snapshot_current \
+	-
+	speed 0
+	population 0
+	-

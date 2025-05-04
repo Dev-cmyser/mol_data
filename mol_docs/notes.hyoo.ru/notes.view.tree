@@ -1,0 +1,99 @@
+$hyoo_notes $mol_book2
+	plugins /
+		<= Theme $mol_theme_auto
+	note_default_title @ \New note
+	pages /
+	-
+	Notes_page!tag $mol_page
+		title <= notes_title @ \All Notes
+		tools <= notes_page_tools /
+			<= Reminders $mol_status status <= reminders null
+			<= Tag_archived $mol_check_icon
+				hint @ \Tag Archiving
+				checked?next <=> tag_archived?next false
+				Icon <= Tag_archived_icon $mol_icon_trash_can_outline
+		body /
+			<= Notes_page_content $mol_list
+				rows /
+					<= Notes_page_add $mol_view sub /
+						<= Notes_filter $mol_search
+							query?val <=> note_filter?val \
+							submit?event <=> note_add_short?event null
+							hint @ \Search or add note...
+						<= Note_add $mol_button_major
+							sub /
+								<= Note_add_icon $mol_icon_plus
+							hint <= notes_list_add_title @ \Add new
+							click?event <=> note_add_long?event null
+					<= Notes_list $mol_list
+						rows <= note_rows /
+	-
+	Note_page!id $mol_page
+		title <= note_current_title \
+		tools /
+			<= Note_archived $mol_check_icon
+				hint @ \Note Archiving
+				checked?next <=> note_archived?next false
+				Icon <= Note_archived_icon $mol_icon_trash_can_outline
+			<= Note_date $mol_date
+				hint @ \Reminder
+				align_hor \left
+				value_moment?val <=> note_current_moment?val $mol_time_moment
+			<= Note_close $mol_link
+				arg *
+					note null
+				sub / <= Note_close_icon $mol_icon_close
+		body /
+			<= Note_content $mol_textarea
+				hint <= note_content_hint @ \Note content
+				value?val <=> note_current_content?val \
+	-
+	Tagging_page $mol_page
+		title <= tagging_title \$hyoo_notes
+		tools /
+			<= Tags_all $mol_link
+				arg * tag null
+				sub / <= Tags_all_icon $mol_icon_filter_remove
+				hint <= tags_all_hint @ \All notes
+			<= Source_link $mol_link_source
+				uri \https://github.com/hyoo-ru/notes.hyoo.ru
+			<= Lights $mol_lights_toggle
+		body /
+			<= Tagging_content $mol_list
+				rows /
+					<= Tagging_tools $mol_view
+						sub <= tagging_tools /
+							<= Tagging_filter $mol_search
+								query?val <=> tagging_filter?val \
+								hint @ \Search or add tag...
+								submit?event <=> tagging_add?event null 
+							<= Tagging_add $mol_button_minor
+								hint <= tag_add_title @ \Add this tag
+								sub /
+									<= Tagging_add_icon $mol_icon_plus
+								click?event <=> tagging_add?event null
+					<= Tagging_list $mol_list
+						rows <= tagging_rows /
+	-
+	Note_row!id $mol_link
+		sub /
+			<= Note_title!id $mol_dimmer
+				haystack <= note_title!id \
+				needle <= note_filter
+			<= Note_moment!id $mol_paragraph
+				sub / <= note_moment_view!id \
+		arg *
+			note <= id!id \
+	-
+	Tagging_tag_row!id $mol_view sub <= tagging_tag_row!id /
+		<= Tag_link!id $mol_link
+			sub /
+				<= Tag_title!id $mol_dimmer
+					haystack <= tag_title!id \
+					needle <= tagging_filter
+			arg *
+				tag <= id!id \
+		<= Tag_toggle!id $mol_check_icon
+			Icon <= Tag_toggle_icon!id $mol_icon_tag
+			hint @ \Tagging current note
+			checked?val <=> tagging_tag!id?val false

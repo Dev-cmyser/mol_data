@@ -1,0 +1,17 @@
+$hyoo_bench_list_mol $mol_scroll
+	sub /
+		<= List $mol_list
+			rows <= rows /
+	Row* $hyoo_bench_list_mol_row
+		checked?val <=> row_selected*?val false
+		title <= row_title* \
+		content <= row_content* \
+
+$hyoo_bench_list_mol_row $mol_check
+	selected?val false
+	minimal_height 56
+	sub /
+		<= Title $mol_view
+			sub / <= title \
+		<= Content $mol_view
+			sub / <= content \

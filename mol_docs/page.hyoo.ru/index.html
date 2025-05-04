@@ -1,0 +1,34 @@
+<!doctype html>
+<html mol_view_root>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="fragment" content="!" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link href="hyoo/page/logo/logo.svg" rel="icon" />
+		<title>$hyoo_page</title>
+		<meta name="title" content="$hyoo_page" />
+		<meta name="description" content="Realtime personal pages"/>
+		<meta property="og:title" content="$hyoo_page" />
+		<meta property="og:description" content="Realtime personal pages"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="$hyoo_page"/>
+		<meta property="og:url" content="https://page.hyoo.ru/" />
+		<meta property="og:image" content="hyoo/page/logo/logo.png" />
+		<script>
+			void ( socket => {
+				let redirect = ()=> location = location.href.replace( /^(.*?)(?:\??#!(.*))?$/, ( str, prefix, suffix = '' )=> `${prefix}?_escaped_fragment_=${ encodeURIComponent( suffix ) }` )
+				socket.onclose = ()=> redirect = ()=> {} // gbot doesn't call onclose
+				socket.onerror = ()=> setTimeout( ()=> redirect() )
+				socket.onopen = ()=> socket.close()
+			} )( new WebSocket( 'wss://sync.hyoo.ru', [ '$hyoo_sync_protocol_1' ] ) )
+		</script>
+	</head>
+	<body mol_view_root>
+		<div mol_view_root="$hyoo_page"></div>
+		<script>Array.prototype.at ||= function(i){ return this[ ( this.length + i )% this.length ] }</script><!--yabot-->
+		<!--<script>onerror=(...a)=>document.body.innerText=a</script>-->
+		<script src="web.js" charset="utf-8"></script>
+	</body>
+</html>

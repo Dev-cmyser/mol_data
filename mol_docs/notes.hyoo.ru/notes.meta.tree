@@ -1,0 +1,5 @@
+deploy \/hyoo/notes/logo/logo.png
+deploy \/hyoo/notes/logo/logo.svg
+deploy \/hyoo/notes/manifest.json
+
+include \/mol/offline/install

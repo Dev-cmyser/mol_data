@@ -1,0 +1,152 @@
+[hyoo_calc_title_edit]:enabled {
+	width: auto;
+	flex: 1000 1 auto;
+}
+
+[hyoo_calc_tools] {
+	flex-grow: 0;
+}
+
+[hyoo_calc_current] {
+	flex: none;
+}
+
+[hyoo_calc_pos] {
+	flex: none;
+	width: 2.5rem;
+	font-family: monospace;
+	align-items: flex-start;
+}
+
+[hyoo_calc_edit] {
+	flex-shrink: 1;
+}
+
+[hyoo_calc_hint] {
+	max-width: none;
+	padding: 0;
+}
+
+[hyoo_calc_hint_trigger] {
+	align-items: center;
+}
+
+[hyoo_calc_body] {
+	scroll-padding: 2.5rem;
+}
+
+[hyoo_calc_body_content] {
+	padding: 0;
+}
+
+[hyoo_calc_cells][hyoo_calc_cells] {
+	flex-shrink: 0;
+	flex-grow: 1;
+	align-self: stretch;
+}
+
+[hyoo_calc_col_head] ,
+[hyoo_calc_row_head] {
+	font-family: monospace;
+	background: var(--mol_theme_back);
+	color: var(--mol_theme_shade);
+	user-select: none;
+	font-weight: inherit;
+}
+
+[hyoo_calc_col_head]:has( [hyoo_calc_col_tools] ) {
+	z-index: 5;
+}
+
+[hyoo_calc_col_head] {
+	text-align: left;
+	padding: 0;
+	white-space: nowrap;
+	min-width: 5rem;
+}
+
+[hyoo_calc_col_title] {
+	padding: var(--mol_gap_text);
+	display: inline-flex;
+	vertical-align: top;
+}
+
+[hyoo_calc_col_tools] {
+	display: inline-flex;
+	position: absolute;
+	background: var(--mol_theme_back);
+	z-index: 1;
+	left: 0;
+	box-shadow: 0 0 0.5rem hsl(0deg 0% 0% / 25%);
+}
+
+[hyoo_calc_col_tools] > [mol_button_minor] {
+	background: var(--mol_theme_card);
+	justify-content: center;
+}
+
+[hyoo_calc_col_ins_icon] {
+    position: absolute;
+	bottom: -0.25rem;
+}
+
+[hyoo_calc_cells_row]:has( [hyoo_calc_cell_selected="true"] ) > [hyoo_calc_row_head] {
+	z-index: 5;
+}
+
+[hyoo_calc_row_head] {
+	vertical-align: top;
+	padding: 0;
+	white-space: nowrap;
+}
+
+[hyoo_calc_row_title] {
+	padding: var(--mol_gap_text);
+	display: inline-flex;
+	vertical-align: top;
+}
+
+[hyoo_calc_row_tools] {
+	position: absolute;
+	background: var(--mol_theme_back);
+	flex-direction: column;
+	z-index: 1;
+	top: 0;
+	left: 1px;
+	box-shadow: 0 0 0.5rem hsl(0deg 0% 0% / 25%);
+}
+
+[hyoo_calc_row_tools] > [mol_button_minor] {
+	background: var(--mol_theme_card);
+}
+
+[hyoo_calc_row_ins_icon] {
+    position: absolute;
+    right: 0px;
+}
+
+[hyoo_calc_cell] {
+	user-select: text;
+	border-radius: 0;
+	display: table-cell;
+	white-space: normal;
+	word-break: normal;
+	vertical-align: top;
+	padding: 0;
+}
+
+[hyoo_calc_cell_rows] {
+	padding: 0;
+}
+
+[hyoo_calc_cell_selected] {
+	background: var(--mol_theme_back);
+	box-shadow: 0 0 0 1px var(--mol_theme_current);
+	z-index: 5;
+	position: relative;
+	border-radius: var(--mol_gap_round);
+}
+
+[hyoo_calc_cell_type="number"] {
+	text-align: right;
+}

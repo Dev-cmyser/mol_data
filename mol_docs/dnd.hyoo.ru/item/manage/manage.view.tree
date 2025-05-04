@@ -1,0 +1,22 @@
+$hyoo_dnd_item_manage $mol_book2_catalog
+	char $hyoo_dnd_char
+	menu_title \Инвентарь
+	menu_tools /
+		<= Item_add $mol_link
+			arg * item <= item_id_next \0
+			sub /
+				<= Item_add_icon $mol_icon_plus
+	param \item
+	Spread* $hyoo_dnd_item_config
+		item <= item* $hyoo_dnd_item
+		tools /
+			<= Spread_close
+	menu_item_content* /$mol_view
+		<= Menu_link*
+		<= Item_delete* $mol_button_minor
+			click? <=> item_delete* null
+			sub /
+				<= Item_delete_icon* $mol_icon_trash_can_outline
+	menu_link_content* /$mol_view
+		<= Menu_link_title*
+		<= Item_brief* $mol_view sub / <= item_brief* \

@@ -1,0 +1,6 @@
+include \/mol/offline/install
+include \/mol/vk
+
+deploy \/hyoo/lupa/manifest.json
+deploy \/hyoo/lupa/logo/logo.svg
+deploy \/hyoo/lupa/logo/logo.png

@@ -1,0 +1,670 @@
+<!doctype html>
+<html mol_view_root>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link href="hyoo/js/opt/logo/logo.svg" rel="icon" />
+	</head>
+	<body mol_view_root>
+		<div mol_view_root="$hyoo_js_opt"></div>
+		<script src="web.js" charset="utf-8"></script>
+		<script>
+			$hyoo_js_opt.Root(0).data([
+  {
+    "uri": "\\hyoo\\js\\opt\\example\\calc.js",
+    "code": "function calc(obj, type) {\n    if (type === '+') {\n        return plus(obj.a, obj.b);\n    }\n    if (type === '-') {\n        return minus(obj.a, obj.b);\n    }\n    if (type === '*') {\n        return multiply(obj.a, obj.b);\n    }\n    if (type === '/') {\n        return divide(obj.a, obj.b);\n    }\n    if (type === 'mod') {\n        return mod(obj.a, obj.b);\n    }\n}\nfunction plus(a, b) {\n    return a + b;\n}\nfunction minus(a, b) {\n    return a - b;\n}\nfunction multiply(a, b) {\n    return a * b;\n}\nfunction divide(a, b) {\n    return a / b;\n}\nfunction mod(a, b) {\n    return a % b;\n}\nmodule.exports = calc;\n",
+    "points": [
+      {
+        "type": "Fun",
+        "reasons": [
+          "",
+          "",
+          ""
+        ],
+        "pos": 13,
+        "source": {
+          "start": 13,
+          "end": 361
+        },
+        "optimizationCount": 3,
+        "optimized": true,
+        "name": "calc"
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 66,
+        "name": "plus",
+        "source": {
+          "start": 375,
+          "end": 403,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": []
+      },
+      {
+        "type": "NativeCall",
+        "pos": 75,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 82,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 131,
+        "name": "minus",
+        "source": {
+          "start": 418,
+          "end": 446,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": []
+      },
+      {
+        "type": "NativeCall",
+        "pos": 141,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 148,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 197,
+        "name": "multiply",
+        "source": {
+          "start": 464,
+          "end": 492,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": []
+      },
+      {
+        "type": "NativeCall",
+        "pos": 210,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 217,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 266,
+        "name": "divide",
+        "source": {
+          "start": 508,
+          "end": 536,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": [
+          {
+            "type": "NativeCall",
+            "pos": 530,
+            "reasons": [
+              "Float64Div",
+              "ChangeInt32ToFloat64"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 277,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 284,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 287,
+        "reasons": [
+          "StoreFloat64",
+          "RoundFloat64ToInt32",
+          "Float64Equal",
+          "ChangeInt32ToFloat64"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 335,
+        "name": "mod",
+        "source": {
+          "start": 549,
+          "end": 577,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": []
+      },
+      {
+        "type": "NativeCall",
+        "pos": 343,
+        "reasons": [
+          "Load"
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 350,
+        "reasons": [
+          "Load"
+        ]
+      }
+    ],
+    "sourceMapJSON": null
+  },
+  {
+    "uri": "\\hyoo\\js\\opt\\example\\test.js",
+    "code": "const calc = require('./calc');\nconst obj = {};\nobj.a = 1;\nobj.b = 2;\nfunction test(type) {\n    obj[type] = 1; // to change map\n    let r;\n    for (let i = 0; i < 1e4; i++) {\n        r = calc(obj, type);\n    }\n    return r;\n}\nfunction testSum() {\n    let sum = 0;\n    for (let i = 0; i < 1e4; i++) {\n        sum += test('+') + test('-') + test('*') + test('/') + test('mod');\n    }\n    return sum;\n}\ntestSum();\ntestSum();\ntestSum();\n",
+    "points": [
+      {
+        "type": "Fun",
+        "reasons": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "pos": 83,
+        "source": {
+          "start": 83,
+          "end": 225
+        },
+        "optimizationCount": 6,
+        "optimized": true,
+        "name": "test"
+      },
+      {
+        "type": "NativeCall",
+        "pos": 106,
+        "reasons": [
+          "Store"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 187,
+        "name": "calc",
+        "source": {
+          "start": 13,
+          "end": 361,
+          "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+        },
+        "points": [
+          {
+            "type": "InlinedFun",
+            "pos": 66,
+            "name": "plus",
+            "source": {
+              "start": 375,
+              "end": 403,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": []
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 131,
+            "name": "minus",
+            "source": {
+              "start": 418,
+              "end": 446,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": []
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 197,
+            "name": "multiply",
+            "source": {
+              "start": 464,
+              "end": 492,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": []
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 266,
+            "name": "divide",
+            "source": {
+              "start": 508,
+              "end": 536,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": []
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 335,
+            "name": "mod",
+            "source": {
+              "start": 549,
+              "end": 577,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": []
+          }
+        ]
+      },
+      {
+        "type": "Fun",
+        "reasons": [
+          "",
+          ""
+        ],
+        "pos": 242,
+        "source": {
+          "start": 242,
+          "end": 399
+        },
+        "optimizationCount": 2,
+        "optimized": true,
+        "name": "testSum"
+      },
+      {
+        "type": "NativeCall",
+        "pos": 286,
+        "reasons": [
+          "StoreFloat64",
+          "Float64Equal",
+          "RoundFloat64ToInt32",
+          "ChangeInt32ToFloat64"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 327,
+        "name": "test",
+        "source": {
+          "start": 83,
+          "end": 225,
+          "uri": "\\hyoo\\js\\opt\\example\\test.js"
+        },
+        "points": [
+          {
+            "type": "NativeCall",
+            "pos": 106,
+            "reasons": [
+              "StoreWithVector"
+            ]
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 187,
+            "name": "calc",
+            "source": {
+              "start": 13,
+              "end": 361,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": [
+              {
+                "type": "InlinedFun",
+                "pos": 66,
+                "name": "plus",
+                "source": {
+                  "start": 375,
+                  "end": 403,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 131,
+                "name": "minus",
+                "source": {
+                  "start": 418,
+                  "end": 446,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 197,
+                "name": "multiply",
+                "source": {
+                  "start": 464,
+                  "end": 492,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 266,
+                "name": "divide",
+                "source": {
+                  "start": 508,
+                  "end": 536,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 335,
+                "name": "mod",
+                "source": {
+                  "start": 549,
+                  "end": 577,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 339,
+        "name": "test",
+        "source": {
+          "start": 83,
+          "end": 225,
+          "uri": "\\hyoo\\js\\opt\\example\\test.js"
+        },
+        "points": [
+          {
+            "type": "NativeCall",
+            "pos": 106,
+            "reasons": [
+              "StoreWithVector"
+            ]
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 187,
+            "name": "calc",
+            "source": {
+              "start": 13,
+              "end": 361,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": [
+              {
+                "type": "InlinedFun",
+                "pos": 66,
+                "name": "plus",
+                "source": {
+                  "start": 375,
+                  "end": 403,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 131,
+                "name": "minus",
+                "source": {
+                  "start": 418,
+                  "end": 446,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 197,
+                "name": "multiply",
+                "source": {
+                  "start": 464,
+                  "end": 492,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 266,
+                "name": "divide",
+                "source": {
+                  "start": 508,
+                  "end": 536,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 335,
+                "name": "mod",
+                "source": {
+                  "start": 549,
+                  "end": 577,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 349,
+        "reasons": [
+          "Float64Add",
+          "ChangeInt32ToFloat64"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 351,
+        "name": "test",
+        "source": {
+          "start": 83,
+          "end": 225,
+          "uri": "\\hyoo\\js\\opt\\example\\test.js"
+        },
+        "points": [
+          {
+            "type": "NativeCall",
+            "pos": 106,
+            "reasons": [
+              "StoreWithVector"
+            ]
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 187,
+            "name": "calc",
+            "source": {
+              "start": 13,
+              "end": 361,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": [
+              {
+                "type": "InlinedFun",
+                "pos": 66,
+                "name": "plus",
+                "source": {
+                  "start": 375,
+                  "end": 403,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 131,
+                "name": "minus",
+                "source": {
+                  "start": 418,
+                  "end": 446,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 197,
+                "name": "multiply",
+                "source": {
+                  "start": 464,
+                  "end": 492,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 266,
+                "name": "divide",
+                "source": {
+                  "start": 508,
+                  "end": 536,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 335,
+                "name": "mod",
+                "source": {
+                  "start": 549,
+                  "end": 577,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "NativeCall",
+        "pos": 361,
+        "reasons": [
+          "Float64Add",
+          "ChangeInt32ToFloat64"
+        ]
+      },
+      {
+        "type": "InlinedFun",
+        "pos": 363,
+        "name": "test",
+        "source": {
+          "start": 83,
+          "end": 225,
+          "uri": "\\hyoo\\js\\opt\\example\\test.js"
+        },
+        "points": [
+          {
+            "type": "NativeCall",
+            "pos": 106,
+            "reasons": [
+              "StoreWithVector"
+            ]
+          },
+          {
+            "type": "InlinedFun",
+            "pos": 187,
+            "name": "calc",
+            "source": {
+              "start": 13,
+              "end": 361,
+              "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+            },
+            "points": [
+              {
+                "type": "InlinedFun",
+                "pos": 66,
+                "name": "plus",
+                "source": {
+                  "start": 375,
+                  "end": 403,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 131,
+                "name": "minus",
+                "source": {
+                  "start": 418,
+                  "end": 446,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 197,
+                "name": "multiply",
+                "source": {
+                  "start": 464,
+                  "end": 492,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 266,
+                "name": "divide",
+                "source": {
+                  "start": 508,
+                  "end": 536,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              },
+              {
+                "type": "InlinedFun",
+                "pos": 335,
+                "name": "mod",
+                "source": {
+                  "start": 549,
+                  "end": 577,
+                  "uri": "\\hyoo\\js\\opt\\example\\calc.js"
+                },
+                "points": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sourceMapJSON": null
+  }
+])
+		</script>
+	</body>
+</html>
