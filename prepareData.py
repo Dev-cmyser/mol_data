@@ -2,7 +2,7 @@ import os
 import json
 
 MAX_CHARS = 1_000
-MAX_FILE_SIZE = 8 * 1024 * 1024  # 10 MB in bytes
+MAX_FILE_SIZE = 24 * 1024 * 1024  # 10 MB in bytes
 
 EXTENSIONS = {
     ".ts", ".tsx", ".js",
