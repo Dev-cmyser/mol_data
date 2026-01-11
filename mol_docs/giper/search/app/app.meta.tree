@@ -1,0 +1,5 @@
+include \/mol/offline/install
+
+deploy \/giper/search/logo/
+deploy \/giper/search/plugin/
+deploy \/giper/search/app/manifest.json

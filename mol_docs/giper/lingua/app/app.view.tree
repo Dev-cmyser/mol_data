@@ -1,0 +1,102 @@
+$giper_lingua_app $mol_book2
+	alt_services *string
+		Google \https://translate.google.com/?sl=auto&tl={lang}&text={text}
+		Yandex \https://translate.yandex.com/?target_lang={lang}&text={text}
+	plugins /
+		<= Theme $mol_theme_auto
+	placeholders /
+	pages /
+		<= Space $giper_web_frame
+		<= Main $mol_page
+			title <= title @ \Giper Lingua
+			tools /
+				<= Clear $mol_button_minor
+					hint @ \Clear texts
+					click? <=> clear? null
+					sub /
+						<= Clear_icon $mol_icon_trash_can_outline
+				<= Source $mol_link_source
+					uri \https://github.com/giper-dev/lingua
+				<= Donate $mol_link_donate
+					uri \https://boosty.to/hyoo
+				<= Support $mol_link_support
+					uri \https://t.me/giper_web/278
+				<= Lights $mol_lights_toggle
+			foot /
+				<= Native_bar $mol_view sub /
+					<= Native_tools $mol_view sub /
+						<= Native_lang $mol_select
+							hint @ \Native Language
+							value? <=> native_lang? \ru
+							dictionary <= langs *
+						<= Foreign_translate $mol_button_major
+							hint @ \Translate to Native
+							click? <=> foreign_translate? null
+							event_activate? => foreign_translate_activate?
+							sub /
+								<= Foreign_translate_icon $mol_icon_transfer_left
+					<= Native_copy $mol_button_copy
+						text <= native_text
+					<= Native_alt_list $mol_view
+						sub <= native_alt_list /
+							<= Native_alt_link*0 $mol_link_iconed
+								title \
+								hint <= alt_title* \
+								uri <= native_alt_link* \
+				<= Foreign_bar $mol_view sub /
+					<= Foreign_tools $mol_view sub /
+						<= Native_translate $mol_button_major
+							hint @ \Translate to Foreign
+							click? <=> native_translate? null
+							event_activate? => native_translate_activate?
+							sub /
+								<= Native_translate_icon $mol_icon_transfer_right
+						<= Foreign_lang $mol_select
+							hint @ \Foreign Language
+							value? <=> foreign_lang? \en
+							dictionary <= langs *
+					<= Foreign_copy $mol_button_copy
+						text <= foreign_text
+					<= Foreign_alt_list $mol_view
+						sub <= foreign_alt_list /
+							<= Foreign_alt_link*0 $mol_link_iconed
+								title \
+								hint <= alt_title* \
+								uri <= foreign_alt_link* \
+			Body <= Body $mol_book2
+				bring <= bring
+				Placeholder null
+				pages /
+					<= Native_pane $mol_scroll sub /
+						<= Native_text $mol_textarea
+							hint @ \native language 
+							value? <=> native_text? \
+							submit? <=> native_translate_activate?
+						<= Native_links $mol_expander
+							title @ \Variants
+							content <= native_links /
+								<= Native_variant*0 $mol_button_minor
+									click? <=> native_variant_use* null
+									sub /
+										<= Native_variant_title* $mol_view
+											sub / <= native_variant_title* \
+										<= Native_variant_descr* $mol_view
+											sub / <= native_variant_descr* \
+					<= Foreign_pane $mol_scroll sub /
+						<= Foreign_text $mol_textarea
+							hint @ \foreign language text
+							value? <=> foreign_text? \
+							bring => bring
+							submit? <=> foreign_translate_activate?
+						<= Foreign_links $mol_expander
+							title @ \Variants
+							content <= foreign_links /
+								<= Foreign_variant*0 $mol_button_minor
+									click? <=> foreign_variant_use* null
+									sub /
+										<= Foreign_variant_title* $mol_view
+											sub / <= foreign_variant_title* \
+										<= Foreign_variant_descr* $mol_view
+											sub / <= foreign_variant_descr* \
+	native_variants? *string
+	foreign_variants? *string

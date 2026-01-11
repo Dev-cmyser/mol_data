@@ -1,0 +1,10 @@
+$giper_balls_ball $mol_view
+	kind 0
+	colors /string
+	style * background-image <= image \
+	active false
+	attr *
+		giper_balls_ball_state <= state \empty
+		giper_balls_ball_focus <= focus false
+	sub /
+		<= mood \x_x

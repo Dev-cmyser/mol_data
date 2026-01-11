@@ -1,0 +1,18 @@
+$giper_baza_app $mol_book2_catalog
+	menu_title \Giper Baza
+	param \section
+	menu_foot /
+		<= Source $mol_link_source
+			uri \https://github.com/giper-dev/baza
+		<= Status $giper_baza_status
+	spreads *
+		glob <= Glob $giper_baza_glob_book
+			addon_tools /
+				<= Spread_close
+		stat <= Stat $giper_baza_app_stat_page
+			tools /
+				<= Spread_close
+		slot <= Slot $giper_baza_auth_slot
+			tools /
+				<= Spread_close
+	placeholders /

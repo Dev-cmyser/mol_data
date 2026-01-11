@@ -1,0 +1,23 @@
+$giper_baza_glob_book $mol_book2_catalog
+	menu_title \🌐 Glob
+	param \link
+	Spread* <= Land* $giper_baza_land_page
+		land <= land* $giper_baza_land
+		node <= node* $giper_baza_dict
+		Close <= Spread_close
+	menu_foot /
+		<= Wipe_pick $mol_pick
+			hint \Wipe database
+			clicks? <=> wipe? null
+			align_hor \right
+			trigger_content /
+				<= Wipe_icon $mol_icon_delete_forever
+			bubble_content /
+				\Double to wipe database
+		<= Update $mol_button_open
+			hint \Upload dump
+			files? <=> update? /
+		<= Land_add $giper_baza_land_grab
+			hint \Grab new Land
+			align_hor \left
+			grab? <=> land_add? null $giper_baza_rank_preset

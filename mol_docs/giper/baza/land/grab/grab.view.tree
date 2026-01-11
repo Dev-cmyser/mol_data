@@ -1,0 +1,10 @@
+$giper_baza_land_grab $mol_select
+	Filter null
+	trigger_content /
+		<= Trigger_icon $mol_icon_plus
+	dictionary *
+		pull @ \🔱 Pullable
+		post @ \✍ Postable
+		read @ \👀 Readable
+		deny @ \🔐 Private
+	grab? null $giper_baza_rank_preset

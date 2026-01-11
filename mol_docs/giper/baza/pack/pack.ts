@@ -1,0 +1,269 @@
+namespace $ {
+	
+	export const $giper_baza_pack_four_code = $mol_charset_encode( 'LAND' ) // 76 65 78 68
+	export const $giper_baza_pack_head_size = 4/*BAZA*/ + 12/*Lord*/ + 6/*Area*/ + 2/*Size*/
+	
+	/** Universal binary package which contains some Faces/Units/Rocks */
+	export type $giper_baza_pack_parts = [ string, $giper_baza_pack_part ][]
+	
+	/**
+	 * One Land info (Faces+Units) to Pack.
+	 * Sync: +Faces -Units
+	 * Diff: -Faces +Units
+	 * Stop: -Faces -Units
+	 */
+	export class $giper_baza_pack_part extends Object {
+		
+		constructor(
+			public units = [] as $giper_baza_unit[],
+			public faces = new $giper_baza_face_map,
+		) {
+			super()
+		}
+		
+		static from( units: $giper_baza_unit_base[], faces = new $giper_baza_face_map ) {
+			return new this( units, faces )
+		}
+		
+		*[ Symbol.iterator ]() {
+			return {
+				units: this.units,
+				faces: this.faces,
+			}
+		}
+		
+	}
+	
+	/** Universal binary package which contains some Faces/Units/Rocks */
+	export class $giper_baza_pack extends $mol_buffer {
+		
+		toBlob() {
+			return new Blob( [ this ], { type: 'application/vnd.giper_baza_pack.v1' } )
+		}
+		
+		parts( offsets?: WeakMap< $giper_baza_unit, number > ) {
+			
+			const parts = new Map< string, $giper_baza_pack_part >
+			let part = null as null | $giper_baza_pack_part
+			
+			const buf = this.asArray()
+			
+			for( let offset = 0; offset < this.byteLength; ) {
+				
+				const kind = this.uint8( offset )
+				switch( $giper_baza_slot_kind[ kind ] as keyof typeof $giper_baza_slot_kind ) {
+					
+					case 'free': {
+						offset += 8
+						continue
+					}
+					
+					case 'land': {
+						
+						const faces = new $giper_baza_face_map
+						
+						const link = $giper_baza_link.from_bin(
+							new Uint8Array( buf.buffer, buf.byteOffset + offset + 4, 18 )
+						)
+						
+						const size = this.uint16( offset + 22 )
+						
+						offset += 24
+						
+						// Faces
+						for( let i = 0; i < size; ++i ) {
+							
+							const peer = $giper_baza_link.from_bin(
+								new Uint8Array( buf.buffer, buf.byteOffset + offset, 6 )
+							)
+							
+							const tick = this.uint16( offset + 6 )
+							const time = this.uint32( offset + 8 )
+							const summ = this.uint32( offset + 12 )
+							
+							faces.peer_time( peer.str, time, tick )
+							faces.peer_summ( peer.str, summ )
+							
+							offset += $giper_baza_face.length()
+							
+						}
+						
+						parts.set( link.str, part = new $giper_baza_pack_part( [], faces ) )
+						
+						continue
+					}
+					
+					case 'pass': {
+						
+						if( !part ) $mol_fail( new Error( 'Land is undefined' ) )
+						
+						const pass = $giper_baza_auth_pass.from(
+							buf.slice( offset, offset + 64 )
+						)
+						
+						offsets?.set( pass, offset )
+						part.units.push( pass )
+						
+						offset += pass.byteLength
+						continue
+						
+					}
+					
+					case 'seal': {
+						
+						if( !part ) $mol_fail( new Error( 'Land is undefined' ) )
+						
+						const size = new $giper_baza_unit_seal( this.buffer, this.byteOffset + offset, this.byteLength - offset ).size()
+						const length = $giper_baza_unit_seal.length( size )
+						
+						const seal = $giper_baza_unit_seal.from(
+							buf.slice( offset, offset + length )
+						)
+						
+						offsets?.set( seal, offset )
+						part.units.push( seal )
+						
+						offset += seal.byteLength
+						continue
+						
+					}
+					
+					case 'sand': {
+						
+						if( !part ) $mol_fail( new Error( 'Land is undefined' ) )
+						
+						const size = new $giper_baza_unit_sand( this.buffer, this.byteOffset + offset, this.byteLength - offset ).size()
+						const length_sand = $giper_baza_unit_sand.length( size )
+						const length_ball = $giper_baza_unit_sand.length_ball( size )
+						
+						const sand = $giper_baza_unit_sand.from( buf.slice( offset, offset + length_sand ) )
+						
+						offsets?.set( sand, offset )
+						offset += sand.byteLength
+						
+						if( length_ball ) {
+							sand._ball = buf.slice( offset, offset += length_ball )
+						}
+						
+						part.units.push( sand )
+						
+						continue
+					}
+					
+					case 'gift': {
+						
+						if( !part ) $mol_fail( new Error( 'Land is undefined' ) )
+						
+						const length = $giper_baza_unit_gift.length()
+						const gift = $giper_baza_unit_gift.from( buf.slice( offset, offset + length ) )
+						
+						offsets?.set( gift, offset )
+						part.units.push( gift )
+						
+						offset += gift.byteLength
+						continue
+						
+					}
+					
+					default:
+						$$.$mol_log3_warn({
+							place: this,
+							message: '💢 Unknown Kind',
+							kind,
+							offset,
+							hint: 'Try to update application',
+						})
+						return [ ... parts ]
+				}
+				
+			}
+			
+			return [ ... parts ]
+			
+		}
+	
+		static length( parts: $giper_baza_pack_parts ) {
+			
+			let size = 0
+			
+			for( const [ land, { units, faces } ] of parts ) {
+				
+				size += $giper_baza_pack_head_size
+				size += faces.size * $giper_baza_face.length()
+				
+				for( const unit of units ) {
+					
+					size += unit.byteLength
+					
+					if( unit instanceof $giper_baza_auth_pass ) continue
+					
+					unit.choose({
+						gift: gift => {},
+						seal: seal => {},
+						sand: sand => size += $giper_baza_unit_sand.length_ball( sand.ball().byteLength ),
+					})
+					
+				}
+				
+			}
+			
+			return size
+		}
+		
+		static make( parts: $giper_baza_pack_parts ) {
+			
+			let length = this.length( parts )
+			if( length === 0 ) $mol_fail( new Error( 'Empty Pack' ) )
+			
+			const buff = new Uint8Array( length )
+			const pack = new $giper_baza_pack( buff.buffer )
+			
+			let offset = 0
+			
+			// fill Lands
+			for( const [ id, { units, faces } ] of parts ) {
+				
+				// Head
+				buff.set( $giper_baza_pack_four_code, offset ) // 4B
+				buff.set( new $giper_baza_link( id ).toBin(), offset + 4 ) // Land = Lord + Area
+				pack.uint16( offset + 22, faces.size ) // Vers
+				offset += 24
+				
+				// Peer + Tick + Time + Summ for every Face
+				for( const [ peer, face ] of faces ) {
+					buff.set( new $giper_baza_link( peer ).toBin(), offset )
+					pack.uint16( offset + 6, face.tick )
+					pack.uint32( offset + 8, face.time )
+					pack.uint32( offset + 12, face.summ )
+					offset += $giper_baza_face.length()
+				}
+				
+				// Units + Balls
+				for( const unit of units ) {
+					
+					buff.set( unit.asArray(), offset )
+					offset += unit.byteLength
+					
+					if( unit instanceof $giper_baza_auth_pass ) continue
+					
+					unit.choose({
+						gift: gift => {},
+						seal: seal => {},
+						sand: sand => {
+							if( sand.size() > $giper_baza_unit_sand.size_equator ) {
+								buff.set( sand.ball(), offset )
+								offset += $giper_baza_unit_sand.length_ball( sand.size() )
+							}
+						},
+					})
+					
+				}
+				
+			}
+			
+			return pack
+		}
+		
+	}
+	
+}

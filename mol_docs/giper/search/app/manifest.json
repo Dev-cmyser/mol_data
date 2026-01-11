@@ -1,0 +1,21 @@
+{
+	"short_name": "GD Search",
+	"name": "Giper Search",
+	"categories": [ "game" ],
+	"icons": [
+		{
+			"src": "../logo/logo_512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "../logo/logo.svg",
+			"type": "image/svg+xml",
+			"sizes": "386x386"
+		}
+	],
+	"start_url": "../../..",
+	"background_color": "#000000",
+	"theme_color": "#000000",
+	"display": "fullscreen"
+}

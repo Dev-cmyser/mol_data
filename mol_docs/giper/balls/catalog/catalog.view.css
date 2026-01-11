@@ -1,0 +1,8 @@
+[giper_balls_catalog_board] {
+	-webkit-user-select: none;
+}
+
+html, body {
+  overscroll-behavior-x: none;
+  touch-action: none;
+}

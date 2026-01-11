@@ -1,0 +1,8 @@
+$giper_web_bar_link $mol_link
+	target \_parent
+	uri_toggle <= uri
+	sub /
+		<= Icon $mol_image
+			uri <= icon \
+			hint <= title
+		<= Title $mol_view sub / <= title

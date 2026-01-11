@@ -1,0 +1,4 @@
+include \/mol/offline/install
+
+deploy \/giper/lingua/app/manifest.json
+deploy \/giper/lingua/logo/

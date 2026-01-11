@@ -1,0 +1,12 @@
+{
+	"$giper_lingua_app_title": "Гипер Лингва",
+	"$giper_lingua_app_Clear_hint": "Стереть тексты",
+	"$giper_lingua_app_Native_lang_hint": "Родной язык",
+	"$giper_lingua_app_Foreign_translate_hint": "Перевести на родной",
+	"$giper_lingua_app_Native_translate_hint": "Перевести на чужой",
+	"$giper_lingua_app_Foreign_lang_hint": "Чужой язык",
+	"$giper_lingua_app_Native_links_title": "Варианты",
+	"$giper_lingua_app_Native_text_hint": "На родном языке",
+	"$giper_lingua_app_Foreign_links_title": "Варианты",
+	"$giper_lingua_app_Foreign_text_hint": "На чужом языке"
+}

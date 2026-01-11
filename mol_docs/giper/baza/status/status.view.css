@@ -1,0 +1,24 @@
+[giper_baza_status_option_row] {
+	padding: var(--mol_gap_text);
+}
+
+[giper_baza_status_well] {
+	color: var(--mol_theme_current);
+}
+
+[giper_baza_status_fail] {
+	color: var(--mol_theme_focus);
+}
+
+[giper_baza_status][mol_view_error="Promise"] {
+	animation: giper_baza_status_wait 1s linear infinite;
+}
+
+@keyframes giper_baza_status_wait {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: .5;
+	}
+}

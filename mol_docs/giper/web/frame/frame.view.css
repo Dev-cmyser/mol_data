@@ -1,0 +1,9 @@
+/* @keyframes giper_web_frame_show {
+	from {
+		opacity: 0;
+	}
+}
+
+[giper_web_frame] {
+	animation: 5s -1s ease-in giper_web_frame_show;
+} */

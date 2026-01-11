@@ -1,0 +1,27 @@
+$giper_baza_land_rights $mol_list
+	land $giper_baza_land
+	rows /
+		<= Add $mol_view sub /
+			<= Add_key $mol_string
+				hint @ \Public key
+				value? <=> add_key? \
+				submit? <=> add_commit? null
+			<= Add_commit $mol_button_minor
+				click? <=> add_commit? null
+				sub /
+					<= Add_commit_icon $mol_icon_plus
+		^ gifts /
+			<= Gift*0 $mol_view sub /
+				<= Gift_peer* $mol_view sub /
+					<= Gift_avatar* $mol_avatar
+						id <= peer_id* \
+					<= Gift_name* $mol_paragraph
+						title <= peer_name* \
+				<= Gift_rank* $mol_select
+					value? <=> gift_rank*? \deny
+					dictionary *
+						deny @ \🛑 Deny
+						read @ \👀 Read
+						join @ \📢 Join
+						post @ \✍ Post
+						rule @ \👑 Rule

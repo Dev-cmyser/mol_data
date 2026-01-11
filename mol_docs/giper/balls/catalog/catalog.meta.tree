@@ -1,0 +1,4 @@
+include \/mol/offline/install
+
+deploy \/giper/balls/catalog/manifest.json
+deploy \/giper/balls/logo/

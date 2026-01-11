@@ -1,0 +1,15 @@
+{
+	"$giper_player_Queue_title": "Гипер Плеер",
+	"$giper_player_Source_title": "Смотреть",
+	"$giper_player_Open_hint": "Открыть файлы",
+	"$giper_player_Water_hint": "Расслабляющее",
+	"$giper_player_Wind_hint": "Трогательное",
+	"$giper_player_Light_hint": "Воодушевляющее",
+	"$giper_player_Fire_hint": "Агрессивное",
+	"$giper_player_Movies_hint": "Ролики",
+	"$giper_player_Movie_search_hint": "Поиск кино...",
+	"$giper_player_Movie_bookmark_hint": "Закладка",
+	"$giper_player_player_name_none": "Информация",
+	"$giper_player_Similars_block_title": "Похожее кино",
+	"$giper_player_Members_block_title": "Личный состав"
+}

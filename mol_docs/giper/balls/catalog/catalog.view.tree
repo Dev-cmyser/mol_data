@@ -1,0 +1,22 @@
+$giper_balls_catalog $mol_book2_catalog
+	menu_title @ \Giper Balls
+	plugins /
+		<= Theme $mol_theme_auto
+	placeholders /
+	pages /
+		<= Space $giper_web_frame
+		^
+	menu_foot /
+		<= Donate $mol_link_donate uri \https://boosty.to/hyoo
+		<= Support $mol_link_support uri \https://t.me/giper_web/118
+		<= Source $mol_link_source uri \http://github.com/giper-dev/balls/
+		<= Lights $mol_lights_toggle
+	spreads *
+		lines <= Lines $giper_balls_lines
+			tools /
+				^
+				<= Spread_close
+		chess <= Chess $giper_balls_chess_game
+			tools /
+				^
+				<= Spread_close

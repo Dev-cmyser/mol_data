@@ -1,0 +1,20 @@
+Meetup *
+	\Митап
+	.Title text
+	.Speeches / -> Speech
+
+Speech *
+	\Доклад
+	.Meetup -> Meetup
+	.Title text
+	.Descr Text
+	.Speaker_snap Speaker_snap
+
+Speaker *
+	\Докладчик
+	.Name text
+	.Photo Blob
+
+Speaker_snap Speaker
+	\Снепшот докладчика
+	.Live -> Speaker

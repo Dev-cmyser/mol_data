@@ -1,0 +1,20 @@
+$giper_balls_chess_game $giper_balls_game
+	title @ \Chess
+	State? $giper_balls_chess_state
+	last_coord? +NaN
+	mood_smiles /
+		\
+		\..
+		\+_+
+		\^.^
+		\x_x
+		\*_*
+		\*.*
+	tools /
+		<= Autobot $mol_check_icon
+			hint @ \Autobot
+			Icon <= Autobot_icon $mol_icon_brain
+			checked? <=> autobot? true
+	auto /
+		<= thinking null
+		<= autoboting null

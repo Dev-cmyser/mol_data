@@ -1,0 +1,54 @@
+$giper_balls_game $mol_page
+	size 8
+	colors /
+		\
+		\oklch( .9 0.3 40 )
+		\oklch( .9 0.3 100 )
+		\oklch( .9 0.3 150 )
+		\oklch( .9 0.3 210 )
+		\oklch( .9 0.3 300 )
+		\oklch( .9 0.3 350 )
+	mood_smiles /
+		\._.
+		\*_*
+		\*o*
+		\^_^
+		\^__^
+		\=^_^=
+		\=^__^=
+		\=*_*=
+		\=*__*=
+	active_cell? /number
+	score? 0
+	event *
+		^
+		selectionchange? <=> select? null
+	head /
+		<= Caption $mol_view sub /
+			<= Share $mol_button_share
+			<= Title
+		<= Main $mol_view sub /
+			<= Restart $mol_button_minor
+				hint @ \Reset
+				click? <=> restart? null
+				sub / <= Restart_icon $mol_icon_autorenew
+			<= Score_pick <= Score*0 $mol_chip
+				sub /
+					<= score_text \
+		<= Tools
+	body_content /
+		<= Board $mol_view sub <= rows /
+			<= Row*0 $mol_view sub <= cells* /
+				<= Cell*0 $mol_stack
+					event *
+						touchstart? <=> select? null
+						pointerdown? <=> ball_grab*? null
+						pointerenter? <=> ball_move*? null
+						pointerup? <=> ball_drop*? null
+					sub /
+						<= Ball* $giper_balls_ball
+							kind <= ball_kind*? 0
+							mood <= ball_mood* \
+							active <= cell_active*? false
+							colors <= colors
+							focus <= ball_focus* false

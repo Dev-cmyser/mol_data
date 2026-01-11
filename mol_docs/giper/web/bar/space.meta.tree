@@ -1,0 +1,9 @@
+include \/mol/offline/install
+
+deploy \/giper/web/logo/logo.svg
+deploy \/giper/search/logo/logo.svg
+deploy \/giper/bot/logo/logo.svg
+deploy \/giper/lingua/logo/logo.svg
+deploy \/giper/player/logo/logo.svg
+deploy \/giper/balls/logo/logo.svg
+deploy \/giper/iq/logo/logo.svg

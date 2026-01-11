@@ -1,0 +1,38 @@
+$giper_web_bar $mol_page
+	plugins /
+		<= Theme $mol_theme_auto
+	head /
+		<= Giper $giper_web_bar_link
+			title <= title @ \Giper Web
+			uri \https://web.giper.dev/
+			- uri \http://localhost:9080/giper/web/bar/-/test.html
+			icon \giper/web/logo/logo.svg
+	body <= apps /
+		<= Search $giper_web_bar_link
+			title @ \Search
+			uri \https://search.giper.dev/
+			icon \giper/search/logo/logo.svg
+		<= Bot $giper_web_bar_link
+			title @ \Bot
+			uri \https://bot.giper.dev/#!prompt={query}
+			icon \giper/bot/logo/logo.svg
+		<= Lingua $giper_web_bar_link
+			title @ \Lingua
+			uri \https://lingua.giper.dev/#!native_text={query}
+			icon \giper/lingua/logo/logo.svg
+		<= Player $giper_web_bar_link
+			title @ \Player
+			uri \https://player.giper.dev/#!search={query}
+			icon \giper/player/logo/logo.svg
+		<= Balls $giper_web_bar_link
+			title @ \Balls
+			uri \https://balls.giper.dev/
+			icon \giper/balls/logo/logo.svg
+		<= IQ $giper_web_bar_link
+			title @ \IQ
+			uri \https://iq.giper.dev/
+			icon \giper/iq/logo/logo.svg
+	foot /
+		<= Sources $mol_link_source
+			uri \https://github.com/giper-dev/web
+
